@@ -17,9 +17,9 @@
     <schema:distribution rdf:resource="https://w3id.org/a2a-fair-metrics/05-http-describedby-citeas/02-html-full"/>
     <schema:license rdf:resource="http://creativecommons.org/licenses/by/4.0/"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://orcid.org/0000-0000-0000-0000">
+  <rdf:Description rdf:about="https://orcid.org/0000-0002-1825-0097">
     <rdf:type rdf:resource="http://schema.org/Person"/>
-    <schema:name>Mr. Apple</schema:name>
+    <schema:name>Josiah Carberry</schema:name>
   </rdf:Description>
   <rdf:Description rdf:about="https://w3id.org/a2a-fair-metrics/05-http-describedby-citeas/02-html-full">
     <schema:contentSize rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4664</schema:contentSize>
