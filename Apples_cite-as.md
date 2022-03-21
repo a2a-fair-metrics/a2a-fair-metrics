@@ -13,7 +13,7 @@ Mark D Wilkinson: 0000-0001-6960-357X
 ### Maturity Indicator Name:   Headers inclulde cite-as link
 
 The headers of the landing page should point to the permanent GUID of the record (e.g. its DOI, as an http(s) reference).  This should be accomplished 
-using the "cite-as" Link Header type [https://www.rfc-editor.org/rfc/rfc8574.html](https://www.rfc-editor.org/rfc/rfc8574.html) or the equivalent HTML Meta link.
+using the "cite-as" Link Header type [https://www.rfc-editor.org/rfc/rfc8574.html](https://www.rfc-editor.org/rfc/rfc8574.html) or the equivalent HTML `link` link.
 
 ### To which principle does it apply?
 F1
