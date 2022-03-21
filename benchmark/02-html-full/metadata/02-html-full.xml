@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:dcat="http://www.w3.org/ns/dcat#" xmlns:foaf="http://xmlns.com/foaf/0.1/" xmlns:adms="http://www.w3.org/ns/adms#" xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:prov="http://www.w3.org/ns/prov#" xmlns:vcard="http://www.w3.org/2006/vcard/ns#" xmlns:locn="http://www.w3.org/ns/locn#" xmlns:odrs="http://schema.theodi.org/odrs#">
+  <dcat:Dataset rdf:about="https://doi.org/10.4242/ncc-1701">
+    <dcat:landingPage rdf:resource="https://doi.org/10.4242/ncc-1701"/>
+    <dcterms:title xml:lang="en">My dataset</dcterms:title>
+    <dcterms:title xml:lang="sv">Mitt dataset</dcterms:title>
+    <dcterms:description xml:lang="en">Example description in english</dcterms:description>
+    <dcterms:description xml:lang="sv">Exempel beskrivning på svenska</dcterms:description>
+    <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-01-17T09:52:29Z</dcterms:modified>
+    <dcterms:issued rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2017-10-03T09:00:32Z</dcterms:issued>
+    <dcterms:publisher rdf:resource="https://borsna.github.io/fair-examples"/>
+    <dcat:theme rdf:resource="http://publications.europa.eu/resource/authority/data-theme/ENVI"/>
+    <dcterms:accessRights rdf:resource="http://publications.europa.eu/resource/authority/access-right/PUBLIC"/>
+    <prov:qualifiedAttribution>
+      <prov:Attribution>
+        <dcat:hadRole rdf:resource="http://inspire.ec.europa.eu/metadata-codelist/ResponsiblePartyRole/Author"/>
+        <prov:agent>
+          <foaf:Agent>
+            <foaf:name xml:lang="en">CESSDA</foaf:name>
+            <foaf:name xml:lang="sv">CESSDA</foaf:name>
+            <dcterms:type rdf:resource="http://purl.org/adms/publishertype/Academia-ScientificOrganisation"/>
+          </foaf:Agent>
+        </prov:agent>
+      </prov:Attribution>
+    </prov:qualifiedAttribution>
+    <dcat:contactPoint rdf:resource="https://staging.snd.gu.se/en/contact"/>
+    <dcat:keyword xml:lang="en">a keyword</dcat:keyword>
+    <dcat:keyword xml:lang="sv">ett nyckelord</dcat:keyword>
+    <dcterms:temporal>
+      <dcterms:PeriodOfTime>
+        <dcat:startDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-07-03</dcat:startDate>
+        <dcat:endDate rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-10-04</dcat:endDate>
+      </dcterms:PeriodOfTime>
+    </dcterms:temporal>
+    <dcterms:language rdf:resource="http://publications.europa.eu/resource/authority/language/ENG"/>
+    <dcat:distribution rdf:resource="https://doi.org/10.5879/ecds/2016-06-28.1/1#ECDS0196-001-V1.0.zip"/>
+  </dcat:Dataset>
+  <dcat:Distribution rdf:about="https://doi.org/10.5879/ecds/2016-06-28.1/1#ECDS0196-001-V1.0.zip">
+    <dcterms:format>text/csv</dcterms:format>
+    <dcat:byteSize rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">91168115</dcat:byteSize>
+    <dcterms:title xml:lang="sv">test-data.csv</dcterms:title>
+    <dcterms:title xml:lang="en">ECDS0196-001-V1.0</dcterms:title>
+    <dcat:accessURL rdf:resource="https://doi.org/10.5879/ecds/2016-06-28.1/1"/>
+    <dcterms:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+    <dcterms:rights>
+      <odrs:RightsStatement>
+        <odrs:attributionText xml:lang="sv">Polarforskningssekretariatet (2017). SWERUS-C3 - Meteorologiska och oceanografiska data, samt skeppsdata, insamlade ombord på isbrytaren Oden under juli till oktober 2014. Svensk nationell datatjänst. Version 1.0. https://doi.org/10.5879/ecds/2016-06-28.1/1</odrs:attributionText>
+        <odrs:attributionText xml:lang="en">Swedish Polar Research Secretariat (2017). SWERUS-C3 - Meteorological, Oceanographic and Ship Data Collected on board the Icebreaker Oden, July through October 2014. Swedish National Data Service. Version 1.0. https://doi.org/10.5879/ecds/2016-06-28.1/1</odrs:attributionText>
+      </odrs:RightsStatement>
+    </dcterms:rights>
+  </dcat:Distribution>
+  <foaf:Agent rdf:about="https://borsna.github.io/fair-examples">
+    <foaf:name xml:lang="en">Example data archive</foaf:name>
+    <foaf:name xml:lang="sv">Exempel dataarkiv</foaf:name>
+    <dcterms:type rdf:resource="http://purl.org/adms/publishertype/Academia-ScientificOrganisation"/>
+    <foaf:homepage rdf:resource="https://borsna.github.io/fair-examples"/>
+  </foaf:Agent>
+</rdf:RDF>
