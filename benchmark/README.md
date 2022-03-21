@@ -5,8 +5,6 @@ benchmark tests for tools to verify parsing and compliance with the
 <a href="https://signposting.org/FAIR/">FAIR Signposting</a> profile. 
 </p>
 
-
-
 <section>
 <h2>Persistent Identifiers</h2>
 <p>
@@ -19,7 +17,8 @@ Note that some of the tests (e.g. <a href="https://w3id.org/a2a-fair-metrics/04-
 deliberately refer to resources using IRIs to the alternative hostname
 <a href="https://з11.ею/2022/a2a-fair-metrics/">з11.ею</a> (aka xn--11-slc.xn--e1a4c) 
 instead of <a href="https://s11.no/2022/a2a-fair-metrics/">s11.no</a>
-as pointed to by the PID redirects.
+as pointed to by the PID redirects.  It is also possible to force access to the tests using
+IPv6 only with the hostanmeI <a href="https://ipv6.s11.no/2022/a2a-fair-metrics/">ipv6.s11.no</a>.
 </p>
 <section>
 
@@ -29,6 +28,6 @@ as pointed to by the PID redirects.
 	<dd><a href="https://w3id.org/a2a-fair-metrics/">https://w3id.org/a2a-fair-metrics/</a></dd>
 	<dt>Contact details</dt>
 	<dd><a href="https://join.slack.com/t/applestoapples/shared_invite/zt-15iuqnirp-~91h2i4ltn1kdZdNPea0Xw">Slack</a></dd>
-	<dd><a href="https://github.com/stain/Apples-to-Apples-FAIR-Metrics/issues">GitHub</a></dd>
+	<dd><a href="https://github.com/stain/Apples-to-Apples-FAIR-Metrics/tree/main/benchmark">GitHub</a></dd>
 	<dd><a href="https://s11.no/">Stian Soiland-Reyes</a> (<a href="mailto:soiland-reyes@manchester.ac.uk">email</a>)</dd>
 </dl>
