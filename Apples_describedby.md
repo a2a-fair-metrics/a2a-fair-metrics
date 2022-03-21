@@ -8,7 +8,7 @@ Mark D Wilkinson: 0000-0001-6960-357X
 #### Accepted: pending
 
 
-### Maturity Indicator Identifier: ABCDE [https://w3id.org/fair/maturity_indicator/Gen2/Apples_cite-as](https://w3id.org/fair/maturity_indicator/Gen2/Apples_cite-as)
+### Maturity Indicator Identifier: ABCDE [https://w3id.org/fair/maturity_indicator/Gen2/Apples_describedby](https://w3id.org/fair/maturity_indicator/Gen2/Apples_describedby)
 
 ### Maturity Indicator Name:   Headers inclulde describedby link
 
@@ -23,7 +23,7 @@ F+
 The existence of a reference to the identifier of the data, which should be found in the *describedby* link header, or in the HTML as a meta element.
 
 ### Why should we measure it?
-The FAIR principles require that all data is precisely identified with a globally unique identifier.
+
 
 ### What must be provided for the measurement?
 
