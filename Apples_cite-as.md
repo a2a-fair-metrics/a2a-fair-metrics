@@ -13,7 +13,7 @@ Mark D Wilkinson: 0000-0001-6960-357X
 ### Maturity Indicator Name:   Headers inclulde cite-as link
 
 The headers of the landing page should point to the permanent GUID of the record (e.g. its DOI, as an http(s) reference).  This should be accomplished 
-using the "cite-as" Link Header type [https://www.rfc-editor.org/rfc/rfc8574.html](https://www.rfc-editor.org/rfc/rfc8574.html) or the equivalent HTML Meta link.
+using the "cite-as" Link Header type [https://www.rfc-editor.org/rfc/rfc8574.html](https://www.rfc-editor.org/rfc/rfc8574.html) or the equivalent HTML `link` link.
 
 ### To which principle does it apply?
 F1
@@ -31,7 +31,7 @@ A GUID that resolves (after following all redirects) to the landing page of the 
 
 ### How is the measurement executed?
 HTTP GET calls, using Accept */* content type, are made on the provided GUID, and any 300-range redirects are followed.  When there are no more redirects, 
-the HTTP headers of the last call are examined for the presence of a Link of type "cite-as", and similarly link meta tags in the HTML (if the record is HTML)
+the HTTP headers of the last call are examined for the presence of a `Link` header of `rel` "cite-as", and similarly `<link>` tags in the HTML (if the record is HTML)
 are examined for the existence of a cite-as tag.
 
 ### What is/are considered valid result(s)?
