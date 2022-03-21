@@ -15,24 +15,24 @@ Mark D Wilkinson: 0000-0001-6960-357X
 
 ### Maturity Indicator Name:   Headers or Link HTML elements include describedby link
 
-The landing page should point to one or more metadata records using the "describedby" link.This should be accomplished 
-using the "describedby" Link Header type [https://www.rfc-editor.org/rfc/rfc8574.html](https://www.rfc-editor.org/rfc/rfc8574.html) or the equivalent HTML `describedby` link.
-The value of this link should be an absolute URL. The link must also have a `type` attribute indicating the MIME type of the Accept headers when calling the link, that will result in retrieval of the metadata.
+The landing page should point to one or more metadata records using the `describedby` link.This should be accomplished 
+using the `describedby` Link Header type [https://www.rfc-editor.org/rfc/rfc8574.html](https://www.rfc-editor.org/rfc/rfc8574.html) or the equivalent HTML `describedby` link.
+The value of this link should be an absolute URL. The link must also have a `type` attribute indicating the MIME type of the Accept headers when resolving the link, that will result in retrieval of the metadata.
 
 ### To which principle does it apply?
 F2 - data is described by rich metadata
 
 ### What is being measured?
 
-The existence of a describedby link, absolute URL, and including a type attribute
+The existence of a describedby link, absolute URL, and including a type attribute, that resolves
 
 ### Why should we measure it?
 
 The ability to discover structured metadata in a predictable manner is core to the 'Apples to apples' signposting approach.  This includes giving 
-an agent all of the information it requires to make a successful call for metadata retrieval, including the Accept headers.
+an agent all of the information it requires to make a successful call for metadata retrieval.
 
 ### What must be provided for the measurement?
-A GUID that resolves (after following all redirects) to the landing page of a data record, or to a data record.
+A GUID that resolves (after following all redirects) to the landing page of a data record, or to a data record that has these link headers.
 
 
 ### How is the measurement executed?
