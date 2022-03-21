@@ -1,5 +1,7 @@
-# Does not currently work as the PIDs don't have trailing /
-# but Apache HTTP listing adds / for directories
-## IndexHeadInsert "<base href='https://w3id.org/a2a-fair-metrics/'>"
-
+HeaderName HEADER.html
 ReadmeName README.html
+IndexOptions +SuppressHTMLPreamble Charset=UTF-8
+IndexIgnore cc-zero.svg ..
+<Files linkset.json>
+  ForceType application/linkset+json
+</Files>

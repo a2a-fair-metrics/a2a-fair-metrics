@@ -1,5 +1,5 @@
 <Files index.html>
-  Header add Link <https://w3id.org/a2a-fair-metrics/06-http-describedby-citeas-item>;rel="cite-as"
-  Header add Link <https://s11.no/2022/a2a-fair-metrics/06-http-describedby-citeas-item/index.ttl>;rel="describedby"
-  Header add Link <https://s11.no/2022/a2a-fair-metrics/06-http-describedby-citeas-item/test-apple-data.csv>;rel="item"  
+  Header add Link <https://w3id.org/a2a-fair-metrics/06-http-describedby-citeas-item/>;rel="cite-as"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/06-http-describedby-citeas-item/index.ttl>;rel="describedby";type="text/turtle"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/06-http-describedby-citeas-item/test-apple-data.csv>;rel="item";type="text/csv"
 </Files>
