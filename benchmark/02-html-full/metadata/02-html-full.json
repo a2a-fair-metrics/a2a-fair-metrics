@@ -1,0 +1,60 @@
+{
+    "@context":"https://schema.org",
+    "@type":"Dataset",
+    "@id":"https://w3id.org/a2a-fair-metrics/02-html-full",
+    "identifier":"https://w3id.org/a2a-fair-metrics/02-html-full",
+    "name": [
+        {
+            "@value": "My dataset",
+            "@language": "en"
+        },
+        {
+            "@value": "Mitt dataset",
+            "@language": "sv"
+        },
+        {
+            "@value": "Oma tietojoukko",
+            "@language": "fi"
+        }
+    ],
+    "description": [
+        {
+            "@value": "Example description in english",
+            "@language": "en"
+        },
+        {
+            "@value": "Exempel beskrivning på svenska",
+            "@language": "sv"
+        },
+        {
+            "@value": "Esimerkkikuvaus suomeksi",
+            "@language": "fi"
+        }
+    ],
+    "author": [
+        {
+            "@type": "Organization",
+            "@id": "https://ror.org/02wg9xc72",
+            "name": "CESSDA"
+        },
+        {
+            "@type": "Person",
+            "@id": "https://orcid.org/0000-0000-0000-0000",
+            "name": "Apple"
+        }
+    ],
+    "datePublished": "2020-10-27",
+    "dateModified": "2021-11-04",
+    "isAccessibleForFree": true,
+    "license": "http://creativecommons.org/licenses/by/4.0/",
+    "distribution": [
+        {
+            "@type": "DataDownload",
+            "name": "test-data.csv",
+            "fileFormat": "text/csv",
+            "contentSize": 4664,
+            "@id": "https://w3id.org/a2a-fair-metrics/02-html-full#test-data.csv",
+            "contentUrl": "https://borsna.github.io/fair-examples/catalogue/dataset/ds-1/data/test-data.csv"
+        }
+    ]
+}
