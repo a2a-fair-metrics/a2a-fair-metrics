@@ -30,8 +30,8 @@ The FAIR principles require that all data is precisely identified with a globall
 
 ### How is the measurement executed?
 HTTP GET calls, using Accept */* content type, are made on the provided GUID, and any 300-range redirects are followed.  When there are no more redirects, 
-the HTTP headers of the last call are examined for the presence of a `Link` header of `rel` "describedby", and similarly `<link>` tags in the HTML (if the record is HTML)
-are examined for the existence of a describedby tag.
+the HTTP headers of the last call are examined for the presence of a `Link` header of `rel="describedby"`, and similarly `<link>` tags in the HTML (if the record is HTML)
+are examined for the existence of a `rel="describedby"` link.
 
 ### What is/are considered valid result(s)?
 the presence of a cite-as in either headers or HTML
