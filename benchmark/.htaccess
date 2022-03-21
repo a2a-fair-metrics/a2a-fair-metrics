@@ -1,1 +1,5 @@
+# Does not currently work as the PIDs don't have trailing /
+# but Apache HTTP listing adds / for directories
+## IndexHeadInsert "<base href='https://w3id.org/a2a-fair-metrics/'>"
+
 ReadmeName README.html
