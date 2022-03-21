@@ -31,8 +31,8 @@ A GUID that resolves (after following all redirects) to the landing page of the 
 
 ### How is the measurement executed?
 HTTP GET calls, using Accept */* content type, are made on the provided GUID, and any 300-range redirects are followed.  When there are no more redirects, 
-the HTTP headers of the last call are examined for the presence of a `Link` header of `rel` "cite-as", and similarly `<link>` tags in the HTML (if the record is HTML)
-are examined for the existence of a cite-as tag.
+the HTTP headers of the last call are examined for the presence of a `Link` header of `rel="cite-as"`, and similarly `<link>` tags in the HTML (if the record is HTML)
+are examined for the existence of a `rel="cite-as"` link.
 
 ### What is/are considered valid result(s)?
 the presence of a cite-as in either headers or HTML

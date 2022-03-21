@@ -33,9 +33,10 @@ A GUID that resolves (after following all redirects) to the landing page of a da
 
 
 ### How is the measurement executed?
-HTTP GET calls, using Accept `*/*` content type, are made on the provided GUID, and any 300-range redirects are followed.  When there are no more redirects, 
-the HTTP headers of the last call are examined for the presence of a `link` header of type `describedby`, and similarly `link` elements in the HTML (if the record is HTML)
-are examined for the existence of a `describedby` link.  In both cases, the `type` element of that `describedby` link must exist and have a [valid content-type](https://signposting.org/conventions/#bibliographic).  This is tested by executing an HTTP GET call on the link, with the indicated type as the Accept headers for the call, which after following all 300-range redirects, should end with an HTTP 200 success.
+
+HTTP GET calls, using Accept */* content type, are made on the provided GUID, and any 300-range redirects are followed.  When there are no more redirects, 
+the HTTP headers of the last call are examined for the presence of a `Link` header of `rel="describedby"`, and similarly `<link>` tags in the HTML (if the record is HTML)
+are examined for the existence of a `rel="describedby"` link.
 
 ### What is/are considered valid result(s)?
 the presence of a full URL and a `type` containing a valid content type
