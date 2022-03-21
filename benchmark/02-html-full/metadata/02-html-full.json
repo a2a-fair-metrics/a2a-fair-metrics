@@ -5,42 +5,30 @@
     "identifier":"https://doi.org/10.4242/ncc-1701",
     "name": [
         {
-            "@value": "My dataset",
+            "@value": "Apples to Apples Dataset",
             "@language": "en"
         },
         {
-            "@value": "Mitt dataset",
-            "@language": "sv"
-        },
-        {
-            "@value": "Oma tietojoukko",
-            "@language": "fi"
+            "@value": "Appels met appels dataset",
+            "@language": "nl"
         }
+
     ],
     "description": [
         {
-            "@value": "Example description in english",
+            "@value": "Apples to Apples description.",
             "@language": "en"
         },
         {
-            "@value": "Exempel beskrivning på svenska",
-            "@language": "sv"
-        },
-        {
-            "@value": "Esimerkkikuvaus suomeksi",
-            "@language": "fi"
+            "@value": "Appels met appels omschrijving.",
+            "@language": "nl"
         }
     ],
     "author": [
         {
-            "@type": "Organization",
-            "@id": "https://ror.org/02wg9xc72",
-            "name": "CESSDA"
-        },
-        {
             "@type": "Person",
             "@id": "https://orcid.org/0000-0000-0000-0000",
-            "name": "Apple"
+            "name": "Mr. Apple"
         }
     ],
     "datePublished": "2020-10-27",
@@ -50,11 +38,11 @@
     "distribution": [
         {
             "@type": "DataDownload",
-            "name": "test-data.csv",
+            "name": "test-apple-data.csv",
             "fileFormat": "text/csv",
             "contentSize": 4664,
-            "@id": "https://doi.org/10.4242/ncc-1701#test-data.csv",
-            "contentUrl": "https://borsna.github.io/fair-examples/catalogue/dataset/ds-1/data/test-data.csv"
+            "@id": "https://w3id.org/a2a-fair-metrics/05-http-describedby-citeas/02-html-full",
+            "contentUrl": "https://s11.no/2022/a2a-fair-metrics/02-html-full/data/test-apple-data.csv"
         }
     ]
 }
