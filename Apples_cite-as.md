@@ -1,12 +1,10 @@
-# TITLE:  FAIR Maturity Indicator XXXXX
+# TITLE:  FAIR Maturity Indicator Apples_cite-as
 
 ## Authors: 
-John Doe, ORCID:0000-XXXX-XXXX-XXXX <br />
-Jane Doe, ORCID:0000-XXXX-XXXX-XXXX
+Mark D Wilkinson: 0000-0001-6960-357X
 
-
-#### Publication Date: 2017-11-21
-#### Last Edit: 2017-11-21
+#### Publication Date: 2022-03-21
+#### Last Edit: 2022-03-21
 #### Accepted: pending
 
 
