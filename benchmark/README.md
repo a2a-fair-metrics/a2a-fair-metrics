@@ -28,6 +28,7 @@ as pointed to by the PID redirects.
 	<dt>Persistent Identifier (this page)</dt>
 	<dd><a href="https://w3id.org/a2a-fair-metrics/">https://w3id.org/a2a-fair-metrics/</a></dd>
 	<dt>Contact details</dt>
+	<dd><a href="https://join.slack.com/t/applestoapples/shared_invite/zt-15iuqnirp-~91h2i4ltn1kdZdNPea0Xw">Slack</a></dd>
 	<dd><a href="https://github.com/stain/Apples-to-Apples-FAIR-Metrics/issues">GitHub</a></dd>
 	<dd><a href="https://s11.no/">Stian Soiland-Reyes</a> (<a href="mailto:soiland-reyes@manchester.ac.uk">email</a>)</dd>
 </dl>

@@ -1,10 +1,16 @@
+## 
+## For deployment on https://s11.no/2022/a2a-fair-metrics/
+## by Stian Soiland-Reyes
+BASE=/files/web/vhosts/s11.no/2022/a2a-fair-metrics/
+
 all: clean deploy
 
 deploy:
-	test -d /files/web/vhosts/s11.no/2022
-	mkdir -p /files/web/vhosts/s11.no/2022/a2a-fair-metrics/
-	cp -vr README.html .htaccess [0-9]* /files/web/vhosts/s11.no/2022/a2a-fair-metrics/
-	chmod -R a+rX /files/web/vhosts/s11.no/2022/a2a-fair-metrics/
+	test -d `dirname $(BASE)`
+	mkdir -p ${BASE}
+	cp -vr .htaccess [0-9]* ${BASE}
+	cp README.md ${BASE}/README.html
+	chmod -R a+rX ${BASE}
 	
 clean:
-	rm -rf /files/web/vhosts/s11.no/2022/a2a-fair-metrics/
+	rm -rf ${BASE}
