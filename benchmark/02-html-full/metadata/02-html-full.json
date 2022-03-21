@@ -39,8 +39,8 @@
         },
         {
             "@type": "Person",
-            "@id": "https://orcid.org/0000-0000-0000-0000",
-            "name": "Apple"
+            "@id": "https://orcid.org/0000-0002-1825-0097",
+            "name": "Josiah Carberry"
         }
     ],
     "datePublished": "2020-10-27",
@@ -50,11 +50,11 @@
     "distribution": [
         {
             "@type": "DataDownload",
-            "name": "test-data.csv",
+            "name": "test-apple-data.csv",
             "fileFormat": "text/csv",
-            "contentSize": 4664,
+            "contentSize": 28,
             "@id": "https://w3id.org/a2a-fair-metrics/02-html-full#test-data.csv",
-            "contentUrl": "https://borsna.github.io/fair-examples/catalogue/dataset/ds-1/data/test-data.csv"
+            "contentUrl": "https://s11.no/2022/a2a-fair-metrics/02-html-full/data/test-apple-data.csv"
         }
     ]
 }
