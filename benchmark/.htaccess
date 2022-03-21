@@ -2,4 +2,9 @@
 # but Apache HTTP listing adds / for directories
 ## IndexHeadInsert "<base href='https://w3id.org/a2a-fair-metrics/'>"
 
+# Note, only one IndexHeadInsert is used. TODO
+IndexHeadInsert "<link href=\"https://w3id.org/a2a-fair-metrics/\" rel=\"cite-as\">  <link href=\"https://spdx.org/licenses/CC0-1.0\" rel=\"license\">"
+
+HeaderName HEADER.html
 ReadmeName README.html
+IndexOptions +SuppressHTMLPreamble Charset=UTF-8
