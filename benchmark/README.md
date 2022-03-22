@@ -5,7 +5,7 @@ These are the [Apples-to-Apples FAIR Signposting](https://signposting.org/FAIR/a
 benchmark tests for tools to verify parsing and compliance with the
 [FAIR Signposting](https://signposting.org/FAIR/) profile.
 
-Tests named `*-http-*` are meant to be published on a [Apache HTTPd]() server using `.htaccess` to insert the `Link` http headers. These are deployed on <https://w3id.org/a2a-fair-metrics/> using PIDs.
+Tests named `*-http-*` are meant to be published on a [Apache HTTPd](https://httpd.apache.org/) server using `.htaccess` rules to insert the `Link` http headers. These are currently deployed on <https://w3id.org/a2a-fair-metrics/> with PIDs corresponding to the `cite-as` links.
 
 Tests named `*-html-*` can be consumed independently for testing for HTML `<link>` headers.
 
