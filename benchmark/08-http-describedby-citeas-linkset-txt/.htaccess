@@ -1,0 +1,5 @@
+<Files index.html>
+  Header add Link <https://w3id.org/a2a-fair-metrics/08-http-describedby-citeas-linkset-txt/>;rel="cite-as"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/08-http-describedby-citeas-linkset-txt/index.ttl>;rel="describedby";type="text/turtle"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/08-http-describedby-citeas-linkset-txt/linkset.txt>;rel="linkset";type="application/linkset"
+</Files>
