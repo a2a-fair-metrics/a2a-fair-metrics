@@ -8,7 +8,7 @@ all: clean deploy
 deploy:
 	test -d `dirname $(BASE)`
 	mkdir -p ${BASE}
-	cp -vr README.html HEADER.html .htaccess cc-zero.svg [0-9]* ${BASE}
+	cp -vr README.html HEADER.html .htaccess linkset.jsonld cc-zero.svg [0-9]* ${BASE}
 	chmod -R a+rX ${BASE}
 	
 clean:
