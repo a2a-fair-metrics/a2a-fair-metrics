@@ -1,0 +1,12 @@
+<Files index.html>
+  Header add Link <https://w3id.org/a2a-fair-metrics/09-http-describedby-citeas-linkset-json-txt/>;rel="cite-as"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/09-http-describedby-citeas-linkset-json-txt/index.ttl>;rel="describedby";type="text/turtle"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/09-http-describedby-citeas-linkset-json-txt/linkset.json>;rel="linkset";type="application/linkset+json"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/09-http-describedby-citeas-linkset-json-txt/linkset.txt>;rel="linkset";type="application/linkset"
+</Files>
+<Files linkset.json>
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/09-http-describedby-citeas-linkset-json-txt/linkset.txt>;rel="alternate";type="application/linkset"
+</Files>
+<Files linkset.txt>
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/09-http-describedby-citeas-linkset-json-txt/linkset.json>;rel="alternate";type="application/linkset+json"
+</Files>
