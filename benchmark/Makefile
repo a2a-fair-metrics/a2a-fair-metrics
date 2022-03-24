@@ -13,3 +13,9 @@ deploy:
 	
 clean:
 	rm -rf ${BASE}
+
+docker-image: Dockerfile httpd.conf
+	docker build -t a2abenchmark .
+
+docker: docker-image
+	docker run -p 8080:80 a2abenchmark	

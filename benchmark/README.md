@@ -24,3 +24,11 @@ SPDX-Identifier: CC0-1.0
 * [Slack](https://join.slack.com/t/applestoapples/shared_invite/zt-15iuqnirp-~91h2i4ltn1kdZdNPea0Xw)
 * [Stian Soiland-Reyes](https://s11.no/) ([email](mailto:soiland-reyes@manchester.ac.uk))
 
+
+## Running locally
+
+For development you can run this locally using [Docker](https://www.docker.com/) by running:
+
+    make docker
+
+This will expose an Apache HTTPd on <http://localhost:8080/> (where the w3id base URL has been disabled).
