@@ -8,11 +8,11 @@ Mark D Wilkinson: 0000-0001-6960-357X
 #### Accepted: pending
 
 
-### Maturity Indicator Identifier: ABCDE [https://w3id.org/fair/maturity_indicator/Gen2/Apples_cite-as](https://w3id.org/fair/maturity_indicator/Gen2/Apples_cite-as)
+### Maturity Indicator Identifier: ABCDE [https://w3id.org/fair/maturity_indicator/Gen2/Apples_describedby](https://w3id.org/fair/maturity_indicator/Gen2/Apples_describedby)
 
 ### Maturity Indicator Name:   Headers inclulde describedby link
 
-The headers of the landing page should point to the permanent GUID of the record (e.g. its DOI, as an http(s) reference).  This should be accomplished 
+The headers of the landing page (HTML or HTTP) should point to metadata.  This should be accomplished 
 using the "describedby" Link Header type [https://www.rfc-editor.org/rfc/rfc8574.html](https://www.rfc-editor.org/rfc/rfc8574.html) or the equivalent HTML `link` link.
 
 ### To which principle does it apply?
@@ -20,12 +20,13 @@ F+
 
 ### What is being measured?
 
-The existence of a reference to the identifier of the data, which should be found in the *describedby* link header, or in the HTML as a meta element.
+The existence of a reference to the metadata of the data, which should be found in the *describedby* link header, or in the HTML as a link element.
 
 ### Why should we measure it?
-The FAIR principles require that all data is precisely identified with a globally unique identifier.
+The FAIR principles require that all data is described by metadata.
 
 ### What must be provided for the measurement?
+GUID that resolves to a landing page
 
 
 ### How is the measurement executed?
@@ -34,7 +35,8 @@ the HTTP headers of the last call are examined for the presence of a `Link` head
 are examined for the existence of a `rel="describedby"` link.
 
 ### What is/are considered valid result(s)?
-the presence of a cite-as in either headers or HTML
+the presence of a `describedby` in either headers or HTML
+
 
 ### For which digital resource(s) is this relevant? (or 'all')
 All

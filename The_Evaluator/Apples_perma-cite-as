@@ -33,28 +33,39 @@ def testGUID
 		return @swagger.createEvaluationResponse
 	end
 	
-    #$stderr.puts "headers #{httpheaders.inspect}"
+    #$stderr.puts httpheaders.inspect
     #$stderr.puts htmllinks.inspect
 
     httpheaders.each do |link, valhash|
-        #puts valhash
         if valhash[:rel] == "cite-as"
-            @swagger.addComment("SUCCESS: The HTTP headers contain a cite-as link.\n")
-            @swagger.score = 1
-            return @swagger.createEvaluationResponse
+            if (link =~ /(purl)\./) or (link =~ /(oclc)\./) or(link =~ /(fdlp)\./) or (link =~ /(purlz)\./) or (link =~ /(w3id)\./) or (link =~ /(ark)\:/) or (link =~ /(doi.org)/)
+                @swagger.addComment("INFO: The HTTP headers contain a cite-as link.\n")
+                @swagger.addComment("SUCCESS: The HTTP headers contain a cite-as link which matches a permanent identifier type.\n")
+                @swagger.score = 1
+                return @swagger.createEvaluationResponse
+            else
+                @swagger.addComment("INFO: The HTTP headers contain a cite-as link.\n")
+                @swagger.addComment("WARN: The HTTP headers contain a cite-as link which does not match a permanent identifiere type.\n")
+            end
         end
     end
 
     htmllinks.each do |link, valhash|
         if valhash[:rel] == "cite-as"
-            @swagger.addComment("SUCCESS: The HTML contains a cite-as link.\n")
-            @swagger.score = 1
-            return @swagger.createEvaluationResponse
+            if (link =~ /(purl)\./) or (link =~ /(oclc)\./) or(link =~ /(fdlp)\./) or (link =~ /(purlz)\./) or (link =~ /(w3id)\./) or (link =~ /(ark)\:/) or (link =~ /(doi.org)/)
+                @swagger.addComment("INFO: The HTML contains a cite-as link.\n")
+                @swagger.addComment("SUCCESS: The HTML contains a cite-as link which matches a permanent identifiere type.\n")
+                @swagger.score = 1
+                return @swagger.createEvaluationResponse
+            else
+                @swagger.addComment("INFO: The HTML contains a cite-as link.\n")
+                @swagger.addComment("WARN: The HTML contains a cite-as link which does not match a permanent identifiere type.\n")
+            end
         end
     end
 
-    @swagger.addComment("FAILURE: No cite-as link found in HTTP Headers or in HTML.\n")
-	return @swagger.createEvaluationResponse
+    @swagger.addComment("FAILURE: No cite-as link found that matches a permanent identifier type.\n")
+    return @swagger.createEvaluationResponse
 
 
 end
@@ -94,7 +105,7 @@ schemas = {'subject' => ['string', "the GUID being tested"]}
 			:protocol => ENV['TEST_PROTOCOL'],
 			:host => ENV['TEST_HOST'],
 			:basePath => ENV['TEST_PATH'],
-			:path => 'Apples_cite-as',
+			:path => 'Apples_perma-cite-as',
 			:response_description => 'The response is a binary (1/0), success or failure',
 			:schemas => schemas,
 			:fairsharing_key_location => ENV['FAIRSHARING_KEY'],
