@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:schema="http://schema.org/"
+>
+  <rdf:Description rdf:about="https://doi.org/10.4242/ncc-1701">
+    <schema:name xml:lang="en">Apples to Apples Dataset</schema:name>
+    <schema:description xml:lang="en">Apples to Apples description.</schema:description>
+    <schema:dateModified rdf:datatype="http://schema.org/Date">2021-11-04</schema:dateModified>
+    <schema:author rdf:resource="https://orcid.org/0000-0000-0000-0000"/>
+    <rdf:type rdf:resource="http://schema.org/Dataset"/>
+    <schema:name xml:lang="nl">Appels met appels dataset</schema:name>
+    <schema:datePublished rdf:datatype="http://schema.org/Date">2020-10-27</schema:datePublished>
+    <schema:description xml:lang="nl">Appels met appels omschrijving.</schema:description>
+    <schema:identifier>https://doi.org/10.4242/ncc-1701</schema:identifier>
+    <schema:isAccessibleForFree rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</schema:isAccessibleForFree>
+    <schema:distribution rdf:resource="https://w3id.org/a2a-fair-metrics/05-http-describedby-citeas/02-html-full"/>
+    <schema:license rdf:resource="http://creativecommons.org/licenses/by/4.0/"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://orcid.org/0000-0002-1825-0097">
+    <rdf:type rdf:resource="http://schema.org/Person"/>
+    <schema:name>Josiah Carberry</schema:name>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/a2a-fair-metrics/05-http-describedby-citeas/02-html-full">
+    <schema:contentSize rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">4664</schema:contentSize>
+    <schema:name>test-apple-data.csv</schema:name>
+    <schema:fileFormat>text/csv</schema:fileFormat>
+    <schema:contentUrl rdf:resource="https://s11.no/2022/a2a-fair-metrics/02-html-full/data/test-apple-data.csv"/>
+    <rdf:type rdf:resource="http://schema.org/DataDownload"/>
+  </rdf:Description>
+</rdf:RDF>

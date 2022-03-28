@@ -1,0 +1,48 @@
+{
+    "@context":"https://schema.org",
+    "@type":"Dataset",
+    "@id":"https://w3id.org/a2a-fair-metrics/02-html-full/",
+    "identifier":"https://w3id.org/a2a-fair-metrics/02-html-full/",
+    "name": [
+        {
+            "@value": "Apples to Apples Dataset",
+            "@language": "en"
+        },
+        {
+            "@value": "Appels met appels dataset",
+            "@language": "nl"
+        }
+
+    ],
+    "description": [
+        {
+            "@value": "Apples to Apples description.",
+            "@language": "en"
+        },
+        {
+            "@value": "Appels met appels omschrijving.",
+            "@language": "nl"
+        }
+    ],
+    "author": [
+        {
+            "@type": "Person",
+            "@id": "https://orcid.org/0000-0002-1825-0097",
+            "name": "Josiah Carberry"
+        }
+    ],
+    "datePublished": "2020-10-27",
+    "dateModified": "2021-11-04",
+    "isAccessibleForFree": true,
+    "license": "http://creativecommons.org/licenses/by/4.0/",
+    "distribution": [
+        {
+            "@type": "DataDownload",
+            "name": "test-apple-data.csv",
+            "fileFormat": "text/csv",
+            "contentSize": 28,
+            "@id": "https://w3id.org/a2a-fair-metrics/02-html-full#test-apple-data.csv",
+            "contentUrl": "https://s11.no/2022/a2a-fair-metrics/02-html-full/data/test-apple-data.csv"
+        }
+    ]
+}

@@ -1,0 +1,7 @@
+HeaderName HEADER.html
+ReadmeName README.html
+IndexOptions +SuppressHTMLPreamble Charset=UTF-8
+IndexIgnore cc-zero.svg ..
+<Files linkset.json>
+  ForceType application/linkset+json
+</Files>
