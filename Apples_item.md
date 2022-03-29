@@ -8,7 +8,7 @@ Robert Huber:
 #### Accepted: pending
 
 
-### Maturity Indicator Identifier: ABCDE [https://w3id.org/fair/maturity_indicator/Gen2/Apples_item](https://w3id.org/fair/maturity_indicator/Gen2/Apples_item)
+### Maturity Indicator Identifier: ABCDE [https://w3id.org/fair/maturity_indicator/Apples/Apples_item](https://w3id.org/fair/maturity_indicator/Apples/Apples_item)
 
 ### Maturity Indicator Name:   Headers inclulde item link
 
@@ -31,9 +31,9 @@ A GUID that resolves (after following all redirects) to the landing page of the 
 
 
 ### How is the measurement executed?
-HTTP GET calls, using Accept */* content type, are made on the provided GUID, and any 300-range redirects are followed.  When there are no more redirects, 
-the HTTP headers of the last call are examined for the presence of a `Link` header of `rel` "item", and similarly `<link>` tags in the HTML (if the record is HTML)
-are examined for the existence of a item tag. Further, ist shall be checked if links are actionable and resolve to a downloadable or streamable data item.
+HTTP GET calls, using `Accept */*` content type, are made on the provided GUID, and any 300-range redirects are followed.  When there are no more redirects, 
+the HTTP headers of the last call are examined for the presence of a `Link` header of `rel="item"`, and similarly `<link>` tags in the HTML (if the record is HTML)
+are examined for the existence of a `rel="item"` tag. Further, it shall be checked if links are actionable and resolve to a downloadable or streamable data item.
 
 ### What is/are considered valid result(s)?
 the presence of a item-as in either headers or HTML
