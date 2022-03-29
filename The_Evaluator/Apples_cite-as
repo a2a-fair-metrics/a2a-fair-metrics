@@ -7,69 +7,55 @@ require 'sparql'
 require_relative './ApplesUtils.rb'
 
 debug = true
-VERSION = "Apples-0.0.1"
-
+VERSION = 'Apples-0.0.1'
 
 def testGUID
+  @swagger.addComment("INFO: TEST VERSION '#{VERSION}'\n")
 
-	@swagger.addComment("INFO: TEST VERSION '#{VERSION}'\n")
-	
-	#$stderr.puts @swagger.inspect
+  # $stderr.puts @swagger.inspect
 
-	guid = @swagger.testedGUID
-	
-	httpheaders, htmllinks, metadata = ApplesUtils::resolve_url(guid, false, {'Accept' => '*/*'}) 
-	@swagger.score = 0
-	#$stderr.puts @swagger.inspect
+  guid = @swagger.testedGUID
 
-	metadata.comments.each do |c|
-        #$stderr.puts @swagger.inspect
-		@swagger.addComment(c)
-	end
+  httpheaders, htmllinks, metadata = ApplesUtils::resolve_url(guid, false, { 'Accept' => '*/*' })
+  @swagger.score = 0
+  # $stderr.puts @swagger.inspect
 
-	if metadata.guidtype == "unknown"
-		@swagger.addComment("FAILURE: The identifier #{guid} did not match any known identification system.\n")
-		@swagger.score = 0
-		return @swagger.createEvaluationResponse
-	end
-	
-    #$stderr.puts "headers #{httpheaders.inspect}"
-    #$stderr.puts htmllinks.inspect
+  metadata.comments.each do |c|
+    # $stderr.puts @swagger.inspect
+    @swagger.addComment(c)
+  end
 
-    httpheaders.each do |link, valhash|
-        #puts valhash
-        if valhash[:rel] == "cite-as"
-            @swagger.addComment("SUCCESS: The HTTP headers contain a cite-as link.\n")
-            @swagger.score = 1
-            return @swagger.createEvaluationResponse
-        end
-    end
+  if metadata.guidtype == 'unknown'
+  @swagger.addComment("FAILURE: The identifier #{guid} did not match any known identification system.\n")
+  @swagger.score = 0
+  return @swagger.createEvaluationResponse
+  end
 
-    htmllinks.each do |link, valhash|
-        if valhash[:rel] == "cite-as"
-            @swagger.addComment("SUCCESS: The HTML contains a cite-as link.\n")
-            @swagger.score = 1
-            return @swagger.createEvaluationResponse
-        end
-    end
+  # $stderr.puts "headers #{httpheaders.inspect}"
+  # $stderr.puts htmllinks.inspect
 
-    @swagger.addComment("FAILURE: No cite-as link found in HTTP Headers or in HTML.\n")
-	return @swagger.createEvaluationResponse
+  httpheaders.each do |_link, valhash|
+    # puts valhash
+    next unless valhash[:rel] == 'cite-as'
 
+    @swagger.addComment("SUCCESS: The HTTP headers contain a cite-as link.\n")
+    @swagger.score = 1
+    return @swagger.createEvaluationResponse
+  end
 
+  htmllinks.each do |_link, valhash|
+    next unless valhash[:rel] == 'cite-as'
+
+    @swagger.addComment("SUCCESS: The HTML contains a cite-as link.\n")
+    @swagger.score = 1
+    return @swagger.createEvaluationResponse
+  end
+
+  @swagger.addComment("FAILURE: No cite-as link found in HTTP Headers or in HTML.\n")
+  return @swagger.createEvaluationResponse
 end
 
-
-
 if debug
-#	@input = '{"subject": "10.5281/zenodo.1147435"}'  # doi fail
-#	@input = '{"subject": "10.5281/zenodo.1065973"}'  # doi fail
-#	@input = '{"subject": "BSYNRYMUTXBXSQ-UHFFFAOYSA-N"}' # inchi
-#	@input = '{"subject": "LFQSCWFLJHTTHZ-UHFFFAOYSA-N"}' # another inchi
-#	@input = '{"subject": "20.1000/105"}'  # handle (fail)
-#	@input = '{"subject": "http://w3id.org/Magnaporthe/polyA_Sites"}'  # handle
-#	@input = '{"subject": "http://purl.org/castor/fdp/dataset/radboudumc"}'  # handle
-#	@input = '{"subject": "10.5440/1185213"}'  # doi fail
 	@input = '{"subject": "https://w3id.org/a2a-fair-metrics/03-http-citeas-only/"}'
 else 
 	@input = $stdin.read
