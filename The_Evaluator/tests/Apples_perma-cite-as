@@ -36,34 +36,21 @@ def testGUID
     #$stderr.puts httpheaders.inspect
     #$stderr.puts htmllinks.inspect
 
-    httpheaders.each do |link, valhash|
-        if valhash[:rel] == "cite-as"
-            if (link =~ /(purl)\./) or (link =~ /(oclc)\./) or(link =~ /(fdlp)\./) or (link =~ /(purlz)\./) or (link =~ /(w3id)\./) or (link =~ /(ark)\:/) or (link =~ /(doi.org)/)
-                @swagger.addComment("INFO: The HTTP headers contain a cite-as link.\n")
-                @swagger.addComment("SUCCESS: The HTTP headers contain a cite-as link which matches a permanent identifier type.\n")
-                @swagger.score = 1
-                return @swagger.createEvaluationResponse
-            else
-                @swagger.addComment("INFO: The HTTP headers contain a cite-as link.\n")
-                @swagger.addComment("WARN: The HTTP headers contain a cite-as link which does not match a permanent identifiere type.\n")
+    [httpheaders, htmllinks].each do |headers|
+        headers.each do |link, valhash|
+            if valhash[:rel] == "cite-as"
+                if (link =~ /(purl)\./) or (link =~ /(oclc)\./) or(link =~ /(fdlp)\./) or (link =~ /(purlz)\./) or (link =~ /(w3id)\./) or (link =~ /(ark)\:/) or (link =~ /(doi.org)/)
+                    @swagger.addComment("INFO: The HTTP or HTML headers contain a cite-as link.\n")
+                    @swagger.addComment("SUCCESS: The HTTP or HTML headers contain a cite-as link which matches a permanent identifier type.\n")
+                    @swagger.score = 1
+                    return @swagger.createEvaluationResponse
+                else
+                    @swagger.addComment("INFO: The HTTP or HTML headers contain a cite-as link.\n")
+                    @swagger.addComment("WARN: The HTTP or HTML headers contain a cite-as link which does not match a permanent identifiere type.\n")
+                end
             end
         end
     end
-
-    htmllinks.each do |link, valhash|
-        if valhash[:rel] == "cite-as"
-            if (link =~ /(purl)\./) or (link =~ /(oclc)\./) or(link =~ /(fdlp)\./) or (link =~ /(purlz)\./) or (link =~ /(w3id)\./) or (link =~ /(ark)\:/) or (link =~ /(doi.org)/)
-                @swagger.addComment("INFO: The HTML contains a cite-as link.\n")
-                @swagger.addComment("SUCCESS: The HTML contains a cite-as link which matches a permanent identifiere type.\n")
-                @swagger.score = 1
-                return @swagger.createEvaluationResponse
-            else
-                @swagger.addComment("INFO: The HTML contains a cite-as link.\n")
-                @swagger.addComment("WARN: The HTML contains a cite-as link which does not match a permanent identifiere type.\n")
-            end
-        end
-    end
-
     @swagger.addComment("FAILURE: No cite-as link found that matches a permanent identifier type.\n")
     return @swagger.createEvaluationResponse
 

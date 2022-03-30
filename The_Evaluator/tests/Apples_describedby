@@ -1,0 +1,124 @@
+require 'cgi'
+require 'json'
+require 'uri'
+require 'rdf'
+require 'rdf/turtle'
+require 'sparql'
+require_relative './ApplesUtils.rb'
+
+debug = true
+VERSION = "Apples-0.0.1"
+
+
+def testGUID
+
+	@swagger.addComment("INFO: TEST VERSION '#{VERSION}'\n")
+	
+	#$stderr.puts @swagger.inspect
+
+	guid = @swagger.testedGUID
+	
+	httpheaders, htmllinks, metadata = ApplesUtils::resolve_url(guid, false, {'Accept' => '*/*'}) 
+	@swagger.score = 0
+	#$stderr.puts @swagger.inspect
+
+	metadata.comments.each do |c|
+        #$stderr.puts @swagger.inspect
+		@swagger.addComment(c)
+	end
+
+	if metadata.guidtype == "unknown"
+		@swagger.addComment("FAILURE: The identifier #{guid} did not match any known identification system.\n")
+		@swagger.score = 0
+		return @swagger.createEvaluationResponse
+	end
+	
+    $stderr.puts "headers #{httpheaders.inspect}"
+    #$stderr.puts htmllinks.inspect
+    [httpheaders, htmllinks].each do |headers|
+        headers.each do |link, valhash|
+            puts "Link #{link} val #{valhash}\n\n"
+            next unless link and valhash
+            if valhash[:rel] == "describedby"
+                @swagger.addComment("INFO: The HTTP or HTML headers contain a describedby link.\n")
+                if valhash[:type]
+                    @swagger.addComment("INFO: The HTTP or HTML headers contain a describedby link that includes a type.\n")
+                    @swagger.addComment("INFO: Calling HEAD on #{link} with headers #{valhash[:type]}.\n")
+                    begin
+                        result = RestClient::Request.execute(method: :head, url: link, headers: {content_type: valhash[:type]})
+                        if result.headers[:content_type].match(valhash[:type])
+                            @swagger.addComment("SUCCESS: The HTTP or HTML contains a describedby link that properly responds.\n")
+                            @swagger.score = 1
+                            return @swagger.createEvaluationResponse
+                        else 
+                            @swagger.addComment("FAILURE: The HTTP or HTML headers contain a describedby link that does not respond to a content-negotiated HEAD request.\n")
+                            @swagger.score = 0
+                            return @swagger.createEvaluationResponse
+                        end
+                    rescue
+                        @swagger.addComment("FAILURE: The HTTP or HTML headers contain a describedby link that does not respond to a content-negotiated HEAD request.\n")
+                        @swagger.score = 0
+                        return @swagger.createEvaluationResponse
+                    end                
+                else
+                    @swagger.addComment("FAILURE: The HTTP or HTML headers contain a describedby link that does not iunclude a type.  This is required.\n")
+                    @swagger.score = 0
+                    return @swagger.createEvaluationResponse
+                end
+            end
+        end
+    end
+
+
+    @swagger.addComment("FAILURE: No describedby link found in HTTP Headers or in HTML.\n")
+	return @swagger.createEvaluationResponse
+
+
+end
+
+
+
+if debug
+    @input = '{"subject": "https://w3id.org/a2a-fair-metrics/01-http-describedby-only/"}' # PASS
+#    @input = '{"subject": "https://s11.no/2022/a2a-fair-metrics/04-http-described-iri/"}' # FAIL
+else 
+	@input = $stdin.read
+end
+
+
+cgi = CGI.new
+
+schemas = {'subject' => ['string', "the GUID being tested"]}
+
+@swagger = Swagger.new({
+			:title => "FAIR Maturity Apples to Apples describedby",
+			:description => "Test that the header and/or body of the landing page contains a 'describedby' link",
+			:tests_metric => 'https://purl.org/fair-metrics/Apples_describedby',
+			:version => VERSION,
+			:applies_to_principle => "F2",
+			:organization => 'Mark Wilkinson',
+			:org_url => 'http://fairmetrics.org',
+			:responsible_developer => "Mark D Wilkinson",
+			:email => 'markw@illuminae.com',
+			:developer_ORCiD => '0000-0001-6960-357X',
+			:protocol => ENV['TEST_PROTOCOL'],
+			:host => ENV['TEST_HOST'],
+			:basePath => ENV['TEST_PATH'],
+			:path => 'Apples_describedby',
+			:response_description => 'The response is a binary (1/0), success or failure',
+			:schemas => schemas,
+			:fairsharing_key_location => ENV['FAIRSHARING_KEY'],
+			:debug => false				 				 
+})
+
+if (!cgi.request_method or cgi.request_method == "GET") and !debug
+        puts "Content-type: application/openapi+yaml;version=3.0\n\n"
+        puts @swagger.getSwagger
+elsif cgi.request_method == "POST" or debug
+        input_json = JSON.parse(@input)
+        guid = input_json["subject"]
+        @swagger.testedGUID = guid
+        response = testGUID
+        puts "Content-type: application/json+ld\n\n"
+        puts response
+end

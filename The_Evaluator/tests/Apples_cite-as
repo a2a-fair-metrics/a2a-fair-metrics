@@ -34,24 +34,21 @@ def testGUID
   # $stderr.puts "headers #{httpheaders.inspect}"
   # $stderr.puts htmllinks.inspect
 
-  httpheaders.each do |_link, valhash|
-    # puts valhash
-    next unless valhash[:rel] == 'cite-as'
+  [httpheaders, htmllinks].each do |headers|
+    headers.each do |_link, valhash|
+        # puts valhash
+        next unless valhash[:rel] == 'cite-as'
 
-    @swagger.addComment("SUCCESS: The HTTP headers contain a cite-as link.\n")
-    @swagger.score = 1
-    return @swagger.createEvaluationResponse
+        @swagger.addComment("SUCCESS: The HTTP or HTML headers contain a cite-as link.\n")
+        @swagger.score = 1
+        return @swagger.createEvaluationResponse
+    end
   end
 
-  htmllinks.each do |_link, valhash|
-    next unless valhash[:rel] == 'cite-as'
 
-    @swagger.addComment("SUCCESS: The HTML contains a cite-as link.\n")
-    @swagger.score = 1
-    return @swagger.createEvaluationResponse
-  end
 
-  @swagger.addComment("FAILURE: No cite-as link found in HTTP Headers or in HTML.\n")
+
+  @swagger.addComment("FAILURE: No cite-as link found in HTTP or HTML Headers.\n")
   return @swagger.createEvaluationResponse
 end
 

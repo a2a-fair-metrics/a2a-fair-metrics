@@ -1,0 +1,11 @@
+{
+    "name": "RSpec - all",
+    "type": "Ruby",
+    "request": "launch",
+    "cwd": "${workspaceRoot}",
+    "program": "/home/osboxes/.rvm/gems/ruby-2.7.2/bin/rspec",
+    "args": [
+      "-I",
+      "${workspaceRoot}"
+    ]
+  }
