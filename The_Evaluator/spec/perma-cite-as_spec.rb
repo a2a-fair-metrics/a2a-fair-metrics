@@ -26,7 +26,7 @@ describe CiteAs do
     end
 
     it "should return FAILURE for https://s11.no/2022/a2a-fair-metrics/08-http-citeas-not-perma/" do 
-        result, error, status = Open3.capture3('ruby ./tests/Apples_cite-as "https://s11.no/2022/a2a-fair-metrics/08-http-citeas-not-perma/"')
+        result, error, status = Open3.capture3('ruby ./tests/Apples_cite-as "https://s11.no/2022/a2a-fair-metrics/10-http-citeas-not-perma/"')
         expect(result.match(/FAILURE/).class.to_s).to eq "MatchData"
     end
       
