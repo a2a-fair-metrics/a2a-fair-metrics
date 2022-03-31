@@ -6,7 +6,8 @@ require 'rdf/turtle'
 require 'sparql'
 require_relative './ApplesUtils.rb'
 
-debug = true
+debug = false
+debug = true if ARGV and ARGV[0]
 VERSION = "Apples-0.0.1"
 
 
@@ -60,16 +61,12 @@ end
 
 
 if debug
-#	@input = '{"subject": "10.5281/zenodo.1147435"}'  # doi fail
-#	@input = '{"subject": "10.5281/zenodo.1065973"}'  # doi fail
-#	@input = '{"subject": "BSYNRYMUTXBXSQ-UHFFFAOYSA-N"}' # inchi
-#	@input = '{"subject": "LFQSCWFLJHTTHZ-UHFFFAOYSA-N"}' # another inchi
-#	@input = '{"subject": "20.1000/105"}'  # handle (fail)
-#	@input = '{"subject": "http://w3id.org/Magnaporthe/polyA_Sites"}'  # handle
-#	@input = '{"subject": "http://purl.org/castor/fdp/dataset/radboudumc"}'  # handle
-#	@input = '{"subject": "10.5440/1185213"}'  # doi fail
-	@input = '{"subject": "https://w3id.org/a2a-fair-metrics/03-http-citeas-only/"}'
-else 
+    ENV['TEST_PROTOCOL'] = "http"
+    ENV['TEST_HOST'] = "metricstest.org"
+    ENV['TEST_PATH'] = "/tests/"
+    url = ARGV[0] # "https://w3id.org/a2a-fair-metrics/03-http-citeas-only/"
+	@input = "{\"subject\": \"#{url}\"}"
+else
 	@input = $stdin.read
 end
 

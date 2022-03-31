@@ -5,6 +5,8 @@ require 'rdf'
 require 'rdf/turtle'
 require 'sparql'
 require_relative './ApplesUtils.rb'
+
+
 debug = false
 debug = true if ARGV and ARGV[0]
 VERSION = 'Apples-0.0.1'
@@ -68,8 +70,12 @@ def testGUID
   return @swagger.createEvaluationResponse
 end
 
+
 if debug
-    url = ARGV[0] ? ARGV[0] : "https://w3id.org/a2a-fair-metrics/03-http-citeas-only/"
+    ENV['TEST_PROTOCOL'] = "http"
+    ENV['TEST_HOST'] = "metricstest.org"
+    ENV['TEST_PATH'] = "/tests/"
+    url = ARGV[0] # "https://w3id.org/a2a-fair-metrics/03-http-citeas-only/"
 	@input = "{\"subject\": \"#{url}\"}"
 else
 	@input = $stdin.read
