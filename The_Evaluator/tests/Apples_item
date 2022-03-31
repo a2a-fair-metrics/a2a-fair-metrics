@@ -43,18 +43,19 @@ def testGUID
 
         @swagger.addComment("INFO: The HTTP or HTML headers contain an item link.\n")
         begin
+            @swagger.addComment("INFO: attempting to resolve #{link} via HTTP HEAD\n\n")
             result = RestClient::Request.execute(method: :head, url: link)
             if result.headers[:content_type]
                 @swagger.addComment("SUCCESS: The HTTP or HTML contains an item link that responds.\n")
                 @swagger.score = 1
                 return @swagger.createEvaluationResponse
             else 
-                @swagger.addComment("FAILURE: The HTTP or HTML headers contain an idem link that does not respond to a HEAD request.\n")
+                @swagger.addComment("FAILURE: The HTTP or HTML headers contain an item link that does not include a content-type.\n")
                 @swagger.score = 0
                 return @swagger.createEvaluationResponse
             end
         rescue
-            @swagger.addComment("FAILURE: The HTTP or HTML headers contain an idem link that does not respond to a HEAD request.\n")
+            @swagger.addComment("FAILURE: The HTTP or HTML headers contain an item link that does not respond to a HEAD request.\n")
             @swagger.score = 0
             return @swagger.createEvaluationResponse
         end
