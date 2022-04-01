@@ -4,106 +4,99 @@ require 'uri'
 require 'rdf'
 require 'rdf/turtle'
 require 'sparql'
-require_relative './ApplesUtils.rb'
+require_relative './ApplesUtils'
 
 debug = false
 debug = true if ARGV and ARGV[0]
-VERSION = "Apples-0.0.1"
-
+VERSION = 'Apples-0.0.1'
 
 def testGUID
+  @swagger.addComment("INFO: TEST VERSION '#{VERSION}'\n")
 
-	@swagger.addComment("INFO: TEST VERSION '#{VERSION}'\n")
-	
-	#$stderr.puts @swagger.inspect
+  # $stderr.puts @swagger.inspect
 
-	guid = @swagger.testedGUID
-	
-	httpheaders, htmllinks, metadata = ApplesUtils::resolve_url(guid, false, {'Accept' => '*/*'}) 
-	@swagger.score = 0
-	#$stderr.puts @swagger.inspect
+  guid = @swagger.testedGUID
 
-	metadata.comments.each do |c|
-        #$stderr.puts @swagger.inspect
-		@swagger.addComment(c)
-	end
+  httpheaders, htmllinks, metadata = ApplesUtils.resolve_url(guid, false, { 'Accept' => '*/*' })
+  @swagger.score = 0
+  # $stderr.puts @swagger.inspect
 
-	if metadata.guidtype == "unknown"
-		@swagger.addComment("FAILURE: The identifier #{guid} did not match any known identification system.\n")
-		@swagger.score = 0
-		return @swagger.createEvaluationResponse
-	end
-	
-    #$stderr.puts httpheaders.inspect
-    #$stderr.puts htmllinks.inspect
+  metadata.comments.each do |c|
+    # $stderr.puts @swagger.inspect
+    @swagger.addComment(c)
+  end
 
-    [httpheaders, htmllinks].each do |headers|
-        headers.each do |link, valhash|
-            if valhash[:rel] == "cite-as"
-                if (link =~ /(purl)\./) or (link =~ /(oclc)\./) or(link =~ /(fdlp)\./) or (link =~ /(purlz)\./) or (link =~ /(w3id)\./) or (link =~ /(ark)\:/) or (link =~ /(doi.org)/)
-                    @swagger.addComment("INFO: The HTTP or HTML headers contain a cite-as link.\n")
-                    @swagger.addComment("SUCCESS: The HTTP or HTML headers contain a cite-as link which matches a permanent identifier type.\n")
-                    @swagger.score = 1
-                    return @swagger.createEvaluationResponse
-                else
-                    @swagger.addComment("INFO: The HTTP or HTML headers contain a cite-as link.\n")
-                    @swagger.addComment("WARN: The HTTP or HTML headers contain a cite-as link which does not match a permanent identifiere type.\n")
-                end
-            end
-        end
-    end
-    @swagger.addComment("FAILURE: No cite-as link found that matches a permanent identifier type.\n")
+  if metadata.guidtype == 'unknown'
+    @swagger.addComment("FAILURE: The identifier #{guid} did not match any known identification system.\n")
+    @swagger.score = 0
     return @swagger.createEvaluationResponse
+  end
 
+  # $stderr.puts httpheaders.inspect
+  # $stderr.puts htmllinks.inspect
 
+  [httpheaders, htmllinks].each do |headers|
+    headers.each do |link, valhash|
+      if valhash[:rel] == 'cite-as'
+        if (link =~ /(purl)\./) or (link =~ /(oclc)\./) or (link =~ /(fdlp)\./) or (link =~ /(purlz)\./) or (link =~ /(w3id)\./) or (link =~ /(ark):/) or (link =~ /(doi.org)/)
+          @swagger.addComment("INFO: The HTTP or HTML headers contain a cite-as link.\n")
+          @swagger.addComment("SUCCESS: The HTTP or HTML headers contain a cite-as link which matches a permanent identifier type.\n")
+          @swagger.score = 1
+          return @swagger.createEvaluationResponse
+        else
+          @swagger.addComment("INFO: The HTTP or HTML headers contain a cite-as link.\n")
+          @swagger.addComment("WARN: The HTTP or HTML headers contain a cite-as link which does not match a permanent identifiere type.\n")
+        end
+      end
+    end
+  end
+  @swagger.addComment("FAILURE: No cite-as link found that matches a permanent identifier type.\n")
+  @swagger.createEvaluationResponse
 end
-
-
 
 if debug
-    ENV['TEST_PROTOCOL'] = "http"
-    ENV['TEST_HOST'] = "metricstest.org"
-    ENV['TEST_PATH'] = "/tests/"
-    url = ARGV[0] # "https://w3id.org/a2a-fair-metrics/03-http-citeas-only/"
-	@input = "{\"subject\": \"#{url}\"}"
+  ENV['TEST_PROTOCOL'] = 'http'
+  ENV['TEST_HOST'] = 'metricstest.org'
+  ENV['TEST_PATH'] = '/tests/'
+  url = ARGV[0] # "https://w3id.org/a2a-fair-metrics/03-http-citeas-only/"
+  @input = "{\"subject\": \"#{url}\"}"
 else
-	@input = $stdin.read
+  @input = $stdin.read
 end
-
 
 cgi = CGI.new
 
-schemas = {'subject' => ['string', "the GUID being tested"]}
+schemas = { 'subject' => ['string', 'the GUID being tested'] }
 
 @swagger = Swagger.new({
-			:title => "FAIR Maturity Apples to Apples cite-as",
-			:description => "Test that the header and/or body of the landing page contains a 'cite-as' link",
-			:tests_metric => 'https://purl.org/fair-metrics/Apples_F3-A',
-			:version => VERSION,
-			:applies_to_principle => "F3",
-			:organization => 'Mark Wilkinson',
-			:org_url => 'http://fairmetrics.org',
-			:responsible_developer => "Mark D Wilkinson",
-			:email => 'markw@illuminae.com',
-			:developer_ORCiD => '0000-0001-6960-357X',
-			:protocol => ENV['TEST_PROTOCOL'],
-			:host => ENV['TEST_HOST'],
-			:basePath => ENV['TEST_PATH'],
-			:path => 'Apples_perma-cite-as',
-			:response_description => 'The response is a binary (1/0), success or failure',
-			:schemas => schemas,
-			:fairsharing_key_location => ENV['FAIRSHARING_KEY'],
-			:debug => false				 				 
-})
+                         title: 'FAIR Maturity Apples to Apples cite-as',
+                         description: "Test that the header and/or body of the landing page contains a 'cite-as' link",
+                         tests_metric: 'https://purl.org/fair-metrics/Apples_F3-A',
+                         version: VERSION,
+                         applies_to_principle: 'F3',
+                         organization: 'Mark Wilkinson',
+                         org_url: 'http://fairmetrics.org',
+                         responsible_developer: 'Mark D Wilkinson',
+                         email: 'markw@illuminae.com',
+                         developer_ORCiD: '0000-0001-6960-357X',
+                         protocol: ENV['TEST_PROTOCOL'],
+                         host: ENV['TEST_HOST'],
+                         basePath: ENV['TEST_PATH'],
+                         path: 'Apples_perma-cite-as',
+                         response_description: 'The response is a binary (1/0), success or failure',
+                         schemas: schemas,
+                         fairsharing_key_location: ENV['FAIRSHARING_KEY'],
+                         debug: false
+                       })
 
-if (!cgi.request_method or cgi.request_method == "GET") and !debug
-        puts "Content-type: application/openapi+yaml;version=3.0\n\n"
-        puts @swagger.getSwagger
-elsif cgi.request_method == "POST" or debug
-        input_json = JSON.parse(@input)
-        guid = input_json["subject"]
-        @swagger.testedGUID = guid
-        response = testGUID
-        puts "Content-type: application/json+ld\n\n"
-        puts response
+if (!cgi.request_method or cgi.request_method == 'GET') and !debug
+  puts "Content-type: application/openapi+yaml;version=3.0\n\n"
+  puts @swagger.getSwagger
+elsif cgi.request_method == 'POST' or debug
+  input_json = JSON.parse(@input)
+  guid = input_json['subject']
+  @swagger.testedGUID = guid
+  response = testGUID
+  puts "Content-type: application/json+ld\n\n"
+  puts response
 end
