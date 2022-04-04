@@ -8,7 +8,7 @@ Mark D Wilkinson: 0000-0001-6960-357X
 #### Accepted: pending
 
 
-### Maturity Indicator Identifier: Apples_perma-cite-as [https://w3id.org/fair/maturity_indicator/Gen2/Apples_cite-as](https://w3id.org/fair/maturity_indicator/Gen2/Apples_cite-as)
+### Maturity Indicator Identifier: Apples_perma-cite-as [https://w3id.org/fair/maturity_indicator/Apples/Apples_perma-cite-as](https://w3id.org/fair/maturity_indicator/Apples/Apples_perma-cite-as)
 
 ### Maturity Indicator Name:   Headers or Link elements inclulde cite-as link which is some kind of permanent id
 
@@ -32,10 +32,20 @@ A GUID that resolves (after following all redirects) to the landing page of the 
 
 
 ### How is the measurement executed?
-HTTP GET calls, using Accept */* content type, are made on the provided GUID, and any 300-range redirects are followed.  When there are no more redirects, 
+HTTP GET calls, using `Accept */*` content type, are made on the provided GUID, and any 300-range redirects are followed.  When there are no more redirects, 
 the HTTP headers of the last call are examined for the presence of a Link of type `rel=cite-as`, and similarly `<link>` tags in the HTML (if the record is HTML)
-are examined for the existence of a `rel="cite-as"` link.  The value of that link should conform to
-[[......  put the algorithm here.....]]
+are examined for the existence of a `rel="cite-as"` link.  The value of that link should conform to one of the following regular expressions
+
+```
+/(purl)\./ 
+/(oclc)\./
+/(fdlp)\./
+/(purlz)\./
+/(w3id)\./
+/(ark)\:/
+/(doi.org)/
+```
+
 
 ### What is/are considered valid result(s)?
 the presence of a permanent id as the value of a cite as element or header

@@ -8,7 +8,7 @@ Mark D Wilkinson: 0000-0001-6960-357X
 #### Accepted: pending
 
 
-### Maturity Indicator Identifier: ABCDE [https://w3id.org/fair/maturity_indicator/Gen2/Apples_cite-as](https://w3id.org/fair/maturity_indicator/Gen2/Apples_cite-as)
+### Maturity Indicator Identifier: Apples_cite-as [https://w3id.org/fair/maturity_indicator/Apples/Apples_cite-as](https://w3id.org/fair/maturity_indicator/Apples/Apples_cite-as)
 
 ### Maturity Indicator Name:   Headers or link elements include cite-as link
 
@@ -30,12 +30,12 @@ A GUID that resolves (after following all redirects) to the landing page of the 
 
 
 ### How is the measurement executed?
-HTTP GET calls, using Accept */* content type, are made on the provided GUID, and any 300-range redirects are followed.  When there are no more redirects, 
+HTTP GET calls, using `Accept */*` content type, are made on the provided GUID, and any 300-range redirects are followed.  When there are no more redirects, 
 the HTTP headers of the last call are examined for the presence of a `Link` header of `rel="cite-as"`, and similarly `<link>` tags in the HTML (if the record is HTML)
 are examined for the existence of a `rel="cite-as"` link.
 
 ### What is/are considered valid result(s)?
-the presence of a cite-as in either headers or HTML
+the presence of a `rel=cite-as` in either headers or HTML
 
 ### For which digital resource(s) is this relevant? (or 'all')
 All

@@ -8,7 +8,7 @@ Mark D Wilkinson: 0000-0001-6960-357X
 #### Accepted: pending
 
 
-### Maturity Indicator Identifier: Apples_describedby [https://w3id.org/fair/maturity_indicator/Gen2/Apples_describedby](https://w3id.org/fair/maturity_indicator/Gen2/Apples_describedby)
+### Maturity Indicator Identifier: Apples_describedby [https://w3id.org/fair/maturity_indicator/Apples/Apples_describedby](https://w3id.org/fair/maturity_indicator/Apples/Apples_describedby)
 
 ### Maturity Indicator Name:   Headers or Link HTML elements include describedby link
 
@@ -34,12 +34,17 @@ A GUID that resolves (after following all redirects) to the landing page of a da
 
 ### How is the measurement executed?
 
-HTTP GET calls, using Accept */* content type, are made on the provided GUID, and any 300-range redirects are followed.  When there are no more redirects, 
-the HTTP headers of the last call are examined for the presence of a `Link` header of `rel="describedby"`, and similarly `<link>` tags in the HTML (if the record is HTML)
-are examined for the existence of a `rel="describedby"` link.
+ALL OF THE FOLLOWING MUST BE TRUE TO PASS THIS METRIC
+
+   * HTTP GET calls, using Accept `*/*` content type, are made on the provided GUID, and any 300-range redirects are followed.  
+   * When there are no more redirects, the HTTP headers of the last call are examined for the presence of a `link` header of type `describedby`, 
+   and similarly `link` elements in the HTML (if the record is HTML) are examined for the existence of a `rel="describedby"` link.  
+   * In both cases, the `type` element of that `describedby` link must exist and have a valid content-type.  This is tested by executing an HTTP GET call on the link, with the indicated type as the Accept headers for the call
+   * After following all 300-range redirects, should end with an HTTP 200 success, 
+   * The repoted Content-type of the final response should be the same as the value reported in the `type` element
 
 ### What is/are considered valid result(s)?
-the presence of a full URL and a `type` containing a valid content type
+the workflow described above results in a document with the correct `content-type`
 
 ### For which digital resource(s) is this relevant? (or 'all')
 All
