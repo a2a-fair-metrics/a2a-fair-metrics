@@ -1,7 +1,11 @@
 HeaderName HEADER.html
 ReadmeName README.html
 IndexOptions +SuppressHTMLPreamble Charset=UTF-8
-IndexIgnore cc-zero.svg ..
+IndexIgnore cc-zero.svg linkset.jsonld ..
 <Files linkset.json>
   ForceType application/linkset+json
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/linkset.jsonld>;rel="http://www.w3.org/ns/json-ld#context";type="application/ld+json"
+</Files>
+<Files linkset.txt>
+  ForceType application/linkset
 </Files>

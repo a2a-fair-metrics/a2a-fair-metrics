@@ -1,0 +1,33 @@
+{
+    "@context": [
+      {
+        "@version": 1.1,
+        "@vocab": "http://www.iana.org/assignments/relation/",
+        "anchor": "@id",
+        "href": "@id",
+        "linkset": {
+          "@id": "@graph",
+          "@context": {
+            "linkset": "linkset"
+          }
+        },
+        "title": {
+          "@id": "http://schema.org/name"
+        },
+        "title*": {
+          "@id": "http://schema.org/name"
+        },
+        "type": {
+          "@id": "http://schema.org/encodingFormat"
+        }
+      },
+      {
+        "language": "@language",
+        "value": "@value",
+        "hreflang": {
+          "@id": "http://schema.org/inLAaguage",
+          "@container": "@set"
+        }
+      }
+    ]
+  }

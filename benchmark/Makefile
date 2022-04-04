@@ -8,8 +8,14 @@ all: clean deploy
 deploy:
 	test -d `dirname $(BASE)`
 	mkdir -p ${BASE}
-	cp -vr README.html HEADER.html .htaccess cc-zero.svg [0-9]* ${BASE}
+	cp -vr README.html HEADER.html .htaccess linkset.jsonld cc-zero.svg [0-9]* ${BASE}
 	chmod -R a+rX ${BASE}
 	
 clean:
 	rm -rf ${BASE}
+
+docker-image: Dockerfile httpd.conf
+	docker build -t a2abenchmark .
+
+docker: docker-image
+	docker run -p 8080:80 a2abenchmark	
