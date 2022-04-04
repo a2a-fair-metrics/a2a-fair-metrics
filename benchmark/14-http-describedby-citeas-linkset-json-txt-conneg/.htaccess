@@ -13,4 +13,4 @@
   Header add Link <https://s11.no/2022/a2a-fair-metrics/14-http-describedby-citeas-linkset-json-txt-conneg/linkset.txt>;rel="canonical";type="application/linkset"
 </Files>
 
-AddHandler type-map .var
+
