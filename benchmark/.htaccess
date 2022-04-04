@@ -13,3 +13,7 @@ IndexIgnore cc-zero.svg linkset.jsonld ..
 AddType application/x-type-map var
 AddHandler type-map .var
 Options +MultiViews
+
+<Files index.html>
+  Header add Link <https://s11.no/css/bundle.css>;rel="stylesheet"
+</Files>
