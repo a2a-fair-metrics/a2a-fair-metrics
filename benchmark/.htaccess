@@ -9,3 +9,7 @@ IndexIgnore cc-zero.svg linkset.jsonld ..
 <Files linkset.txt>
   ForceType application/linkset
 </Files>
+
+AddType application/x-type-map var
+AddHandler type-map .var
+Options +MultiViews

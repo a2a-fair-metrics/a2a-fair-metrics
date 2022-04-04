@@ -1,0 +1,24 @@
+{
+    "linkset": [
+      {
+        "anchor": "https://s11.no/2022/a2a-fair-metrics/14-http-describedby-citeas-linkset-json-txt-conneg/",
+        "cite-as": [
+          {
+            "href": "https://w3id.org/a2a-fair-metrics/14-http-describedby-citeas-linkset-json-txt-conneg/"
+          }
+        ],
+        "item": [
+          {
+            "href": "https://s11.no/2022/a2a-fair-metrics/14-http-describedby-citeas-linkset-json-txt-conneg/test-apple-data.csv",
+            "type": "text/csv"
+          }
+        ],
+        "describedby": [
+          {
+            "href": "https://s11.no/2022/a2a-fair-metrics/14-http-describedby-citeas-linkset-json-txt-conneg/index.ttl",
+            "type": "text/turtle"
+          }
+        ]
+      }
+    ]
+  }

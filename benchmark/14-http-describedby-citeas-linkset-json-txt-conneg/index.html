@@ -1,0 +1,24 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>14-http-describedby-citeas-linkset-json-txt-conneg</title>
+
+</head>
+
+<body>
+	<h1>14-http-describedby-citeas-linkset-json-txt-conneg</h1>
+	<p>
+	  This landing page has four HTTP headers:
+	</p>
+	<ul>
+		<li><a href="index.ttl">describedby to index.ttl</a> (text/turtle, type attribute not declared)
+        <li><a href="https://w3id.org/a2a-fair-metrics/14-http-describedby-citeas-linkset-json-txt-conneg/">cite-as to w3id</a>
+		<li><a href="linkset">linkset to linkset</a> with content negotation for <code>application/linkset+json</code> that links to <a href="test-apple-data.csv">test-apple-data.csv</a> and the above
+		<li><a href="linkset">linkset to linkset</a> with content negotation for <code>application/linkset</code> alternative to the above
+	</ul>
+	There is NO <code>Link rel=alternate</code> between JSON and TXT as they have the same URI. The Web Server should give a Content-Location header of which resource was resolved.
+</body>
+</html>
+
