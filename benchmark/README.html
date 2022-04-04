@@ -2,19 +2,48 @@
 
 <h2>Persistent Identifiers</h2>
 <p>
-There is a corresponding Persistent Identifier (PID) for each test, given as
-<code>https://w3id.org/a2a-fair-metrics/</code> suffixed with the test name listed above, e.g.
-<a href="https://w3id.org/a2a-fair-metrics/03-http-citeas-only/">https://w3id.org/a2a-fair-metrics/03-http-citeas-only/</a> but note that not all tests neccessarily have the corresponding <kbd>cite-as</kbd> header.
+	There is a corresponding Persistent Identifier (PID) for each test, given as
+	<code>https://w3id.org/a2a-fair-metrics/</code> suffixed with the test name listed above and a trailing <code>/</code>, 
+	e.g.
+	<a href="https://w3id.org/a2a-fair-metrics/03-http-citeas-only/">https://w3id.org/a2a-fair-metrics/03-http-citeas-only/</a> — 
+	however note that many of the tests do not have the corresponding <kbd>cite-as</kbd> header as each of them
+	are intended to test one feature or edge case of FAIR Signposting.
 </p>
+<h2>IRIs and IDNA</h2>
 <p>
-Note that some of the tests (e.g. <a href="https://w3id.org/a2a-fair-metrics/04-http-described-iri">04-http-described-iri</a>) 
-deliberately refer to resources using IRIs to the alternative hostname
-<a href="https://з11.ею/2022/a2a-fair-metrics/">з11.ею</a> (aka xn--11-slc.xn--e1a4c) 
-instead of <a href="https://s11.no/2022/a2a-fair-metrics/">s11.no</a>
-as pointed to by the PID redirects.  It is also possible to force access to the tests using
-IPv6 only with the hostanmeI <a href="https://ipv6.s11.no/2022/a2a-fair-metrics/">ipv6.s11.no</a>.
+	Note that some of the tests 
+	(e.g. <a href="https://w3id.org/a2a-fair-metrics/04-http-described-iri/">04-http-described-iri</a>) 
+	deliberately refer to resources using IRIs to the alternative hostname
+	<a href="https://з11.ею/2022/a2a-fair-metrics/">з11.ею</a> 
+	(aka <code>xn--11-slc.xn--e1a4c</code> in <a href="https://doi.org/10.17487/RFC5894">IDNA encoding</a>) 
+	instead of <a href="https://s11.no/2022/a2a-fair-metrics/">s11.no</a>
+	as pointed to by the PID redirects.  
 </p>
-
+<h2>IRIs</h2>
+<p>
+	Additional <code>Link</code> headers are deliberately present in HTTP and HTML 
+	for presentation purposes, e.g. <code>rel=stylesheet</code> 
+	and <code>rel=preload</code> — these should be ignored
+	for signposting.
+	</p>
+<h2>Protocol and transports</h2>
+<ul>
+	<li>The s11.no server can be accessed using binary HTTP/2.0 and classical HTTP/1.1, 
+		however the w3id.org PID server currently only support HTTP 1.1.</li>
+	<li>The SSL certificate is signed by 
+		<a href="https://letsencrypt.org/certificates/">Let's Encrypt</a>
+		and may frequently be updated, 
+		make sure your HTTPS client uses an updated root keychain. </li>
+	<li>Access using unencrypted <code>http://</code> will 
+		give a <code>302 Found</code> redirect to the <code>https://</code> variant.</li>
+	<li>It is possible to force access to the tests using
+	IPv6 only with the hostname <a href="https://ipv6.s11.no/2022/a2a-fair-metrics/">ipv6.s11.no</a>, however
+	the PIDs redirect to the hostname <code>s11.no</code> which has both IPv4 and IPv6 connectivity.
+	(Note that clients running from within Docker containers typically  
+	<a href="https://docs.docker.com/config/daemon/ipv6/">do NOT have IPv6 access</a>)</li>
+	</li>
+	<li>The HTTP server is hosted on a home broadband connection, please be kind!</li>
+</ul>
 </main>
 <footer>
 <dl>
