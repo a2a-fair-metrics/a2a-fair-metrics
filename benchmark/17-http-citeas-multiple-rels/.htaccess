@@ -1,3 +1,3 @@
 <Files index.html>
-  Header add Link "<https://w3id.org/a2a-fair-metrics/17-http-citeas-multiple-rels/>;rel=\"canonical cite-as http://schema.org/citation\""
+  Header add Link "<https://w3id.org/a2a-fair-metrics/17-http-citeas-multiple-rels/>;rel=\"canonical cite-as http://schema.org/identifier\""
 </Files>
