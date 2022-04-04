@@ -1,0 +1,4 @@
+<Files index.html>
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/15-http-describedby-conneg/metadata>;rel="describedby";type="text/turtle"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/15-http-describedby-conneg/metadata>;rel="describedby";type="application/ld+json"
+</Files>
