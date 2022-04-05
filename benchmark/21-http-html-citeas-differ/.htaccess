@@ -1,0 +1,3 @@
+<Files index.html>
+  Header add Link <https://w3id.org/a2a-fair-metrics/21-http-html-citeas-differ/>;rel=cite-as
+</Files>

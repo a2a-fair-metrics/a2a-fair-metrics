@@ -1,0 +1,22 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>15-http-describedby-no-conneg</title>
+
+</head>
+
+<body>
+	<h1>15-http-describedby-no-conneg</h1>
+	<p>
+	  This landing page has two signposting HTTP headers:
+	</p>
+	<ul>
+		<li><a href="metadata.ttl">describedby to metadata.ttl</a> (text/turtle, type attribute declared)</li>
+		<li><a href="metadata.jsonld">describedby to metadata.jsonld</a> (application/ld+json, type attribute declared)</li>
+	</ul>
+	<p>There is no HTTP content negotiation in this scenario, but the client should select the link corresponding for the desired type</p>
+</body>
+</html>
+

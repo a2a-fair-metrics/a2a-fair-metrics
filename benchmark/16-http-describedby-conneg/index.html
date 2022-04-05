@@ -1,0 +1,22 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>16-http-describedby-conneg</title>
+
+</head>
+
+<body>
+	<h1>16-http-describedby-conneg</h1>
+	<p>
+	  This landing page has two signposting HTTP headers:
+	</p>
+	<ul>
+		<li><a type="text/turtle" href="metadata">describedby content-negotiated to metadata.ttl</a> (text/turtle, type attribute declared)</li>
+		<li><a type="application/ld+json" href="metadata">describedby content-negotiated to metadata.jsonld</a> (application/ld+json, type attribute declared)</li>
+	</ul>
+	<p>The client is forced to use HTTP content negotiation in this scenario, the server will add a Content-Location of the seleted resource.</p>
+</body>
+</html>
+

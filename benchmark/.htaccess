@@ -1,6 +1,6 @@
 HeaderName HEADER.html
 ReadmeName README.html
-IndexOptions +SuppressHTMLPreamble Charset=UTF-8
+IndexOptions Charset=UTF-8 +SuppressHTMLPreamble
 IndexIgnore cc-zero.svg linkset.jsonld ..
 <Files linkset.json>
   ForceType application/linkset+json
@@ -8,4 +8,15 @@ IndexIgnore cc-zero.svg linkset.jsonld ..
 </Files>
 <Files linkset.txt>
   ForceType application/linkset
+</Files>
+
+AddType text/turtle;charset=UTF-8 ttl
+AddType application/ld+json jsonld
+AddType application/x-type-map var
+
+AddHandler type-map .var
+Options +MultiViews
+
+<Files index.html>
+  Header add Link <https://s11.no/css/bundle.css>;rel="stylesheet"
 </Files>

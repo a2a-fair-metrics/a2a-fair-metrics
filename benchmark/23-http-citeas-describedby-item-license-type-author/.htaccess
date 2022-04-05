@@ -1,0 +1,11 @@
+<Files index.html>
+  Header add Link <https://w3id.org/a2a-fair-metrics/23-http-citeas-describedby-item-license-type-author/>;rel="cite-as"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/23-http-citeas-describedby-item-license-type-author/index.ttl>;rel="describedby";type="text/turtle"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/23-http-citeas-describedby-item-license-type-author/test-apple-data.csv>;rel="item";type="text/csv"
+  Header add Link <https://spdx.org/licenses/CC0-1.0>;rel="license"
+  Header add Link <http://schema.org/Dataset>;rel="type"
+  Header add Link <https://orcid.org/0000-0002-1825-0097>;rel="author"
+</Files>
+<Files test-apple-data.csv>
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/23-http-citeas-describedby-item-license-type-author/>;rel="collection";type="text/html"
+</Files>

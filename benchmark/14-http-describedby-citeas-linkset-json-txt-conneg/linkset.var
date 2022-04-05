@@ -1,0 +1,14 @@
+URI: linkset; vary="type"
+
+URI: linkset.json
+Content-type: application/linkset+json; qs=0.8
+
+URI: linkset.json
+Content-type: application/json; qs=0.5
+
+URI: linkset.txt
+Content-type: application/linkset; qs=0.7
+
+URI: linkset.txt
+Content-type: text/plain; qs=0.1
+
