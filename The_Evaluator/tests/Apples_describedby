@@ -36,7 +36,7 @@ def testGUID
   # $stderr.puts htmllinks.inspect
   [httpheaders, htmllinks].each do |headers|
     headers.each do |link, valhash|
-      puts "Link #{link} val #{valhash}\n\n"
+      # $stderr.puts "Link #{link} val #{valhash}\n\n"
       next unless link and valhash
 
       next unless valhash[:rel] == 'describedby'
@@ -48,12 +48,12 @@ def testGUID
         begin
           result = RestClient::Request.execute(method: :head, url: link,
                                                headers: { content_type: valhash[:type] })
-          if result.headers[:content_type].match(valhash[:type])
+          if result.headers[:content_type].match(valhash[:type].gsub('+', '.'))  # plus is interpreted as a regexp character
             @swagger.addComment("SUCCESS: The HTTP or HTML contains a describedby link that properly responds.\n")
             @swagger.score = 1
             return @swagger.createEvaluationResponse
           else
-            @swagger.addComment("FAILURE: The HTTP or HTML headers contain a describedby link that does not respond to a content-negotiated HEAD request.\n")
+            @swagger.addComment("FAILURE: The HTTP or HTML headers contain a describedby link whose representation doesn't match the declared type after content-negotiation.\n")
             @swagger.score = 0
             return @swagger.createEvaluationResponse
           end
@@ -63,14 +63,15 @@ def testGUID
           return @swagger.createEvaluationResponse
         end
       else
-        @swagger.addComment("FAILURE: The HTTP or HTML headers contain a describedby link that does not iunclude a type.  This is required.\n")
-        @swagger.score = 0
-        return @swagger.createEvaluationResponse
+        @swagger.addComment("FAILURE: The HTTP or HTML headers contain a describedby link that does not iunclude a type. This is required.\n")
+        # @swagger.score = 0
+        # return @swagger.createEvaluationResponse
       end
     end
   end
 
   @swagger.addComment("FAILURE: No describedby link found in HTTP Headers or in HTML.\n")
+  @swagger.score = 0
   @swagger.createEvaluationResponse
 end
 

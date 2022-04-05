@@ -32,12 +32,12 @@ def testGUID
     return @swagger.createEvaluationResponse
   end
 
-   $stderr.puts "headers #{httpheaders.inspect}"
-   $stderr.puts htmllinks.inspect
+   # $stderr.puts "http headers #{httpheaders.inspect}\n\n"
+   # $stderr.puts "html headers #{htmllinks.inspect}\n\n"
 
   [httpheaders, htmllinks].each do |headers|
     headers.each do |link, valhash|
-      # puts valhash
+      $stderr.puts "\nvalhash #{valhash}\n"
       next unless valhash[:rel] == 'item'
 
       @swagger.addComment("INFO: The HTTP or HTML headers contain an item link.\n")
@@ -49,9 +49,7 @@ def testGUID
           @swagger.score = 1
           return @swagger.createEvaluationResponse
         else
-          @swagger.addComment("FAILURE: The HTTP or HTML headers contain an item link that does not include a content-type.\n")
-          @swagger.score = 0
-          return @swagger.createEvaluationResponse
+          @swagger.addComment("INFO: The HTTP or HTML headers contain an item link that does not include a content-type.\n")
         end
       rescue StandardError
         @swagger.addComment("FAILURE: The HTTP or HTML headers contain an item link that does not respond to a HEAD request.\n")
@@ -59,12 +57,10 @@ def testGUID
         return @swagger.createEvaluationResponse
       end
     end
-
-    @swagger.score = 1
-    return @swagger.createEvaluationResponse
   end
 
   @swagger.addComment("FAILURE: No item link found in HTTP Headers or in HTML.\n")
+  @swagger.score = 0
   @swagger.createEvaluationResponse
 end
 

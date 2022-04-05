@@ -162,11 +162,11 @@ class ApplesUtils
         meta.comments << "INFO: following redirection using this header led to the following URL: #{meta.finalURI.last}.  Using the output from this URL for the next few tests..."
         meta.full_response << body
 
-        httplinks = ApplesUtils::parse_http_link_headers(head) unless nolinkheaders
+        httplinks = ApplesUtils::parse_http_link_headers(head, guid) unless nolinkheaders  # pass guid to check against anchors in linksets
         htmllinks = Hash.new
         ApplesUtils::HTML_FORMATS['html'].each do |format|
             if head[:content_type].match(format)
-                htmllinks = ApplesUtils::parse_html_link_elements(body) unless nolinkheaders
+                htmllinks = ApplesUtils::parse_html_link_elements(body, guid) unless nolinkheaders  # pass guid to check against anchors in linksets
             end
         end
         return [httplinks, htmllinks, meta]
@@ -174,7 +174,7 @@ class ApplesUtils
     end
 
     
-    def ApplesUtils::parse_http_link_headers(headers)
+    def ApplesUtils::parse_http_link_headers(headers, anchor)
         # we can be sure that a Link header is a URL
         # code stolen from https://gist.github.com/thesowah/0ca5e1b4b3c61bfe8e13 with a few tweaks
 
@@ -199,25 +199,26 @@ class ApplesUtils
             sections = Hash.new
             section[1..].each do |s|
                 s.strip!
-                if m = s.match(/([\w]+?)="?([\w\-\/]+)"?/)
+                if m = s.match(/([\w]+?)="?([\w\-\/\s]+)"?/)  # can be rel="cite-as describedby"  --> two relations in one!
                     type = m[1]
                     value = m[2]
-                    sections[type.to_sym] = value
+                    sections[type.to_sym] = value  # value could hold multiple relation types
                 end
             end        
             parsed[link] = sections
         end
+
+        parsed = ApplesUtils::check_for_linkset(parsed, anchor)
         return parsed
 
     end
   
-    def ApplesUtils::parse_html_link_elements(body)
+    def ApplesUtils::parse_html_link_elements(body, anchor)
         links = Hash.new        
         m = MetaInspector.new("http://example.org", document: body)
         #an array of elements that look like this: [{:rel=>"alternate", :type=>"application/ld+json", :href=>"http://scidata.vitk.lv/dataset/303.jsonld"}]
     
         m.head_links.each do |l|
-
             link = l[:href]
             next unless link
             links[link] = l
@@ -226,28 +227,51 @@ class ApplesUtils
     end
 
 
-    # def ApplesUtils::parse_link_header_element(link)
-    #     #[" <https://w3id.org/a2a-fair-metrics/03-http-citeas-only/>;rel=\"cite-as\""]
-    #     links = Hash.new
-    #     section = part.split(';')
-    #     #$stderr.puts section
-    #     next unless section[0]
-    #     url = section[0][/<(.*)>/,1]
-    #     #$stderr.puts url
-    #     next unless section[1]
-    #     type = ""
-    #     sections = Hash.new
-    #     section[1..].each do |s|
-    #         s.strip!
-    #         if m = s.match(/([\w]+?)="?([\w\-]+)"?/)
-    #             type = m[1]
-    #             val = m[2]
-    #             sections[type] = val
-    #     end
-    #     links[url] = sections
-    #     return links
 
-    # end
+    def ApplesUtils::check_for_linkset(parsed, anchor) # incoming: {"link1" => {"sectiontype1" => value, "sectiontype2" => value2}}
+      parsed.each do |link,  valhash|
+        next unless valhash[:rel] = 'linkset'
+        if valhash[:type] == 'application/linkset+json'
+          parsed.merge(ApplesUtils::processJSONLinkset(link, anchor))
+        elsif valhash[:type] == 'application/linkset'
+          $stderr.puts "HTML formatted linksets currently not supported"
+        end
+      end
+      return parsed
+    end
+
+    def ApplesUtils::processJSONLinkset(link, anchor)
+      parsed = Hash.new
+      headers, linkset = ApplesUtils::fetch(link,{'Accept' => 'application/linkset+json'})
+      return {} unless linkset
+      linkset = JSON.parse(linkset)
+      linkset['linkset'].each do |ls|
+        next unless ls["anchor"] = anchor
+        ls["cite-as"].each do |cite|
+          cite[:rel] = "cite-as"
+          href = cite["href"]
+          parsed[href] = cite
+        end
+        ls["describedby"].each do |db|
+          db[:rel] = "describedby"
+          href = db["href"]
+          type = db["type"]
+          db[:href] = href
+          db[:type] = type
+          parsed[href] = db
+        end
+        ls["item"].each do |item|
+          item[:rel] = "item"
+          href = item["href"]
+          type = item["type"]
+          item[:href] = href
+          item[:type] = type
+          parsed[href] = item
+        end
+      end
+      return parsed
+    end
+
 
     def ApplesUtils::fetch(url, headers = ApplesUtils::AcceptHeader, meta=nil)  #we will try to retrieve turtle whenever possible
 

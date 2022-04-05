@@ -12,17 +12,12 @@ VERSION = 'Apples-0.0.1'
 
 def testGUID
   @swagger.addComment("INFO: TEST VERSION '#{VERSION}'\n")
-
-  # $stderr.puts @swagger.inspect
-
   guid = @swagger.testedGUID
 
   httpheaders, htmllinks, metadata = ApplesUtils.resolve_url(guid, false, { 'Accept' => '*/*' })
   @swagger.score = 0
-  # $stderr.puts @swagger.inspect
 
   metadata.comments.each do |c|
-    # $stderr.puts @swagger.inspect
     @swagger.addComment(c)
   end
 
@@ -32,12 +27,12 @@ def testGUID
     return @swagger.createEvaluationResponse
   end
 
-  # $stderr.puts "headers #{httpheaders.inspect}"
-  # $stderr.puts htmllinks.inspect
+  # $stderr.puts "http headers #{httpheaders.inspect}"
+  # $stderr.puts "html headers #{htmllinks.inspect}"
 
   [httpheaders, htmllinks].each do |headers|
     headers.each do |_link, valhash|
-      # puts valhash
+      # $stderr.puts valhash
       next unless valhash[:rel] == 'cite-as'
 
       @swagger.addComment("SUCCESS: The HTTP or HTML headers contain a cite-as link.\n")
