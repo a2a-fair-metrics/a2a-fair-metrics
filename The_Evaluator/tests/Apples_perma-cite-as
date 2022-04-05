@@ -69,8 +69,8 @@ cgi = CGI.new
 schemas = { 'subject' => ['string', 'the GUID being tested'] }
 
 @swagger = Swagger.new({
-                         title: 'FAIR Maturity Apples to Apples cite-as',
-                         description: "Test that the header and/or body of the landing page contains a 'cite-as' link",
+                         title: 'FAIR Maturity Apples to Apples perma-cite-as',
+                         description: "Test that the header and/or body of the landing page contains a 'cite-as' link which is some kind of permanent id",
                          tests_metric: 'https://purl.org/fair-metrics/Apples_F3-A',
                          version: VERSION,
                          applies_to_principle: 'F3',

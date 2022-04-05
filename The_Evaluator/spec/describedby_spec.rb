@@ -9,6 +9,21 @@ describe DescribedBy do
       expect(result.match(/SUCCCCESS/).class.to_s).to eq 'NilClass'
     end
 
+    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/02-html-full/ with link in HTML' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://w3id.org/a2a-fair-metrics/02-html-full/"')
+      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    end
+
+    it 'should return FAILURE for https://w3id.org/a2a-fair-metrics/03-http-citeas-only/ with no describedby link' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://w3id.org/a2a-fair-metrics/03-http-citeas-only/"')
+      expect(result.match(/FAILURE/).class.to_s).to eq 'MatchData'
+    end
+
+    it 'should return FAILURE for https://w3id.org/a2a-fair-metrics/18-html-citeas-only/ with no describedby link' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://w3id.org/a2a-fair-metrics/18-html-citeas-only/"')
+      expect(result.match(/FAILURE/).class.to_s).to eq 'MatchData'
+    end
+
     it 'should return FAILURE for https://s11.no/2022/a2a-fair-metrics/01-http-describedby-only/ when type is not provided' do
       result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://s11.no/2022/a2a-fair-metrics/01-http-describedby-only/"')
       expect(result.match(/FAILURE/).class.to_s).to eq 'MatchData'
@@ -19,7 +34,7 @@ describe DescribedBy do
       expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
     end
 
-    it 'should return FAILURE for https://w3id.org/a2a-fair-metrics/11-http-described-iri-wrong-type/ where the link is an IRI' do
+    it 'should return FAILURE for https://w3id.org/a2a-fair-metrics/11-http-described-iri-wrong-type/ where the content type doesnt match' do
       result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://w3id.org/a2a-fair-metrics/11-http-described-iri-wrong-type/"')
       expect(result.match(/FAILURE/).class.to_s).to eq 'MatchData'
     end
