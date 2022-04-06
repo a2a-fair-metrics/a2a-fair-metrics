@@ -1,3 +1,3 @@
-Header always add Link <https://w3id.org/a2a-fair-metrics/25-citeas-410-gone/>;rel="cite-as";title="The resource that never was"
+Header always add Link <https://w3id.org/a2a-fair-metrics/25-citeas-410-gone/>;rel="cite-as"
 Header always add Link <https://orcid.org/0000-0002-1825-0097>;rel="author";
 Redirect 410
