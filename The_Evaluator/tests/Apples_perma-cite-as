@@ -37,7 +37,7 @@ def testGUID
 
   [httpheaders, htmllinks].each do |headers|
     headers.each do |link, valhash|
-      if valhash[:rel] == 'cite-as'
+      if valhash[:rel] =~ /cite-as/  # rel can have multiple types
         if (link =~ /(purl)\./) or (link =~ /(oclc)\./) or (link =~ /(fdlp)\./) or (link =~ /(purlz)\./) or (link =~ /(w3id)\./) or (link =~ /(ark):/) or (link =~ /(doi.org)/)
           @swagger.addComment("INFO: The HTTP or HTML headers contain a cite-as link.\n")
           @swagger.addComment("SUCCESS: The HTTP or HTML headers contain a cite-as link which matches a permanent identifier type.\n")

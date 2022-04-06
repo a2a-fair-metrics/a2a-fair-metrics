@@ -37,5 +37,21 @@ describe Item do
       result, _error, _status = Open3.capture3('ruby ./tests/Apples_item "https://w3id.org/a2a-fair-metrics/12-http-item-does-not-resolve/"')
       expect(result.match(/FAILURE/).class.to_s).to eq 'MatchData'
     end
+
+    it 'should return SUCCESS for https://s11.no/2022/a2a-fair-metrics/07-http-describedby-citeas-linkset-json/ which has item in a json linkset' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_item "https://s11.no/2022/a2a-fair-metrics/07-http-describedby-citeas-linkset-json/"')
+      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    end
+
+    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/24-http-linkset-json-only/ which has item ONLY in a json linkset' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_item-as "https://w3id.org/a2a-fair-metrics/24-http-linkset-json-only/"')
+      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    end
+
+    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/25-linkset-txt-only/ which has item ONLY in a text linkset' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_item-as "https://w3id.org/a2a-fair-metrics/25-linkset-txt-only/"')
+      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    end
+
   end
 end

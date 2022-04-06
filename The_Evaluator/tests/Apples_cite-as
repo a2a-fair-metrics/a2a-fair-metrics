@@ -29,11 +29,14 @@ def testGUID
 
   # $stderr.puts "http headers #{httpheaders.inspect}"
   # $stderr.puts "html headers #{htmllinks.inspect}"
+  if ApplesUtils::check_for_conflicts(httpheaders, htmllinks)
+    @swagger.addComment("WARN: Conflicting cite-as links. the cite-as link in the HTTP and HTML headers is not identical.  Only one of them will be used by a client.\n")
+  end
 
   [httpheaders, htmllinks].each do |headers|
     headers.each do |_link, valhash|
       # $stderr.puts valhash
-      next unless valhash[:rel] == 'cite-as'
+      next unless valhash[:rel] =~ /cite-as/
 
       @swagger.addComment("SUCCESS: The HTTP or HTML headers contain a cite-as link.\n")
       @swagger.score = 1
@@ -44,6 +47,7 @@ def testGUID
   @swagger.addComment("FAILURE: No cite-as link found in HTTP or HTML Headers.\n")
   @swagger.createEvaluationResponse
 end
+
 
 if debug
   ENV['TEST_PROTOCOL'] = 'http'

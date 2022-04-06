@@ -149,18 +149,18 @@ class ApplesUtils
 
 
     def ApplesUtils::resolve_url(guid, nolinkheaders=false, header=ApplesUtils::AcceptHeader)
-        meta = MetadataObject.new()
-        meta.guidtype = "uri" if meta.guidtype.nil?
+        @meta = MetadataObject.new()
+        @meta.guidtype = "uri" if @meta.guidtype.nil?
         $stderr.puts "\n\n FETCHING #{guid} #{header}\n\n"
-        head, body = ApplesUtils::fetch(guid, header, meta)
+        head, body = ApplesUtils::fetch(guid, header)
         if !head
-            meta.comments << "WARN: Unable to resolve #{guid} using HTTP Accept header #{header.to_s}.\n"
-            return meta
+            @meta.comments << "WARN: Unable to resolve #{guid} using HTTP Accept header #{header.to_s}.\n"
+            return @meta
         end
 #$stderr.puts head.inspect
 
-        meta.comments << "INFO: following redirection using this header led to the following URL: #{meta.finalURI.last}.  Using the output from this URL for the next few tests..."
-        meta.full_response << body
+        @meta.comments << "INFO: following redirection using this header led to the following URL: #{@meta.finalURI.last}.  Using the output from this URL for the next few tests..."
+        @meta.full_response << body
 
         httplinks = ApplesUtils::parse_http_link_headers(head, guid) unless nolinkheaders  # pass guid to check against anchors in linksets
         htmllinks = Hash.new
@@ -169,7 +169,7 @@ class ApplesUtils
                 htmllinks = ApplesUtils::parse_html_link_elements(body, guid) unless nolinkheaders  # pass guid to check against anchors in linksets
             end
         end
-        return [httplinks, htmllinks, meta]
+        return [httplinks, htmllinks, @meta]
 
     end
 
@@ -199,7 +199,7 @@ class ApplesUtils
             sections = Hash.new
             section[1..].each do |s|
                 s.strip!
-                if m = s.match(/([\w]+?)="?([\w\-\/\s]+)"?/)  # can be rel="cite-as describedby"  --> two relations in one!
+                if m = s.match(/([\w]+?)="?([\w\-\+\/\s]+)"?/)  # can be rel="cite-as describedby"  --> two relations in one!  or "linkset+json"
                     type = m[1]
                     value = m[2]
                     sections[type.to_sym] = value  # value could hold multiple relation types
@@ -223,6 +223,7 @@ class ApplesUtils
             next unless link
             links[link] = l
         end
+        links = ApplesUtils::check_for_linkset(links, anchor)
         return links
     end
 
@@ -230,11 +231,17 @@ class ApplesUtils
 
     def ApplesUtils::check_for_linkset(parsed, anchor) # incoming: {"link1" => {"sectiontype1" => value, "sectiontype2" => value2}}
       parsed.each do |link,  valhash|
-        next unless valhash[:rel] = 'linkset'
+        # $stderr.puts valhash
+        next unless valhash[:rel] == 'linkset'
         if valhash[:type] == 'application/linkset+json'
-          parsed.merge(ApplesUtils::processJSONLinkset(link, anchor))
+          linksethash = ApplesUtils::processJSONLinkset(link, anchor)
+          ApplesUtils::check_for_conflicts(parsed, linksethash)
+          parsed = parsed.merge(linksethash)
+          # $stderr.puts parsed
         elsif valhash[:type] == 'application/linkset'
-          $stderr.puts "HTML formatted linksets currently not supported"
+          linksethash = ApplesUtils::processTextLinkset(link, anchor)
+          ApplesUtils::check_for_conflicts(parsed, linksethash)
+          parsed = parsed.merge(linksethash)
         end
       end
       return parsed
@@ -243,37 +250,96 @@ class ApplesUtils
     def ApplesUtils::processJSONLinkset(link, anchor)
       parsed = Hash.new
       headers, linkset = ApplesUtils::fetch(link,{'Accept' => 'application/linkset+json'})
+      # $stderr.puts headers.inspect
+      # $stderr.puts linkset.inspect
+      
       return {} unless linkset
       linkset = JSON.parse(linkset)
       linkset['linkset'].each do |ls|
-        next unless ls["anchor"] = anchor
+        # $stderr.puts ls['anchor']
+        # $stderr.puts anchor        
+        next unless ls["anchor"] == anchor
         ls["cite-as"].each do |cite|
-          cite[:rel] = "cite-as"
-          href = cite["href"]
+          cite[:rel] = "cite-as"; cite.delete('rel')
+          href = cite["href"]; cite.delete('href')
+          cite[:href] = href
           parsed[href] = cite
         end
         ls["describedby"].each do |db|
-          db[:rel] = "describedby"
+          db[:rel] = "describedby"; db.delete('rel')
           href = db["href"]
           type = db["type"]
-          db[:href] = href
-          db[:type] = type
+          db[:href] = href; db.delete('href')
+          db[:type] = type; db.delete('type')
           parsed[href] = db
         end
         ls["item"].each do |item|
-          item[:rel] = "item"
+          item[:rel] = "item"; item.delete('rel')
           href = item["href"]
           type = item["type"]
-          item[:href] = href
-          item[:type] = type
+          item[:href] = href; item.delete('href')
+          item[:type] = type; item.delete('type')
           parsed[href] = item
         end
+      end
+      # $stderr.puts parsed
+      return parsed
+    end
+
+    def ApplesUtils::processTextLinkset(link, anchor)
+      parsed = Hash.new
+      headers, linkset = ApplesUtils::fetch(link,{'Accept' => 'application/linkset'})
+      # $stderr.puts "headers #{headers.inspect}"
+      return {} unless linkset
+      links = linkset.scan(/(\<.*?\>[^\<]+)/)  # split on the open angle bracket, which indicates a new link
+
+      links.each do |ls|
+        ls = ls.first  # ls is a single element array
+        elements = ls.split(';')  # semicolon delimited fields
+        # ["<https://w3id.org/a2a-fair-metrics/08-http-describedby-citeas-linkset-txt/>", "anchor=\"https://s11.no/2022/a2a-fair-metrics/08-http-describedby-citeas-linkset-txt/\"", "rel=\"cite-as\""] 
+        href = elements.shift  # first element is always the link url
+        href = href.match(/\<([^\>]+)\>/)[1]
+        linkshash = Hash.new
+        elements.each do |e| 
+          key, val = e.split('=')
+          key.strip!
+          val.strip!
+          val.delete_prefix!('"').delete_suffix!('"')  # get rid of newlines and start/end quotes
+          linkshash[key.to_sym] = val # split on key=val and make key a symbol
+        end  
+        
+        # $stderr.puts "linkshash #{linkshash}\n#{linkshash[:anchor]}\n#{anchor}\n\n"
+        # next unless linkshash[:anchor] and linkshash[:anchor] == anchor # eliminate the ones we don't want
+        parsed[href] = linkshash
       end
       return parsed
     end
 
+    def ApplesUtils::check_for_conflicts(parsed1, parsed2) # incoming: {"link1" => {"sectiontype1" => value, "sectiontype2" => value2}}
+      @meta.comments << "INFO: checking for conflicting cite-as links"
+      cite1 = ""
+      cite2 = ""
+      parsed1.each do |link,  valhash|
+        # $stderr.puts valhash
+        next unless valhash[:rel] == 'cite-as'
+        cite1 = link
+      end
+      parsed2.each do |link,  valhash|
+        # $stderr.puts valhash
+        next unless valhash[:rel] == 'cite-as'
+        cite2 = link
+      end
+      if cite1 and cite2 and cite1 != cite2
+        @meta.comments << "WARN: Conflicting cite-as links. found conflicting cite-as: #{cite1} versus #{cite2}."
+        return true
+      end
+      
+      return false
 
-    def ApplesUtils::fetch(url, headers = ApplesUtils::AcceptHeader, meta=nil)  #we will try to retrieve turtle whenever possible
+    end
+
+
+    def ApplesUtils::fetch(url, headers = ApplesUtils::AcceptHeader)  #we will try to retrieve turtle whenever possible
 
         $stderr.puts "In fetch routine now.  "
         
@@ -285,24 +351,24 @@ class ApplesUtils
                     #user: user,
                     #password: pass,
                     headers: headers})
-            if meta
-                meta.finalURI |= [response.request.url]
+            if @meta
+                @meta.finalURI |= [response.request.url]
             end
             $stderr.puts "There was a response to the call #{url.to_s}"
             return [response.headers, response.body]
         rescue RestClient::ExceptionWithResponse => e
             $stderr.puts "ERROR! #{e.response}"
-            meta.comments << "WARN: HTTP error #{e} encountered when trying to resolve #{url.to_s}\n" if meta
+            @meta.comments << "WARN: HTTP error #{e} encountered when trying to resolve #{url.to_s}\n" if @meta
             response = false
             return response  # now we are returning 'False', and we will check that with an \"if\" statement in our main code
         rescue RestClient::Exception => e
             $stderr.puts "ERROR! #{e}"
-            meta.comments << "WARN: HTTP error #{e} encountered when trying to resolve #{url.to_s}\n" if meta
+            @meta.comments << "WARN: HTTP error #{e} encountered when trying to resolve #{url.to_s}\n" if @meta
             response = false
             return response  # now we are returning 'False', and we will check that with an \"if\" statement in our main code
         rescue Exception => e
             $stderr.puts "ERROR! #{e}"
-            meta.comments << "WARN: HTTP error #{e} encountered when trying to resolve #{url.to_s}\n" if meta
+            @meta.comments << "WARN: HTTP error #{e} encountered when trying to resolve #{url.to_s}\n" if @meta
             response = false
             return response  # now we are returning 'False', and we will check that with an \"if\" statement in our main code
         end		  # you can capture the Exception and do something useful with it!\n",
