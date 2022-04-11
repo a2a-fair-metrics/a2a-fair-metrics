@@ -1,0 +1,32 @@
+<https://w3id.org/a2a-fair-metrics/>;
+  rel="cite-as";
+  anchor="https://s11.no/2022/a2a-fair-metrics/"
+
+<https://s11.no/2022/a2a-fair-metrics/>;
+  rel="canonical";
+  anchor="https://w3id.org/a2a-fair-metrics/"
+
+<https://orcid.org/0000-0001-9842-9718>;
+  rel="author";
+  anchor="https://s11.no/2022/a2a-fair-metrics/"
+
+<https://orcid.org/0000-0002-0715-6126>;
+  rel="author";
+  anchor="https://s11.no/2022/a2a-fair-metrics/"
+
+<https://orcid.org/0000-0001-6960-357X>;
+  rel="author";
+  anchor="https://s11.no/2022/a2a-fair-metrics/"
+
+<https://schema.org/Dataset>;
+  rel="type";
+  anchor="https://s11.no/2022/a2a-fair-metrics/" 
+
+<http://purl.obolibrary.org/obo/NCIT_C47895>;
+  rel="type";
+  anchor="https://s11.no/2022/a2a-fair-metrics/"
+   
+<https://spdx.org/licenses/CC0-1.0>;
+  rel="license";
+  anchor="https://spdx.org/licenses/CC0-1.0"
+
