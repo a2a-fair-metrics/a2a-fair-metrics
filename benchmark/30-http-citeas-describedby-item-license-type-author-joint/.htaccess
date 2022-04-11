@@ -1,5 +1,5 @@
 <Files index.html>
-  Header add Link <https://w3id.org/a2a-fair-metrics/30-http-citeas-describedby-item-license-type-author-joint/>;rel=cite-as,<https://s11.no/2022/a2a-fair-metrics/30-http-citeas-describedby-item-license-type-author-joint/index.ttl>;rel=describedby;type=text/turtle,<https://s11.no/2022/a2a-fair-metrics/30-http-citeas-describedby-item-license-type-author-joint/test-apple-data.csv>;rel=item;type=text/csv,<https://spdx.org/licenses/CC0-1.0>;rel=license,<http://schema.org/Dataset>;rel=type,<https://orcid.org/0000-0002-1825-0097>;rel=author
+  Header add Link <https://w3id.org/a2a-fair-metrics/30-http-citeas-describedby-item-license-type-author-joint/>;rel=cite-as,<https://s11.no/2022/a2a-fair-metrics/30-http-citeas-describedby-item-license-type-author-joint/index.ttl>;rel=describedby;type="text/turtle",<https://s11.no/2022/a2a-fair-metrics/30-http-citeas-describedby-item-license-type-author-joint/test-apple-data.csv>;rel=item;type="text/csv",<https://spdx.org/licenses/CC0-1.0>;rel=license,<http://schema.org/Dataset>;rel=type,<https://orcid.org/0000-0002-1825-0097>;rel=author
 </Files>
 <Files test-apple-data.csv>
   Header add Link <https://s11.no/2022/a2a-fair-metrics/30-http-citeas-describedby-item-license-type-author-joint/>;rel=collection;type=text/html
