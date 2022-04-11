@@ -9,7 +9,9 @@ all: clean deploy
 
 linkset.txt: [0-9]*
 	cp linkset.txt.template linkset.txt
-	for d in [0-9]* ; do echo "<${PID_BASE}$$d/>;\n  rel=\"item\";\n  anchor=\"${URL_BASE}\";\n  type=\"text/html\"\n" >> linkset.txt ; done
+	for d in [0-9]* ; do echo "<${PID_BASE}$$d/>;\n  rel=\"item\";\n  anchor=\"${URL_BASE}\";\n  type=\"text/html\",\n" >> linkset.txt ; done
+	## To ensure we don't terminate with , we'll add the 404 entry last
+	echo "<${PID_BASE}/00-404-not-found/>;\n  rel=\"item\";\n  anchor=\"${URL_BASE}\";\n  type=\"text/html\"" >> linkset.txt
 
 deploy: README.html HEADER.html .htaccess linkset.txt linkset.jsonld cc-zero.svg [0-9]*
 	test -d `dirname $(BASE)`

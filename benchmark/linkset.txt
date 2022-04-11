@@ -1,176 +1,180 @@
 <https://w3id.org/a2a-fair-metrics/>;
   rel="cite-as";
-  anchor="https://s11.no/2022/a2a-fair-metrics/"
+  anchor="https://s11.no/2022/a2a-fair-metrics/",
 
 <https://s11.no/2022/a2a-fair-metrics/>;
   rel="canonical";
-  anchor="https://w3id.org/a2a-fair-metrics/"
+  anchor="https://w3id.org/a2a-fair-metrics/",
 
 <https://orcid.org/0000-0001-9842-9718>;
   rel="author";
-  anchor="https://s11.no/2022/a2a-fair-metrics/"
+  anchor="https://s11.no/2022/a2a-fair-metrics/",
 
 <https://orcid.org/0000-0002-0715-6126>;
   rel="author";
-  anchor="https://s11.no/2022/a2a-fair-metrics/"
+  anchor="https://s11.no/2022/a2a-fair-metrics/",
 
 <https://orcid.org/0000-0001-6960-357X>;
   rel="author";
-  anchor="https://s11.no/2022/a2a-fair-metrics/"
+  anchor="https://s11.no/2022/a2a-fair-metrics/",
 
 <https://schema.org/Dataset>;
   rel="type";
-  anchor="https://s11.no/2022/a2a-fair-metrics/" 
+  anchor="https://s11.no/2022/a2a-fair-metrics/",
 
 <http://purl.obolibrary.org/obo/NCIT_C47895>;
   rel="type";
-  anchor="https://s11.no/2022/a2a-fair-metrics/"
+  anchor="https://s11.no/2022/a2a-fair-metrics/",
    
 <https://spdx.org/licenses/CC0-1.0>;
   rel="license";
-  anchor="https://spdx.org/licenses/CC0-1.0"
+  anchor="https://spdx.org/licenses/CC0-1.0",
 
 <https://w3id.org/a2a-fair-metrics/00-404-not-found/>;
   rel="item";
-  anchor="https://s11.no/2022/a2a-fair-metrics/"  
+  anchor="https://s11.no/2022/a2a-fair-metrics/",
 
 <https://w3id.org/a2a-fair-metrics/01-http-describedby-only/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/02-html-full/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/03-http-citeas-only/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/04-http-describedby-iri/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/05-http-describedby-citeas/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/06-http-citeas-describedby-item/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/07-http-describedby-citeas-linkset-json/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/08-http-describedby-citeas-linkset-txt/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/09-http-describedby-citeas-linkset-json-txt/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/10-http-citeas-not-perma/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/11-http-described-iri-wrong-type/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/12-http-item-does-not-resolve/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/13-http-describedby-with-type/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/14-http-describedby-citeas-linkset-json-txt-conneg/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/15-http-describedby-no-conneg/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/16-http-describedby-conneg/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/17-http-citeas-multiple-rels/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/18-html-citeas-only/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/19-html-citeas-multiple-rels/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/20-http-html-citeas-same/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/21-http-html-citeas-differ/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/22-http-html-citeas-describedby-mixed/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/23-http-citeas-describedby-item-license-type-author/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/24-citeas-204-no-content/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/25-citeas-author-410-gone/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/26-citeas-203-non-authorative/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/27-http-linkset-json-only/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/28-http-linkset-txt-only/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
-  type="text/html"
+  type="text/html",
 
+<https://w3id.org/a2a-fair-metrics//00-404-not-found/>;
+  rel="item";
+  anchor="https://s11.no/2022/a2a-fair-metrics/";
+  type="text/html"
