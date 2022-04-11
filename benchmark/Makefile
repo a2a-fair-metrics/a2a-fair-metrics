@@ -11,10 +11,10 @@ linkset.txt: [0-9]*
 	cp linkset.txt.template linkset.txt
 	for d in [0-9]* ; do echo "<${PID_BASE}$$d/>;\n  rel=\"item\";\n  anchor=\"${URL_BASE}\";\n  type=\"text/html\"\n" >> linkset.txt ; done
 
-deploy: linkset.txt
+deploy: README.html HEADER.html .htaccess linkset.txt linkset.jsonld cc-zero.svg [0-9]*
 	test -d `dirname $(BASE)`
 	mkdir -p ${BASE}
-	cp -vr README.html HEADER.html .htaccess linkset.jsonld cc-zero.svg [0-9]* ${BASE}
+	cp -vr README.html HEADER.html .htaccess linkset.txt linkset.jsonld cc-zero.svg [0-9]* ${BASE}
 	chmod -R a+rX ${BASE}
 	
 clean:
