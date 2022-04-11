@@ -1,11 +1,11 @@
-<https://w3id.org/a2a-fair-metrics28-linkset-txt-only/>
- ; anchor="https://s11.no/2022/a2a-fair-metrics28-linkset-txt-only/"
+<https://w3id.org/a2a-fair-metrics/28-linkset-txt-only/>
+ ; anchor="https://s11.no/2022/a2a-fair-metrics/28-linkset-txt-only/"
  ; rel="cite-as"
-<https://s11.no/2022/a2a-fair-metrics28-linkset-txt-only/index.ttl>
- ; anchor="https://s11.no/2022/a2a-fair-metrics28-linkset-txt-only/"
+<https://s11.no/2022/a2a-fair-metrics/28-linkset-txt-only/index.ttl>
+ ; anchor="https://s11.no/2022/a2a-fair-metrics/28-linkset-txt-only/"
  ; rel="describedby"
  ; type="text/turtle"
-<https://s11.no/2022/a2a-fair-metrics28-linkset-txt-only/test-apple-data.csv>
- ; anchor="https://s11.no/2022/a2a-fair-metrics28-linkset-txt-only/"
+<https://s11.no/2022/a2a-fair-metrics/28-linkset-txt-only/test-apple-data.csv>
+ ; anchor="https://s11.no/2022/a2a-fair-metrics/28-linkset-txt-only/"
  ; rel="item" 
  ; type="text/csv"
