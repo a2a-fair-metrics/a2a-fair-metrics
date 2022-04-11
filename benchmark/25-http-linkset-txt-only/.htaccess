@@ -1,0 +1,3 @@
+<Files index.html>
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/25-linkset-txt-only/linkset.txt>;rel="linkset";type="application/linkset"
+</Files>

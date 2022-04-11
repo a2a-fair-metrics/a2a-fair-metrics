@@ -39,7 +39,7 @@ def testGUID
       # $stderr.puts "Link #{link} val #{valhash}\n\n"
       next unless link and valhash
 
-      next unless valhash[:rel] == 'describedby'
+      next unless valhash[:rel] =~ /describedby/
 
       @swagger.addComment("INFO: The HTTP or HTML headers contain a describedby link.\n")
       if valhash[:type]

@@ -38,7 +38,7 @@ def testGUID
   [httpheaders, htmllinks].each do |headers|
     headers.each do |link, valhash|
       $stderr.puts "\nvalhash #{valhash}\n"
-      next unless valhash[:rel] == 'item'
+      next unless valhash[:rel] =~ /item/
 
       @swagger.addComment("INFO: The HTTP or HTML headers contain an item link.\n")
       begin
