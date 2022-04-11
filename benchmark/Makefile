@@ -9,9 +9,9 @@ all: clean deploy
 
 linkset.txt: [0-9]*
 	cp linkset.txt.template linkset.txt
-	for d in [0-9]* ; do echo "<${PID_BASE}$$d>;\n  rel=\"item\";\n  anchor=\"${URL_BASE}\";\n  type=\"text/html\"\n" >> linkset.txt ; done
+	for d in [0-9]* ; do echo "<${PID_BASE}$$d/>;\n  rel=\"item\";\n  anchor=\"${URL_BASE}\";\n  type=\"text/html\"\n" >> linkset.txt ; done
 
-deploy:
+deploy: linkset.txt
 	test -d `dirname $(BASE)`
 	mkdir -p ${BASE}
 	cp -vr README.html HEADER.html .htaccess linkset.jsonld cc-zero.svg [0-9]* ${BASE}
