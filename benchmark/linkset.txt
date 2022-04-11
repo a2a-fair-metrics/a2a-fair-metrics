@@ -147,17 +147,17 @@
   anchor="https://s11.no/2022/a2a-fair-metrics/";
   type="text/html",
 
-<https://w3id.org/a2a-fair-metrics/24-citeas-204-no-content/>;
+<https://w3id.org/a2a-fair-metrics/24-http-citeas-204-no-content/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
   type="text/html",
 
-<https://w3id.org/a2a-fair-metrics/25-citeas-author-410-gone/>;
+<https://w3id.org/a2a-fair-metrics/25-http-citeas-author-410-gone/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
   type="text/html",
 
-<https://w3id.org/a2a-fair-metrics/26-citeas-203-non-authorative/>;
+<https://w3id.org/a2a-fair-metrics/26-http-citeas-203-non-authorative/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
   type="text/html",
@@ -168,6 +168,11 @@
   type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/28-http-linkset-txt-only/>;
+  rel="item";
+  anchor="https://s11.no/2022/a2a-fair-metrics/";
+  type="text/html",
+
+<https://w3id.org/a2a-fair-metrics/29-http-500-server-error/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
   type="text/html",
