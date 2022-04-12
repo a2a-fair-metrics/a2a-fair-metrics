@@ -16,7 +16,8 @@
 		<li><a type="text/turtle" href="metadata">describedby content-negotiated to metadata.ttl</a> (text/turtle, type attribute declared)</li>
 		<li><a type="application/ld+json" href="metadata">describedby content-negotiated to metadata.jsonld</a> (application/ld+json, type attribute declared)</li>
 	</ul>
-	<p>The client is forced to use HTTP content negotiation in this scenario, the server will add a Content-Location of the seleted resource.</p>
+	<p>The client is forced to use HTTP content negotiation in this scenario as both links have <code>metadata</code> as target. 
+		The server will add a Content-Location of the seleted resource.</p>
 </body>
 </html>
 
