@@ -1,0 +1,2 @@
+Header always add Link <https://w3id.org/a2a-fair-metrics/24-http-citeas-204-no-content/>;rel="cite-as"
+Redirect 204

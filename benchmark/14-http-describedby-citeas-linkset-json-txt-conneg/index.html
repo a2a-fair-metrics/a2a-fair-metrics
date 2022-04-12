@@ -13,15 +13,17 @@
 	  This landing page has four HTTP headers:
 	</p>
 	<ul>
-		<li><a href="index.ttl">describedby to index.ttl</a> (text/turtle, type attribute not declared)</li>
-        <li><a href="https://w3id.org/a2a-fair-metrics/14-http-describedby-citeas-linkset-json-txt-conneg/">cite-as to w3id</a></li>
-		<li><a type="application/linkset+json" href="linkset">linkset to linkset</a> with content negotation for <code>application/linkset+json</code> that links to <a href="test-apple-data.csv">test-apple-data.csv</a> and the above</li>
-		<li><a type="application/linkset" href="linkset">linkset to linkset</a> with content negotation for <code>application/linkset</code> alternative to the above</li>
+		<li><code>describedby</code> to <a href="index.ttl">index.ttl</a> (text/turtle, type attribute declared)</li>
+        <li><code>cite-as</code> to <a href="https://w3id.org/a2a-fair-metrics/14-http-describedby-citeas-linkset-json-txt-conneg/">w3id</a></li>
+		<li><code>linkset</code> to <a type="application/linkset+json" href="linkset"> linkset</a> with content negotation for <code>application/linkset+json</code> that links to <a href="test-apple-data.csv">test-apple-data.csv</a> and the above</li>
+		<li><code>linkset</code> to <a type="application/linkset" href="linkset">linkset</a> with content negotation for <code>application/linkset</code> alternative to the above</li>
 	</ul>
 	<p>
-		There is NO <code>Link rel=alternate</code> between JSON and TXT as they have the same public URI. The Web Server should give a specific Content-Location header of which resource was resolved.
+		When requesting the linkset resource The Web Server should give a specific <code>Content-Location</code> header of which resource was resolved, in addition to 
+		<code>rel=alternate</code> link between JSON and TXT, as they have the same public URI as well as a <code>rel=canonical</code> for the untyped URI - however neither of these are considered part of the signposting.
+		
 	</p>
-	<p>Bonus: Content types application/json and text/plain also content-negotiate with lower priority.</p>
+	<p>Bonus: Content types <code>application/json</code> and <code>text/plain</code> also content-negotiate with lower priority.</p>
 </body>
 </html>
 
