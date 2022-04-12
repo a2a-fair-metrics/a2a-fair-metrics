@@ -29,8 +29,8 @@ describe DescribedBy do
       expect(result.match(/FAILURE/).class.to_s).to eq 'MatchData'
     end
 
-    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/04-http-described-iri/ where the link is an IRI' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://w3id.org/a2a-fair-metrics/04-http-described-iri/"')
+    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/04-http-describedby-iri/ where the link is an IRI' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://w3id.org/a2a-fair-metrics/04-http-describedby-iri/"')
       expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
     end
 
