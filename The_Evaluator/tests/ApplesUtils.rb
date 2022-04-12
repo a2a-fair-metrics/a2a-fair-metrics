@@ -207,6 +207,8 @@ class ApplesUtils
             end        
             parsed[link] = sections
         end
+        $stderr.puts "\n\nPRE-PARSED\n\n #{parsed}"
+
 
         parsed = ApplesUtils::check_for_linkset(parsed, anchor)
         return parsed
@@ -230,35 +232,40 @@ class ApplesUtils
 
 
     def ApplesUtils::check_for_linkset(parsed, anchor) # incoming: {"link1" => {"sectiontype1" => value, "sectiontype2" => value2}}
+      $stderr.puts "\n\nPARSED\n\n #{parsed}"
+      reparsed = Hash.new
       parsed.each do |link,  valhash|
         # $stderr.puts valhash
         next unless valhash[:rel] == 'linkset'
         if valhash[:type] == 'application/linkset+json'
           linksethash = ApplesUtils::processJSONLinkset(link, anchor)
           ApplesUtils::check_for_conflicts(parsed, linksethash)
-          parsed = parsed.merge(linksethash)
+          $stderr.puts "\n\nlinksethash\n\n #{linksethash}"
+          reparsed = parsed.merge(linksethash)
           # $stderr.puts parsed
         elsif valhash[:type] == 'application/linkset'
           linksethash = ApplesUtils::processTextLinkset(link, anchor)
           ApplesUtils::check_for_conflicts(parsed, linksethash)
-          parsed = parsed.merge(linksethash)
+          $stderr.puts "\n\nlinksethash\n\n #{linksethash}"
+          reparsed = parsed.merge(linksethash)
         end
       end
-      return parsed
+      $stderr.puts "\n\nREPARSED\n\n #{reparsed}"
+      return reparsed.any? ? reparsed : parsed
     end
 
     def ApplesUtils::processJSONLinkset(link, anchor)
       parsed = Hash.new
       headers, linkset = ApplesUtils::fetch(link,{'Accept' => 'application/linkset+json'})
-      # $stderr.puts headers.inspect
-      # $stderr.puts linkset.inspect
+      $stderr.puts headers.inspect
+      $stderr.puts linkset.inspect
       
       return {} unless linkset
       linkset = JSON.parse(linkset)
       linkset['linkset'].each do |ls|
-        # $stderr.puts ls['anchor']
-        # $stderr.puts anchor        
-        next unless ls["anchor"] == anchor
+        $stderr.puts ls['anchor']
+        $stderr.puts anchor        
+        # next unless ls["anchor"] == anchor
         ls["cite-as"].each do |cite|
           cite[:rel] = "cite-as"; cite.delete('rel')
           href = cite["href"]; cite.delete('href')
@@ -333,6 +340,7 @@ class ApplesUtils
         @meta.comments << "WARN: Conflicting cite-as links. found conflicting cite-as: #{cite1} versus #{cite2}."
         return true
       end
+      @meta.comments << "INFO: No conflicting cite-as links found."
       
       return false
 

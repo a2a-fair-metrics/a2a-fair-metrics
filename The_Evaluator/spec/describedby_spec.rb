@@ -45,13 +45,13 @@ describe DescribedBy do
     end
 
 
-    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/24-http-linkset-json-only/ which has describedby ONLY in a json linkset' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby-as "https://w3id.org/a2a-fair-metrics/24-http-linkset-json-only/"')
+    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/27-http-linkset-json-only/ which has describedby ONLY in a json linkset' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://w3id.org/a2a-fair-metrics/27-http-linkset-json-only/"')
       expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
     end
 
-    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/25-linkset-txt-only/ which has cite-as ONLY in a text linkset' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby-as "https://w3id.org/a2a-fair-metrics/25-linkset-txt-only/"')
+    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/28-linkset-txt-only/ which has cite-as ONLY in a text linkset' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://w3id.org/a2a-fair-metrics/28-linkset-txt-only/"')
       expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
     end
 
