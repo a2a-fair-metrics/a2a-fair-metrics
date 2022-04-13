@@ -20,3 +20,7 @@ Options +MultiViews
 <Files index.html>
   Header add Link <https://s11.no/css/bundle.css>;rel="stylesheet"
 </Files>
+
+# Fixing previous typos in PIDs..
+Redirect permanent "/2022/a2a-fair-metrics/04-http-described-iri" "https://s11.no/2022/a2a-fair-metrics/04-http-describedby-iri"
+Redirect permanent "/2022/a2a-fair-metrics/11-http-described-iri-wrong-type" "https://s11.no/2022/a2a-fair-metrics/11-http-describedby-iri-wrong-type"
