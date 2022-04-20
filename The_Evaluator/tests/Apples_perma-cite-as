@@ -97,6 +97,6 @@ elsif cgi.request_method == 'POST' or debug
   guid = input_json['subject']
   @swagger.testedGUID = guid
   response = testGUID
-  puts "Content-type: application/json+ld\n\n"
+  puts "Content-type: application/ld+json\n\n"
   puts response
 end
