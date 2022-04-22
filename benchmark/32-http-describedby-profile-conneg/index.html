@@ -1,0 +1,52 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>32-http-describedby-profile-conneg</title>
+
+</head>
+
+<body>
+	<h1>32-http-describedby-profile-conneg</h1>
+	<p>
+	  This landing page has three HTTP <code>Link</code> headers:
+	</p>
+	<ul>
+		<li><code>describedby</code> to 
+			<a type='application/ld+json;profile="http://www.w3.org/ns/json-ld#compacted"' href="metadata">metadata</a> 
+			(type <code>application/ld+json</code> with profile 
+			<code>http://www.w3.org/ns/json-ld#compacted</code>
+			for
+			<a href="https://www.w3.org/TR/json-ld11/#dfn-compacted-document-form">compacted form</a>)</li>
+		<li><code>describedby</code> to 
+			<a type='application/ld+json;profile="http://www.w3.org/ns/json-ld#expanded"' href="metadata">metadata</a> 
+			(type <code>application/ld+json</code> with profile
+			<code>http://www.w3.org/ns/json-ld#expanded</code>
+			for
+			<a href="https://www.w3.org/TR/json-ld11/#dfn-expanded-document-form">expanded form</a>)</li>
+		<li><code>describedby</code> to 
+			<a type='text/turtle' href="metadata">metadata.ttl</a> 
+			(type <code>text/turtle</code>)</li>
+	</ul>
+	<p>
+		The two JSON-LD metadata files have different <code>profile</code> values
+		according to <a href="https://www.w3.org/TR/json-ld11/#iana-considerations">JSON-LD specification</a>. 
+		The compacted form is more readable as JSON, but may require retrieving a <code>@context</code>.
+	</p>
+	<p>
+		The returned <code>Content-Type</code> for the JSON-LD metadata files 
+		should in this case include the corresponding <code>profile</code> attribute, 
+		as it has been <a href="https://www.w3.org/TR/json-ld11/#iana-considerations">defined</a> for this particular content type
+		(however other types like <a href="https://www.iana.org/assignments/media-types/text/turtle"><code>text/turtle</code></a> have not).
+		</p>
+		<p>
+		In this case the metadata files all have the same URI <code>…/metadata</code>,
+		the client is here <strong>required</strong>  to use 
+		<a href="https://www.w3.org/TR/json-ld11/#iana-examples">content-negotiation by type and profile</a>.
+		The profile can be selected either using <a href="Accept-Profile"></a> or by 
+		including <a href="https://www.w3.org/TR/json-ld11/#iana-examples">profile attribute in Accept</a>.
+	</p>
+</body>
+</html>
+
