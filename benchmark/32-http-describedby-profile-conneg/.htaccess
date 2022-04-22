@@ -5,9 +5,11 @@
 </Files>
 <Files metadata.compacted.jsonld>
   ForceType application/ld+json;profile="http://www.w3.org/ns/json-ld#compacted"
+  Header add Link <http://www.w3.org/ns/json-ld#compacted>;rel="profile"
 </Files>
 <Files metadata.expanded.jsonld>
   ForceType application/ld+json;profile="http://www.w3.org/ns/json-ld#expanded"
+  Header add Link <http://www.w3.org/ns/json-ld#expanded>;rel="profile"
 </Files>
 
 RewriteEngine On
