@@ -14,7 +14,7 @@
 
 RewriteEngine On
 RewriteCond %{HTTP:Accept-Profile} \<http://www.w3.org/ns/json-ld#expanded\> [NC,OR]
-RewriteCond %{HTTP:Accept} profile*=\"http://www.w3.org/ns/json-ld#expanded\" [NC]
+RewriteCond %{HTTP:Accept} profile\s*=\s*\"http://www.w3.org/ns/json-ld#expanded\" [NC]
 RewriteRule ^metadata.jsonld metadata.expanded.jsonld [L]
 
 RewriteRule ^metadata.jsonld metadata.compacted.jsonld [L]
