@@ -4,4 +4,5 @@
 
 <Files crate-33.zip>  
   Header add Link <https://w3id.org/ro/crate>;rel="profile"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/33-http-item-profile/>;rel="collection"
 </Files>
