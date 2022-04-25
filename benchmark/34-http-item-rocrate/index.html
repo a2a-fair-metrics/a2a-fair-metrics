@@ -1,0 +1,62 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>34-http-item-rocrate</title>
+
+</head>
+
+<body>
+	<h1>34-http-item-rocrate</h1>
+	<p>
+	  This landing page has five HTTP <code>Link</code> headers:
+	</p>
+<pre><code>
+Link: &lt;https://w3id.org/a2a-fair-metrics/34-http-item-rocrate/&gt;; 
+          rel="cite-as", 
+Link: &lt;https://s11.no/2022/a2a-fair-metrics/34-http-item-rocrate/ro-crate-preview.html&gt;;
+          rel="describedby"; type="text/html"; 
+          profile="https://w3id.org/ro/crate"
+Link: &lt;https://s11.no/2022/a2a-fair-metrics/34-http-item-rocrate/ro-crate-metadata.json&gt;;
+          rel="describedby"; type="application/ld+json"; 
+          profile="http://www.w3.org/ns/json-ld#flattened http://www.w3.org/ns/json-ld#compacted https://w3id.org/ro/crate"
+Link: &lt;https://s11.no/2022/a2a-fair-metrics/34-http-item-rocrate/metadata.ttl&gt;; 
+          rel="describedby"; type="text/turtle"
+Link: &lt;https://s11.no/2022/a2a-fair-metrics/34-http-item-rocrate/crate-34.zip&gt;;
+          rel="item"; type="application/zip";
+          profile="https://w3id.org/ro/crate"
+</code></pre>
+
+	<ul>
+		<li><code>cite-as</code> to PID 
+			<a href="https://w3id.org/a2a-fair-metrics/34-http-item-rocrate/">https://w3id.org/a2a-fair-metrics/34-http-item-rocrate/</a> 
+		</li>
+		<li><code>describedby</code> to 
+			<a href="ro-crate-preview.html">ro-crate-preview.html</a> 
+			with type <code>text/html</code> and a space-separated
+			profile list that includes <code>https://w3id.org/ro/crate</code> to indicate it is a
+			<a href="https://www.researchobject.org/ro-crate/1.1/structure.html#ro-crate-website-ro-crate-previewhtml-and-ro-crate-preview_files">RO-Crate Website</a>.
+		</li>
+		<li><code>describedby</code> to 
+			<a href="ro-crate-metadata.json">ro-crate-metadata.json</a> 
+			with type <code>application/ld+json</code> and 
+			profile <code>https://w3id.org/ro/crate</code> to indicate it is a
+			<a href="https://www.researchobject.org/ro-crate/1.1/structure.html#ro-crate-metadata-file-ro-crate-metadatajson">RO-Crate Metadata File</a>.
+		</li>
+		<li><code>describedby</code> to 
+			<a href="metadata.ttl">metadata.ttl</a> 
+			with type <code>text/turtle</code> without any profile.
+		</li>				
+		<li><code>item</code> to <a href="crate-34.zip">crate-34.zip</a> 
+			(type <code>application/zip</code> with profile 
+			<code>https://w3id.org/ro/crate</code>
+			to indicate the ZIP archive is an 
+			<a href="https://w3id.org/ro/crate">RO-Crate</a>)</li>
+		</ul>
+	<p>
+		In this example, the metadata is available in multiple ways, including for human-readers. 
+	</p>
+</body>
+</html>
+

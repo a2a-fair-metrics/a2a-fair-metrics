@@ -1,0 +1,13 @@
+<Files index.html>
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/31-http-describedby-profile/metadata.compacted.jsonld>;rel="describedby";type="application/ld+json";profile="http://www.w3.org/ns/json-ld#compacted"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/31-http-describedby-profile/metadata.expanded.jsonld>;rel="describedby";type="application/ld+json";profile="http://www.w3.org/ns/json-ld#expanded"
+</Files>
+
+<Files metadata.compacted.jsonld>
+  ForceType application/ld+json;profile="http://www.w3.org/ns/json-ld#compacted"
+  Header add Link <http://www.w3.org/ns/json-ld#compacted>;rel="profile"
+</Files>
+<Files metadata.expanded.jsonld>
+  ForceType application/ld+json;profile="http://www.w3.org/ns/json-ld#expanded"
+  Header add Link <http://www.w3.org/ns/json-ld#expanded>;rel="profile"
+</Files>

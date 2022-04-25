@@ -1,0 +1,43 @@
+@base <https://s11.no/2022/a2a-fair-metrics/34-http-item-rocrate/ro-crate-metadata.json> .
+@prefix dc: <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+
+<ro-crate-metadata.json> a schema:CreativeWork;
+  dc:conformsTo <https://w3id.org/ro/crate/1.1>;
+  schema:about <./>;
+  schema:description "RO-Crate Metadata File Descriptor (this file)" .
+
+<http://sws.geonames.org/8152662/> a schema:Place;
+  schema:name "Catalina Park" .
+
+<./> a schema:Dataset;
+  schema:description "RO-Crate for A2A benchmark 34";
+  schema:distribution <crate-34.zip>;
+  schema:hasPart <data1.txt>,
+    <data2.txt>;
+  schema:identifier "https://w3id.org/a2a-fair-metrics/34-http-item-rocrate/";
+  schema:name "34-http-item-rocrate";
+  schema:subjectOf <index.html>;
+  schema:url "https://s11.no/2022/a2a-fair-metrics/34-http-item-rocrate/" .
+
+<crate-34.zip> a schema:DataDownload;
+  schema:contentSize "4261";
+  schema:encodingFormat "application/zip";
+  schema:name "ZIP archive RO-Crate 34-http-item-rocrate" .
+
+<data1.txt> a schema:MediaObject;
+  schema:author <#alice>;
+  schema:contentLocation <http://sws.geonames.org/8152662/>;
+  schema:description "One of hopefully many Data Entities" .
+
+<data2.txt> a schema:MediaObject .
+
+<index.html> a schema:CreativeWork;
+  schema:description "PID landing page for 34-http-item-rocrate";
+  schema:encodingFormat "text/html";
+  schema:name "34-http-item-rocrate" .
+
+<#alice> a schema:Person;
+  schema:description "One of hopefully many Contextual Entities";
+  schema:name "Alice" .
+  

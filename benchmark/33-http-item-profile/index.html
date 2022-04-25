@@ -1,0 +1,34 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>33-http-item-profile</title>
+
+</head>
+
+<body>
+	<h1>33-http-item-profile</h1>
+	<p>
+	  This landing page has one HTTP <code>Link</code> headers:
+	</p>
+	<ul>
+		<li><code>item</code> to <a href="crate-33.zip">crate-33.zip</a> 
+			(type <code>application/zip</code> with profile 
+			<code>https://w3id.org/ro/crate</code>
+			to indicate the ZIP archive is an 
+			<a href="https://w3id.org/ro/crate">RO-Crate</a>)</li>
+		</ul>
+	<p>
+		The media type <a href="https://www.iana.org/assignments/media-types/application/zip"><code>application/zip</code></a> have <strong>not</strong>
+		got a <code>profile</code> attribute defined, therefore the <code>Content-Type</code> of the zip file is unchanged, however a 
+		<code>rel=profile</code> Link header is included when requesting the zip, corresponding to the <code>profile</code> 
+		attribute indicated on the <code>rel=item</code> link here.
+	</p>
+	<p>
+		The RO-Crate contains further metadata and PID embeded as JSON-LD, but in this case that is not exposed by the web server 
+		as we can't describe items inside the ZIP file here.
+	</p>
+</body>
+</html>
+

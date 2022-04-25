@@ -1,0 +1,13 @@
+URI: metadata; vary="type"
+
+# Virtual resource which will later be rewritten by .htaccess
+# depending on profile
+URI: metadata.jsonld
+Content-type: application/ld+json; qs=0.8
+
+URI: metadata.ttl
+Content-type: text/turtle; qs=0.7
+
+URI: metadata.ttl
+Content-type: text/plain; qs=0.1
+
