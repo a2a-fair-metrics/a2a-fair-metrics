@@ -1,0 +1,21 @@
+<Files index.html>
+  Header add Link <https://w3id.org/a2a-fair-metrics/34-http-item-rocrate/>;rel="cite-as"
+  Header add Link "<https://s11.no/2022/a2a-fair-metrics/34-http-item-rocrate/ro-crate-preview.html>;rel=\"describedby\";type=\"text/html\";profile=\"http://www.w3.org/ns/json-ld#flattened http://www.w3.org/ns/json-ld#compacted https://w3id.org/ro/crate\""
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/34-http-item-rocrate/ro-crate-metadata.json>;rel="describedby";type="application/ld+json";profile="https://w3id.org/ro/crate"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/34-http-item-rocrate/metadata.ttl>;rel="describedby";type="text/turtle"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/34-http-item-rocrate/crate-34.zip>;rel="item";type="application/zip";profile="https://w3id.org/ro/crate"
+</Files>
+
+<Files crate-34.zip>  
+  Header add Link <https://w3id.org/ro/crate>;rel="profile"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/34-http-item-rocrate/>;rel="collection"
+</Files>
+<Files ro-crate-metadata.json>  
+  ForceType "application/ld+json;profile=\"http://www.w3.org/ns/json-ld#flattened http://www.w3.org/ns/json-ld#compacted https://w3id.org/ro/crate\""
+  Header add Link <http://www.w3.org/ns/json-ld#flattened>;rel="profile"
+  Header add Link <http://www.w3.org/ns/json-ld#compacted>;rel="profile"
+  Header add Link <https://w3id.org/ro/crate>;rel="profile"
+</Files>
+<Files ro-crate-preview.html>
+  Header add Link <https://w3id.org/ro/crate>;rel="profile"
+</Files>

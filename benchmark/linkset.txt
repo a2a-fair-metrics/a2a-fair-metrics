@@ -192,6 +192,16 @@
   anchor="https://s11.no/2022/a2a-fair-metrics/";
   type="text/html",
 
+<https://w3id.org/a2a-fair-metrics/33-http-item-profile/>;
+  rel="item";
+  anchor="https://s11.no/2022/a2a-fair-metrics/";
+  type="text/html",
+
+<https://w3id.org/a2a-fair-metrics/34-http-item-rocrate/>;
+  rel="item";
+  anchor="https://s11.no/2022/a2a-fair-metrics/";
+  type="text/html",
+
 <https://w3id.org/a2a-fair-metrics//00-404-not-found/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
