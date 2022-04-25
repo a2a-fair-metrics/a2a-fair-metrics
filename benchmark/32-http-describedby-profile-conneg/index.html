@@ -26,7 +26,7 @@
 			for
 			<a href="https://www.w3.org/TR/json-ld11/#dfn-expanded-document-form">expanded form</a>)</li>
 		<li><code>describedby</code> to 
-			<a type='text/turtle' href="metadata">metadata.ttl</a> 
+			<a type='text/turtle' href="metadata">metadata</a> 
 			(type <code>text/turtle</code>)</li>
 	</ul>
 	<p>
@@ -46,6 +46,7 @@
 		<a href="https://www.w3.org/TR/json-ld11/#iana-examples">content-negotiation by type and profile</a>.
 		The profile can be selected either using <a href="Accept-Profile"></a> or by 
 		including <a href="https://www.w3.org/TR/json-ld11/#iana-examples">profile attribute in Accept</a>.
+		If no profile is specified, the server will in this case give the compacted form.
 	</p>
 	<p>
 		The returned type will have both a Link with <code>rel=profile</code> and include the <code>profile</code> attribute in the <code>Content-Type</code>, 
