@@ -70,9 +70,42 @@ SELF_IDENTIFIER_PREDICATES = [
     'https://schema.org/identifier'
     ]
 
-    GUID_TYPES = {'inchi' => Regexp.new(/^\w{14}\-\w{10}\-\w$/),
+GUID_TYPES = {'inchi' => Regexp.new(/^\w{14}\-\w{10}\-\w$/),
                     'doi' => Regexp.new(/^10.\d{4,9}\/[-._;()\/:A-Z0-9]+$/i),
                     'handle1' => Regexp.new(/^[^\/]+\/[^\/]+$/i),
                     'handle2' => Regexp.new(/^\d{4,5}\/[-._;()\/:A-Z0-9]+$/i), # legacy style  12345/AGB47A
                     'uri' => Regexp.new(/^\w+:\/?\/?[^\s]+$/)
 }
+
+
+CONFIG = File.exists?('config.conf') ? ParseConfig.new('config.conf') : {} 
+extruct = config['extruct']['command'] if CONFIG['extruct'] && CONFIG['extruct']['command'] && !CONFIG['extruct']['command'].empty?
+extruct = "extruct" unless @extruct_command
+extruct.strip!
+case @extruct
+when /[&\|\;\`\$\s]/
+    abort "The Extruct command in the config file appears to be subject to command injection.  I will not continue"
+when /echo/i
+    abort "The Extruct command in the config file appears to be subject to command injection.  I will not continue"
+end
+EXTRUCT_COMMAND = extruct
+
+rdf_command = CONFIG['rdf']['command'] if CONFIG['rdf'] && CONFIG['rdf']['command'] && !CONFIG['rdf']['command'].empty?
+rdf_command = "rdf" unless @rdf_command
+rdf_command.strip
+case rdf_command
+when /[&\|\;\`\$\s]/
+    abort "The RDF command in the config file appears to be subject to command injection.  I will not continue"
+when /echo/i
+    abort "The RDF command in the config file appears to be subject to command injection.  I will not continue"
+when !(/rdf$/)
+    abort "this software requires that Kelloggs Distiller tool is used. The distiller command must end in 'rdf'"
+end
+RDF_COMMAND = rdf_command
+
+tika_command = CONFIG['tika']['command'] if CONFIG['tika'] && CONFIG['tika']['command'] && !CONFIG['tika']['command'].empty?
+tika_command = "http://localhost:9998/meta" unless @tika_command
+TIKA_COMMAND = tika_command
+
+
+

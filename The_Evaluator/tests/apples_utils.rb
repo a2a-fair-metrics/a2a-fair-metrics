@@ -24,66 +24,23 @@ require 'rdf/xsd'
 require_relative './swagger.rb'
 require_relative './metadata_object.rb'
 require_relative './constants.rb'
-
+require_relative './web_utils.rb'
 
 #require 'pry'
 
 class ApplesUtils
-    # config = ParseConfig.new('config.conf')
-    
-    # @extruct_command = config['extruct']['command'] if config['extruct'] && config['extruct']['command'] && !config['extruct']['command'].empty?
-    # @extruct_command = "extruct" unless @extruct_command
-    # @extruct_command.strip!
-    # case @extruct_command
-    # when /[&\|\;\`\$\s]/
-    #     abort "The Extruct command in the config file appears to be subject to command injection.  I will not continue"
-    # when /echo/i
-    #     abort "The Extruct command in the config file appears to be subject to command injection.  I will not continue"
-    # end
-    # ApplesUtils::ExtructCommand = @extruct_command
-
-    # @rdf_command = config['rdf']['command'] if config['rdf'] && config['rdf']['command'] && !config['rdf']['command'].empty?
-    # @rdf_command = "rdf" unless @rdf_command
-    # @rdf_command.strip
-    # case @rdf_command
-    # when /[&\|\;\`\$\s]/
-    #     abort "The RDF command in the config file appears to be subject to command injection.  I will not continue"
-    # when /echo/i
-    #     abort "The RDF command in the config file appears to be subject to command injection.  I will not continue"
-    # when !(/rdf$/)
-    #     abort "this software requires that Kelloggs Distiller tool is used. The distiller command must end in 'rdf'"
-    # end
-    # ApplesUtils::RDFCommand = @rdf_command
-
-    # @tika_command = config['tika']['command'] if config['tika'] && config['tika']['command'] && !config['tika']['command'].empty?
-    # @tika_command = "http://localhost:9998/meta" unless @tika_command
-    # ApplesUtils::TikaCommand = @tika_command
-
-
-
         
     @@distillerknown = {}  # global, hash of sha256 keys of message bodies - have they been seen before t/f
-
-    # ===================================================================
-    # ===================================================================
-    # ===================================================================
-    # ===================================================================
-    # ===================================================================
-    # ===================================================================
-    # ===================================================================
-
-
 
     def ApplesUtils::resolve_url(guid, nolinkheaders=false, header=ACCEPT_ALL_HEADER)
         @meta = MetadataObject.new()
         @meta.guidtype = "uri" if @meta.guidtype.nil?
         $stderr.puts "\n\n FETCHING #{guid} #{header}\n\n"
-        head, body = ApplesUtils::fetch(guid, header)
+        head, body = fetch(guid, header)
         if !head
             @meta.comments << "WARN: Unable to resolve #{guid} using HTTP Accept header #{header.to_s}.\n"
             return @meta
         end
-#$stderr.puts head.inspect
 
         @meta.comments << "INFO: following redirection using this header led to the following URL: #{@meta.finalURI.last}.  Using the output from this URL for the next few tests..."
         @meta.full_response << body
@@ -180,10 +137,10 @@ class ApplesUtils
       return reparsed.any? ? reparsed : parsed
     end
 
-    
+
     def ApplesUtils::processJSONLinkset(link, anchor)
       parsed = Hash.new
-      headers, linkset = ApplesUtils::fetch(link,{'Accept' => 'application/linkset+json'})
+      headers, linkset = fetch(link,{'Accept' => 'application/linkset+json'})
       $stderr.puts headers.inspect
       $stderr.puts linkset.inspect
       
@@ -222,7 +179,7 @@ class ApplesUtils
 
     def ApplesUtils::processTextLinkset(link, anchor)
       parsed = Hash.new
-      headers, linkset = ApplesUtils::fetch(link,{'Accept' => 'application/linkset'})
+      headers, linkset = fetch(link,{'Accept' => 'application/linkset'})
       # $stderr.puts "headers #{headers.inspect}"
       return {} unless linkset
       links = linkset.scan(/(\<.*?\>[^\<]+)/)  # split on the open angle bracket, which indicates a new link
@@ -274,41 +231,6 @@ class ApplesUtils
     end
 
 
-    def ApplesUtils::fetch(url, headers = ApplesUtils::ACCEPT_ALL_HEADER)  #we will try to retrieve turtle whenever possible
-
-        $stderr.puts "In fetch routine now.  "
-        
-        begin
-            $stderr.puts "executing call over the Web to #{url.to_s}"
-            response = RestClient::Request.execute({
-                    method: :get,
-                    url: url.to_s,
-                    #user: user,
-                    #password: pass,
-                    headers: headers})
-            if @meta
-                @meta.finalURI |= [response.request.url]
-            end
-            $stderr.puts "There was a response to the call #{url.to_s}"
-            return [response.headers, response.body]
-        rescue RestClient::ExceptionWithResponse => e
-            $stderr.puts "ERROR! #{e.response}"
-            @meta.comments << "WARN: HTTP error #{e} encountered when trying to resolve #{url.to_s}\n" if @meta
-            response = false
-            return response  # now we are returning 'False', and we will check that with an \"if\" statement in our main code
-        rescue RestClient::Exception => e
-            $stderr.puts "ERROR! #{e}"
-            @meta.comments << "WARN: HTTP error #{e} encountered when trying to resolve #{url.to_s}\n" if @meta
-            response = false
-            return response  # now we are returning 'False', and we will check that with an \"if\" statement in our main code
-        rescue Exception => e
-            $stderr.puts "ERROR! #{e}"
-            @meta.comments << "WARN: HTTP error #{e} encountered when trying to resolve #{url.to_s}\n" if @meta
-            response = false
-            return response  # now we are returning 'False', and we will check that with an \"if\" statement in our main code
-        end		  # you can capture the Exception and do something useful with it!\n",
-
-    end
 end
 
 
