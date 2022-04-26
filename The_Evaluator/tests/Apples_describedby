@@ -4,7 +4,7 @@ require 'uri'
 require 'rdf'
 require 'rdf/turtle'
 require 'sparql'
-require_relative './ApplesUtils'
+require_relative './apples_utils'
 
 debug = false
 debug = true if ARGV and ARGV[0]

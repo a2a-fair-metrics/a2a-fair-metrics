@@ -50,8 +50,8 @@ describe DescribedBy do
       expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
     end
 
-    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/28-linkset-txt-only/ which has cite-as ONLY in a text linkset' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://w3id.org/a2a-fair-metrics/28-linkset-txt-only/"')
+    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/28-http-linkset-txt-only/ which has cite-as ONLY in a text linkset' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://w3id.org/a2a-fair-metrics/28-http-linkset-txt-only/"')
       expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
     end
 

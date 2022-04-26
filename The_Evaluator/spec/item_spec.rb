@@ -44,13 +44,12 @@ describe Item do
     end
 
     it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/27-http-linkset-json-only/ which has item ONLY in a json linkset' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_item-as "https://w3id.org/a2a-fair-metrics/27-http-linkset-json-only/"')
-      expect(result.to_s).to eq 'MatchData'
-      #expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_item "https://w3id.org/a2a-fair-metrics/27-http-linkset-json-only/"')
+      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
     end
 
-    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/28-linkset-txt-only/ which has item ONLY in a text linkset' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_item-as "https://w3id.org/a2a-fair-metrics/28-linkset-txt-only/"')
+    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/28-http-linkset-txt-only/ which has item ONLY in a text linkset' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_item "https://w3id.org/a2a-fair-metrics/28-http-linkset-txt-only/"')
       expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
     end
 
