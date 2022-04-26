@@ -4,6 +4,7 @@ require 'uri'
 require 'rdf'
 require 'rdf/turtle'
 require 'sparql'
+require 'stringio'
 require_relative './apples_utils'
 
 debug = false
@@ -13,16 +14,12 @@ VERSION = 'Apples-0.0.1'
 def testGUID
   @swagger.addComment("INFO: TEST VERSION '#{VERSION}'\n")
 
-  # $stderr.puts @swagger.inspect
-
   guid = @swagger.testedGUID
 
   httpheaders, htmllinks, metadata = ApplesUtils.resolve_url(guid, false, { 'Accept' => '*/*' })
   @swagger.score = 0
-  # $stderr.puts @swagger.inspect
 
   metadata.comments.each do |c|
-    # $stderr.puts @swagger.inspect
     @swagger.addComment(c)
   end
 
@@ -33,25 +30,25 @@ def testGUID
   end
 
   warn "headers #{httpheaders.inspect}"
-  # $stderr.puts htmllinks.inspect
   [httpheaders, htmllinks].each do |headers|
     headers.each do |link, valhash|
-      # $stderr.puts "Link #{link} val #{valhash}\n\n"
       next unless link and valhash
 
       next unless valhash[:rel] =~ /describedby/
 
       @swagger.addComment("INFO: The HTTP or HTML headers contain a describedby link.\n")
+      metadata = ""
       if valhash[:type]
         @swagger.addComment("INFO: The HTTP or HTML headers contain a describedby link that includes a type.\n")
-        @swagger.addComment("INFO: Calling HEAD on #{link} with headers #{valhash[:type]}.\n")
+        if valhash[:profile]
+          @swagger.addComment("INFO: #{link} claims to follow profile #{valhash[:profile]}.\n")
+        end
+        @swagger.addComment("INFO: Calling GET on #{link} with headers Accept: #{valhash[:type]}.\n")
         begin
-          result = RestClient::Request.execute(method: :head, url: link,
+          metadata = RestClient::Request.execute(method: :get, url: link,
                                                headers: { content_type: valhash[:type] })
-          if result.headers[:content_type].match(valhash[:type].gsub('+', '.'))  # plus is interpreted as a regexp character
-            @swagger.addComment("SUCCESS: The HTTP or HTML headers contains a describedby link that properly responds.\n")
-            @swagger.score = 1
-            return @swagger.createEvaluationResponse
+          if metadata.headers[:content_type].match(valhash[:type].gsub('+', '.'))  # plus is interpreted as a regexp character
+            @swagger.addComment("INFO: The HTTP or HTML headers contain a describedby link that properly responds.\n")
           else
             @swagger.addComment("FAILURE: The HTTP or HTML headers contain a describedby link whose representation doesn't match the declared type after content-negotiation.\n")
             @swagger.score = 0
@@ -64,15 +61,53 @@ def testGUID
         end
       else
         @swagger.addComment("FAILURE: The HTTP or HTML headers contain a describedby link that does not include a type. This is required.\n")
-        # @swagger.score = 0
-        # return @swagger.createEvaluationResponse
       end
+      @swagger.addComment("INFO: Testing metadata to see if it is readable\n")
+      @swagger.score = checkMetadata(metadata)
     end
   end
 
-  @swagger.addComment("FAILURE: No describedby link found in HTTP Headers or in HTML.\n")
-  @swagger.score = 0
+  if @swagger.score == 1
+    @swagger.addComment("SUCCESS: Metadata Parsed.\n")
+  else
+    @swagger.addComment("FAILURE: Unable to find or parse describedby metadata.\n")
+  end
   @swagger.createEvaluationResponse
+end
+
+def checkMetadata(metadata)  # metadata is a full http response objecgt
+  allrdftypes = RDF_FORMATS.values.flatten
+  $stderr.puts allrdftypes
+  ctype, profile = metadata.headers[:content_type].split(";")
+  $stderr.puts "CT: #{ctype}"
+  
+  if allrdftypes.include?(ctype)
+
+    data = StringIO.new(metadata.body)
+    g = RDF::Graph.new()
+    RDF::Reader.for(content_type: ctype).new(data) do |reader|
+      reader.each_statement do |statement|
+        g << statement
+      end
+    end
+    predicate = predicate ? "<#{predicate}>" : "?p"
+    value = value ? "<#{value}>" : "?o"
+    
+    querytext = "SELECT ?s where {?s #{predicate} #{value} }"
+    query = SPARQL.parse(querytext)
+    g.query(query) do |result|
+      s = result[:s]
+      if s and !s.value.nil?
+        @swagger.addComment("INFO: metadata parsed correctly.\n")
+        return 1
+      else
+        @swagger.addComment("INFO: metadata not parsed.\n")
+        return 0
+      end
+    end
+  end
+  @swagger.addComment("INFO: metadata not RDF.\n")
+  return 0
 end
 
 if debug
@@ -90,9 +125,9 @@ cgi = CGI.new
 schemas = { 'subject' => ['string', 'the GUID being tested'] }
 
 @swagger = Swagger.new({
-                         title: 'FAIR Maturity Apples to Apples describedby',
-                         description: "Test that the header and/or body of the landing page contains a 'describedby' link",
-                         tests_metric: 'https://purl.org/fair-metrics/Apples_describedby',
+                         title: 'FAIR Maturity Apples to Apples describedby with Retrieval',
+                         description: "Test that a 'describedby' link can be retrieved and parsed whether in compact or expanded JSON",
+                         tests_metric: 'https://purl.org/fair-metrics/Apples_describedby_retrieve',
                          version: VERSION,
                          applies_to_principle: 'F2',
                          organization: 'Mark Wilkinson',
@@ -103,7 +138,7 @@ schemas = { 'subject' => ['string', 'the GUID being tested'] }
                          protocol: ENV['TEST_PROTOCOL'],
                          host: ENV['TEST_HOST'],
                          basePath: ENV['TEST_PATH'],
-                         path: 'Apples_describedby',
+                         path: 'Apples_describedby_retrieve',
                          response_description: 'The response is a binary (1/0), success or failure',
                          schemas: schemas,
                          fairsharing_key_location: ENV['FAIRSHARING_KEY'],

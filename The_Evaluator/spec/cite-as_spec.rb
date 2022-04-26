@@ -65,5 +65,40 @@ describe CiteAs do
       expect(result.match(/WARN:\sConflicting\scite\-as\slinks/).class.to_s).to eq 'MatchData'
     end
 
+    it 'should return SUCCESS for 22-http-html-citeas-describedby-mixed/ which has described-by and cite-as in mixed HTTP and HTML headers' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://w3id.org/a2a-fair-metrics/22-http-html-citeas-describedby-mixed/"')
+      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    end
+
+    it 'should return SUCCESS for 23-http-citeas-describedby-item-license-type-author/ which has all signposting headers' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://w3id.org/a2a-fair-metrics/23-http-citeas-describedby-item-license-type-author/"')
+      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    end
+
+    it 'should return SUCCESS for 24-http-citeas-204-no-content/ which returns a 204 with no HTML content, but has a cite-as header' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://w3id.org/a2a-fair-metrics/24-http-citeas-204-no-content/"')
+      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    end
+
+    it 'should return SUCCESS for 25-http-citeas-author-410-gone/ which returns a 410 (Gone), but has a cite-as header, since metadata should exist beyond the data' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://w3id.org/a2a-fair-metrics/25-http-citeas-author-410-gone/"')
+      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    end
+
+    it 'should return SUCCESS for 26-http-citeas-203-non-authorative/ which returns a 203 (Non-authoritative), but has a cite-as header' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://w3id.org/a2a-fair-metrics/26-http-citeas-203-non-authorative/"')
+      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    end
+
+    it 'should return WARN for 26-http-citeas-203-non-authorative/ which returns a 203 (Non-authoritative), but has a cite-as header' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://w3id.org/a2a-fair-metrics/26-http-citeas-203-non-authorative/"')
+      expect(result.match(/WARN:\sResponse\sis\snon\-authoritative/).class.to_s).to eq 'MatchData'
+    end
+
+    it 'should return FAILURE for https://s11.no/2022/a2a-fair-metrics/29-http-500-server-error/' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://s11.no/2022/a2a-fair-metrics/29-http-500-server-error/"')
+      expect(result.match(/FAILURE/).class.to_s).to eq 'MatchData'
+    end
+
   end
 end

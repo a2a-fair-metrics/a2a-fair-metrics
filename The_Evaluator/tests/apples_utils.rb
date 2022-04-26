@@ -37,9 +37,11 @@ class ApplesUtils
         @meta.guidtype = "uri" if @meta.guidtype.nil?
         $stderr.puts "\n\n FETCHING #{guid} #{header}\n\n"
         head, body = fetch(guid, header)
+        $stderr.puts "\n\n head #{head.inspect}\n\n"
+        
         if !head
             @meta.comments << "WARN: Unable to resolve #{guid} using HTTP Accept header #{header.to_s}.\n"
-            return @meta
+            return [[], [], @meta]
         end
 
         @meta.comments << "INFO: following redirection using this header led to the following URL: #{@meta.finalURI.last}.  Using the output from this URL for the next few tests..."
@@ -48,7 +50,7 @@ class ApplesUtils
         httplinks = ApplesUtils::parse_http_link_headers(head, guid) unless nolinkheaders  # pass guid to check against anchors in linksets
         htmllinks = Hash.new
         HTML_FORMATS['html'].each do |format|
-            if head[:content_type].match(format)
+            if head[:content_type] and head[:content_type].match(format)
                 htmllinks = ApplesUtils::parse_html_link_elements(body, guid) unless nolinkheaders  # pass guid to check against anchors in linksets
             end
         end
@@ -86,7 +88,7 @@ class ApplesUtils
         sections = Hash.new
         section[1..].each do |s|
             s.strip!
-            if m = s.match(/([\w]+?)="?([\w\-\+\/\s]+)"?/)  # can be rel="cite-as describedby"  --> two relations in one!  or "linkset+json"
+            if m = s.match(/([\w]+?)="?([\w\:\d\.\,\#\-\+\/\s]+)"?/)  # can be rel="cite-as describedby"  --> two relations in one!  or "linkset+json"
                 type = m[1]
                 value = m[2]
                 sections[type.to_sym] = value  # value could hold multiple relation types

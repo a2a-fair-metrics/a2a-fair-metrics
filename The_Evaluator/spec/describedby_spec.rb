@@ -55,5 +55,25 @@ describe DescribedBy do
       expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
     end
 
+    it 'should return SUCCESS for 22-http-html-citeas-describedby-mixed/ which has described-by and cite-as in mixed HTTP and HTML headers' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://w3id.org/a2a-fair-metrics/22-http-html-citeas-describedby-mixed/"')
+      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    end
+    
+    it 'should return SUCCESS for 23-http-citeas-describedby-item-license-type-author/ which has all signposting headers' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://w3id.org/a2a-fair-metrics/23-http-citeas-describedby-item-license-type-author/"')
+      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    end
+
+    it 'should return FAILURE for https://s11.no/2022/a2a-fair-metrics/29-http-500-server-error/' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://s11.no/2022/a2a-fair-metrics/29-http-500-server-error/"')
+      expect(result.match(/FAILURE/).class.to_s).to eq 'MatchData'
+    end
+
+    it 'should return SUCCESS for 31-http-describedby-profile/ which includes a profile element on its link headers' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby_retrieve "https://w3id.org/a2a-fair-metrics/31-http-describedby-profile/"')
+      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    end
+
   end
 end

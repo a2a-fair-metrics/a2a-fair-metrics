@@ -53,5 +53,12 @@ describe Item do
       expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
     end
 
+    it 'should return FAILURE for https://s11.no/2022/a2a-fair-metrics/29-http-500-server-error/' do
+      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://s11.no/2022/a2a-fair-metrics/29-http-500-server-error/"')
+      expect(result.match(/FAILURE/).class.to_s).to eq 'MatchData'
+    end
+
+
+
   end
 end
