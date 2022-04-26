@@ -1,0 +1,10 @@
+[
+    {
+      "@id": "https://s11.no/2022/a2a-fair-metrics/31-http-describedby-profile/",
+      "http://schema.org/license": [
+        {
+          "@id": "https://spdx.org/licenses/CC0-1.0"
+        }
+      ]
+    }
+  ]

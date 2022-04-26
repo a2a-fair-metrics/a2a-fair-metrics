@@ -1,0 +1,361 @@
+
+
+<html>
+<head>
+
+
+<script type="application/ld+json"> 
+  {
+  "@context": "https://w3id.org/ro/crate/1.1/context",
+  "@graph": [
+    {
+      "@type": "CreativeWork",
+      "@id": "ro-crate-metadata.json",
+      "conformsTo": {
+        "@id": "https://w3id.org/ro/crate/1.1"
+      },
+      "about": {
+        "@id": "./"
+      },
+      "description": "RO-Crate Metadata File Descriptor (this file)"
+    },
+    {
+      "@id": "./",
+      "@type": "Dataset",
+      "name": "34-http-item-rocrate",
+      "description": "RO-Crate for A2A benchmark 34",
+      "identifier": "https://w3id.org/a2a-fair-metrics/34-http-item-rocrate/",
+      "url": "https://s11.no/2022/a2a-fair-metrics/34-http-item-rocrate/",
+      "distribution": {
+        "@id": "https://s11.no/2022/a2a-fair-metrics/34-http-item-rocrate/crate-34.zip"
+      },
+      "subjectOf": {
+        "@id": "index.html"
+      },
+      "hasPart": [
+        {
+          "@id": "data1.txt"
+        },
+        {
+          "@id": "data2.txt"
+        }
+      ],
+      "@reverse": {
+        "about": [
+          {
+            "@id": "ro-crate-metadata.json"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "data1.txt",
+      "@type": "File",
+      "description": "One of hopefully many Data Entities",
+      "author": {
+        "@id": "#alice"
+      },
+      "contentLocation": {
+        "@id": "http://sws.geonames.org/8152662/"
+      },
+      "@reverse": {
+        "hasPart": [
+          {
+            "@id": "./"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "data2.txt",
+      "@type": "File",
+      "@reverse": {
+        "hasPart": [
+          {
+            "@id": "./"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "index.html",
+      "@type": "CreativeWork",
+      "name": "34-http-item-rocrate",
+      "description": "PID landing page for 34-http-item-rocrate",
+      "encodingFormat": "text/html",
+      "@reverse": {
+        "subjectOf": [
+          {
+            "@id": "./"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "https://s11.no/2022/a2a-fair-metrics/34-http-item-rocrate/crate-34.zip",
+      "@type": "DataDownload",
+      "name": "ZIP archive RO-Crate 34-http-item-rocrate",
+      "contentSize": "4261",
+      "encodingFormat": "application/zip",
+      "@reverse": {
+        "distribution": [
+          {
+            "@id": "./"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "#alice",
+      "@type": "Person",
+      "name": "Alice",
+      "description": "One of hopefully many Contextual Entities",
+      "@reverse": {
+        "author": [
+          {
+            "@id": "data1.txt"
+          }
+        ]
+      }
+    },
+    {
+      "@id": "http://sws.geonames.org/8152662/",
+      "@type": "Place",
+      "name": "Catalina Park",
+      "@reverse": {
+        "contentLocation": [
+          {
+            "@id": "data1.txt"
+          }
+        ]
+      }
+    }
+  ]
+}
+</script>
+
+    
+<!-- script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script -->
+<script src="https://unpkg.com/ro-crate-html-js/dist/ro-crate-dynamic.js"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<meta charset='utf-8'/>
+<style>
+
+table.table {
+  padding-bottom: 300px;
+}
+</style>
+</head>
+
+
+<body>
+
+  <nav class="navbar">
+
+    <ul class="nav navbar-nav" >
+        <li ><a href="#"><span class="glyphicon glyphicon-home dataset_name">&nbsp;34-http-item-rocrate</span></a></li>
+    </ul>
+
+  </nav>
+<div class="container">
+<div class="jumbotron">
+<h4 class="citation"></h3>
+<h3 class="item_name">34-http-item-rocrate</h4>
+
+
+<a href="./ro-crate-metadata.json">⬇️🏷️ Download all the metadata for <span class='name'>34-http-item-rocrate</span> in JSON-LD format</a>
+
+
+<div id="check"></div>
+
+
+</div>
+
+
+
+<div id="summary">
+<div class='all-meta'>
+           <div>
+            <h3> 34-http-item-rocrate</h3>
+            
+            
+            
+            
+        <div id="./">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><span>./</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>34-http-item-rocrate</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>Dataset</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">description<span>&nbsp;</span><a href="http://schema.org/description">[?]</a></th>
+            <td style='text-align:left'><span>RO-Crate for A2A benchmark 34</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">identifier<span>&nbsp;</span><a href="http://schema.org/identifier">[?]</a></th>
+            <td style='text-align:left'><a href="https://w3id.org/a2a-fair-metrics/34-http-item-rocrate/">https://w3id.org/a2a-fair-metrics/34-http-item-rocrate/</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">url<span>&nbsp;</span><a href="http://schema.org/url">[?]</a></th>
+            <td style='text-align:left'><a href="https://s11.no/2022/a2a-fair-metrics/34-http-item-rocrate/">https://s11.no/2022/a2a-fair-metrics/34-http-item-rocrate/</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">distribution<span>&nbsp;</span><a href="http://schema.org/distribution">[?]</a></th>
+            <td style='text-align:left'><a href="#https%3A//s11.no/2022/a2a-fair-metrics/34-http-item-rocrate/crate-34.zip">ZIP archive RO-Crate 34-http-item-rocrate</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">subjectOf<span>&nbsp;</span><a href="http://schema.org/subjectOf">[?]</a></th>
+            <td style='text-align:left'><a href="#index.html">34-http-item-rocrate</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><ul>
+                        <li><a href="#data1.txt">data1.txt</a></li>
+                        
+                        <li><a href="#data2.txt">data2.txt</a></li>
+                        </ul></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">about<span>&nbsp;</span><a href="http://schema.org/about">[?]</a></th>
+            <td style='text-align:left'><a href="#ro-crate-metadata.json">ro-crate-metadata.json</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+
+        </div>
+        <hr/><br/><br/>
+           <div>
+            <h3><a href="https://s11.no/2022/a2a-fair-metrics/34-http-item-rocrate/crate-34.zip">Go to: </a> ZIP archive RO-Crate 34-http-item-rocrate</h3>
+            
+            
+            
+            
+        <div id="https://s11.no/2022/a2a-fair-metrics/34-http-item-rocrate/crate-34.zip">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><a href="https://s11.no/2022/a2a-fair-metrics/34-http-item-rocrate/crate-34.zip">https://s11.no/2022/a2a-fair-metrics/34-http-item-rocrate/crate-34.zip</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>ZIP archive RO-Crate 34-http-item-rocrate</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>DataDownload</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">encodingFormat<span>&nbsp;</span><a href="http://schema.org/encodingFormat">[?]</a></th>
+            <td style='text-align:left'><span>application/zip</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">contentSize<span>&nbsp;</span><a href="http://schema.org/contentSize">[?]</a></th>
+            <td style='text-align:left'><span>4261</span></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">distribution<span>&nbsp;</span><a href="http://schema.org/distribution">[?]</a></th>
+            <td style='text-align:left'><a href="#./">34-http-item-rocrate</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+
+        </div>
+        <hr/><br/><br/>
+           <div>
+            <h3> 34-http-item-rocrate</h3>
+            
+            
+            
+            
+        <div id="index.html">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><span>index.html</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">name<span>&nbsp;</span><a href="http://schema.org/name">[?]</a></th>
+            <td style='text-align:left'><span>34-http-item-rocrate</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>CreativeWork</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">description<span>&nbsp;</span><a href="http://schema.org/description">[?]</a></th>
+            <td style='text-align:left'><span>PID landing page for 34-http-item-rocrate</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">encodingFormat<span>&nbsp;</span><a href="http://schema.org/encodingFormat">[?]</a></th>
+            <td style='text-align:left'><span>text/html</span></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">subjectOf<span>&nbsp;</span><a href="http://schema.org/subjectOf">[?]</a></th>
+            <td style='text-align:left'><a href="#./">34-http-item-rocrate</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+
+        </div>
+        <hr/><br/><br/>
+           <div>
+            <h3><a href="data1.txt">⬇️ Download: </a> data1.txt</h3>
+            
+            <iframe src='data1.txt' width='100%' height='500'></iframe>
+            
+            
+        <div id="data1.txt">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><span>data1.txt</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>File</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">description<span>&nbsp;</span><a href="http://schema.org/description">[?]</a></th>
+            <td style='text-align:left'><span>One of hopefully many Data Entities</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">author<span>&nbsp;</span><a href="http://schema.org/author">[?]</a></th>
+            <td style='text-align:left'><a href="#%23alice">Alice</a></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">contentLocation<span>&nbsp;</span><a href="http://schema.org/contentLocation">[?]</a></th>
+            <td style='text-align:left'><a href="#http%3A//sws.geonames.org/8152662/">Catalina Park</a></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><a href="#./">34-http-item-rocrate</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+
+        </div>
+        <hr/><br/><br/>
+           <div>
+            <h3><a href="data2.txt">⬇️ Download: </a> data2.txt</h3>
+            
+            <iframe src='data2.txt' width='100%' height='500'></iframe>
+            
+            
+        <div id="data2.txt">
+            
+            <table class="table metadata table-striped" >
+                <tbody><tr>
+            <th style="text-align:left;" class="prop">@id</th>
+            <td style='text-align:left'><span>data2.txt</span></td>
+            </tr><tr>
+            <th style="text-align:left;" class="prop">@type</th>
+            <td style='text-align:left'><span>File</span></td>
+            </tr><tr><th colspan="2" style="text-align:center">Items that reference this one</th><tr><tr>
+            <th style="text-align:left;" class="prop">hasPart<span>&nbsp;</span><a href="http://schema.org/hasPart">[?]</a></th>
+            <td style='text-align:left'><a href="#./">34-http-item-rocrate</a></td>
+            </tr></tbody>
+            </table>
+        </div>
+
+        </div>
+        <hr/><br/><br/></div>
+</div>
+
+
+
+
+
+</body>
+</html>
