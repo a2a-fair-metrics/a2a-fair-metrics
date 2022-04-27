@@ -11,6 +11,8 @@ Tests named `*-http-*` are meant to be published on a [Apache HTTPd](https://htt
 
 Tests named `*-html-*` can be consumed independently for testing for HTML `<link>` headers.
 
+A [spreadsheet describing the individual benchmarks](https://docs.google.com/spreadsheets/d/1XWkHRldJDAAa733we2TFFBweUWu5w6lsC90LgQCAOoE/edit#gid=0) and the behaviours they are testing is available.  We _strongly encourage_ that anyone creating a new benchmark should add it into that spreadsheet to ensure clarity to help us to code the associated tests.
+
 ## License
 
 ![CC0](cc-zero.svg) [Creative Commons Zero v1.0 Universal](https://spdx.org/licenses/CC0-1.0)
