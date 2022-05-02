@@ -5,7 +5,10 @@ BASE=/files/web/vhosts/s11.no/2022/a2a-fair-metrics/
 PID_BASE=https://w3id.org/a2a-fair-metrics/
 URL_BASE=https://s11.no/2022/a2a-fair-metrics/
 
-all: clean deploy
+all: clean docker
+
+dependencies:
+	docker ps -q >/dev/null
 
 linkset.txt: [0-9]*
 	cp linkset.txt.template linkset.txt
@@ -13,7 +16,9 @@ linkset.txt: [0-9]*
 	## To ensure we don't terminate with , we'll add the 404 entry last
 	echo "<${PID_BASE}/00-404-not-found/>;\n  rel=\"item\";\n  anchor=\"${URL_BASE}\";\n  type=\"text/html\"" >> linkset.txt
 
-deploy: README.html HEADER.html .htaccess linkset.txt linkset.jsonld cc-zero.svg [0-9]*
+resources: linkset.txt README.html HEADER.html .htaccess linkset.jsonld cc-zero.svg [0-9]*
+
+deploy: resources
 	test -d `dirname $(BASE)`
 	mkdir -p ${BASE}
 	cp -vr README.html HEADER.html .htaccess linkset.txt linkset.jsonld cc-zero.svg [0-9]* ${BASE}
@@ -22,8 +27,10 @@ deploy: README.html HEADER.html .htaccess linkset.txt linkset.jsonld cc-zero.svg
 clean:
 	rm -rf ${BASE} linkset.txt
 
-docker-image: Dockerfile httpd.conf
+docker-image: dependencies Dockerfile httpd.conf resources
 	docker build -t a2abenchmark .
 
-docker: docker-image
+docker: dependencies docker-image
+	echo "Starting Apache httpd on http://localhost:8080/"
 	docker run -p 8080:80 a2abenchmark	
+
