@@ -1,0 +1,26 @@
+version: "3.9"
+services:
+  w3id:
+    image: w3id
+    networks:
+      test:
+        aliases:
+          - "w3id.org"
+    hostname: w3id.org
+    build:
+      context: .
+      dockerfile: Dockerfile-w3id
+    ports:
+      - "8443:443"
+  a2a:
+    image: a2a
+    networks:
+      - test
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+
+networks:
+  test:

@@ -1,0 +1,13 @@
+FROM httpd:2.4
+COPY httpd.conf /usr/local/apache2/conf/httpd.conf
+
+RUN apt-get update && apt-get install -y git
+
+# For testing against our fake clones of w3id
+# Add our fake self-signed SSL certificate
+COPY .ssl/w3id-fake/server.* conf/
+# Set fake name
+RUN sed -i -e 's/www.example.com/w3id.org/g' conf/httpd.conf conf/extra/httpd-ssl.conf
+# Clone w3id repo
+RUN rm -r /usr/local/apache2/htdocs/
+RUN git clone https://github.com/perma-id/w3id.org.git htdocs
