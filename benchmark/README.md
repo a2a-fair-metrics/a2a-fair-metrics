@@ -22,7 +22,8 @@ SPDX-Identifier: CC0-1.0
 
 ## Contact
 
-* [GitHub issues](https://github.com/stain/Apples-to-Apples-FAIR-Metrics/issues)
+* [GitHub source](https://github.com/a2a-fair-metrics/a2a-fair-metrics/tree/main/benchmark)
+* [GitHub issues](https://github.com/a2a-fair-metrics/a2a-fair-metrics/issues)
 * [Slack](https://join.slack.com/t/applestoapples/shared_invite/zt-15iuqnirp-~91h2i4ltn1kdZdNPea0Xw)
 * [Stian Soiland-Reyes](https://s11.no/) ([email](mailto:soiland-reyes@manchester.ac.uk))
 
