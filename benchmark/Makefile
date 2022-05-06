@@ -5,7 +5,7 @@ BASE=/files/web/vhosts/s11.no/2022/a2a-fair-metrics/
 PID_BASE=https://w3id.org/a2a-fair-metrics/
 URL_BASE=https://s11.no/2022/a2a-fair-metrics/
 
-all: clean docker
+all: clean deploy
 
 dependencies:
 	docker ps -q >/dev/null
