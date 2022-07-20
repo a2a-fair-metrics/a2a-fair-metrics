@@ -11,6 +11,8 @@ Tests named `*-http-*` are meant to be published on a [Apache HTTPd](https://htt
 
 Tests named `*-html-*` can be consumed independently for testing for HTML `<link>` headers.
 
+A [spreadsheet describing the individual benchmarks](https://docs.google.com/spreadsheets/d/1XWkHRldJDAAa733we2TFFBweUWu5w6lsC90LgQCAOoE/edit#gid=0) and the behaviours they are testing is available.  We _strongly encourage_ that anyone creating a new benchmark should add it into that spreadsheet to ensure clarity to help us to code the associated tests.
+
 ## License
 
 ![CC0](cc-zero.svg) [Creative Commons Zero v1.0 Universal](https://spdx.org/licenses/CC0-1.0)
@@ -20,7 +22,8 @@ SPDX-Identifier: CC0-1.0
 
 ## Contact
 
-* [GitHub issues](https://github.com/stain/Apples-to-Apples-FAIR-Metrics/issues)
+* [GitHub source](https://github.com/a2a-fair-metrics/a2a-fair-metrics/tree/main/benchmark)
+* [GitHub issues](https://github.com/a2a-fair-metrics/a2a-fair-metrics/issues)
 * [Slack](https://join.slack.com/t/applestoapples/shared_invite/zt-15iuqnirp-~91h2i4ltn1kdZdNPea0Xw)
 * [Stian Soiland-Reyes](https://s11.no/) ([email](mailto:soiland-reyes@manchester.ac.uk))
 
