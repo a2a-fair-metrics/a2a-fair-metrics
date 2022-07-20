@@ -76,7 +76,7 @@ schemas = { 'subject' => ['string', 'the GUID being tested'] }
                          developer_ORCiD: '0000-0001-6960-357X',
                          protocol: ENV['TEST_PROTOCOL'],
                          host: ENV['TEST_HOST'],
-                         basePath: ENV['TEST_PATH'],
+                         basepath: ENV['TEST_PATH'],
                          path: 'Apples_cite-as',
                          response_description: 'The response is a binary (1/0), success or failure',
                          schemas: schemas,
