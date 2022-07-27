@@ -4,7 +4,9 @@ require 'uri'
 require 'rdf'
 require 'rdf/turtle'
 require 'sparql'
-require_relative './apples_utils'
+#require_relative './apples_utils'
+require_relative './swagger'
+require 'fsp_harvester'
 
 debug = false
 debug = true if ARGV and ARGV[0]
@@ -14,7 +16,7 @@ def testGUID
   @swagger.addComment("INFO: TEST VERSION '#{VERSION}'\n")
   guid = @swagger.testedGUID
 
-  httpheaders, htmllinks, metadata = ApplesUtils.resolve_url(guid, false, { 'Accept' => '*/*' })
+  links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
   @swagger.score = 0
 
   metadata.comments.each do |c|
@@ -27,21 +29,12 @@ def testGUID
     return @swagger.createEvaluationResponse
   end
 
-  # $stderr.puts "http headers #{httpheaders.inspect}"
-  # $stderr.puts "html headers #{htmllinks.inspect}"
-  if ApplesUtils::check_for_conflicts(httpheaders, htmllinks)
-    @swagger.addComment("WARN: Conflicting cite-as links. the cite-as link in the HTTP and HTML headers is not identical.  Only one of them will be used by a client.\n")
-  end
 
-  [httpheaders, htmllinks].each do |headers|
-    headers.each do |_link, valhash|
-      # $stderr.puts valhash
-      next unless valhash[:rel] =~ /cite-as/
-
-      @swagger.addComment("SUCCESS: The HTTP or HTML headers contain a cite-as link.\n")
-      @swagger.score = 1
-      return @swagger.createEvaluationResponse
-    end
+  links.each do |link|
+    next unless link.relation =~ /cite-as/
+    @swagger.addComment("SUCCESS: The HTTP or HTML headers contain a cite-as link.\n")
+    @swagger.score = 1
+    return @swagger.createEvaluationResponse
   end
 
   @swagger.addComment("FAILURE: No cite-as link found in HTTP or HTML Headers.\n")

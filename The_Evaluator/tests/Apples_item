@@ -4,7 +4,9 @@ require 'uri'
 require 'rdf'
 require 'rdf/turtle'
 require 'sparql'
-require_relative './apples_utils'
+#require_relative './apples_utils'
+require_relative './swagger'
+require 'fsp_harvester'
 
 debug = false
 debug = true if ARGV and ARGV[0]
@@ -17,12 +19,10 @@ def testGUID
 
   guid = @swagger.testedGUID
 
-  httpheaders, htmllinks, metadata = ApplesUtils.resolve_url(guid, false, { 'Accept' => '*/*' })
+  links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
   @swagger.score = 0
-  # $stderr.puts @swagger.inspect
 
   metadata.comments.each do |c|
-    # $stderr.puts @swagger.inspect
     @swagger.addComment(c)
   end
 
@@ -32,30 +32,25 @@ def testGUID
     return @swagger.createEvaluationResponse
   end
 
-   # $stderr.puts "http headers #{httpheaders.inspect}\n\n"
-   # $stderr.puts "html headers #{htmllinks.inspect}\n\n"
 
-  [httpheaders, htmllinks].each do |headers|
-    headers.each do |link, valhash|
-      $stderr.puts "\nvalhash #{valhash}\n"
-      next unless valhash[:rel] =~ /item/
+  links.each do |link|
+    next unless link.relation =~ /item/
 
-      @swagger.addComment("INFO: The HTTP or HTML headers contain an item link.\n")
-      begin
-        @swagger.addComment("INFO: attempting to resolve #{link} via HTTP HEAD\n\n")
-        result = RestClient::Request.execute(method: :head, url: link)
-        if result.headers[:content_type]
-          @swagger.addComment("SUCCESS: The HTTP or HTML contains an item link that responds.\n")
-          @swagger.score = 1
-          return @swagger.createEvaluationResponse
-        else
-          @swagger.addComment("INFO: The HTTP or HTML headers contain an item link that does not include a content-type.\n")
-        end
-      rescue StandardError
-        @swagger.addComment("FAILURE: The HTTP or HTML headers contain an item link that does not respond to a HEAD request.\n")
-        @swagger.score = 0
+    @swagger.addComment("INFO: The HTTP or HTML headers contain an item link.\n")
+    begin
+      @swagger.addComment("INFO: attempting to resolve #{link} via HTTP HEAD\n\n")
+      result = RestClient::Request.execute(method: :head, url: link.href)
+      if result.headers[:content_type]
+        @swagger.addComment("SUCCESS: The HTTP or HTML contains an item link that responds.\n")
+        @swagger.score = 1
         return @swagger.createEvaluationResponse
+      else
+        @swagger.addComment("INFO: The HTTP or HTML headers contain an item link that does not include a content-type.\n")
       end
+    rescue StandardError
+      @swagger.addComment("FAILURE: The HTTP or HTML headers contain an item link that does not respond to a HEAD request.\n")
+      @swagger.score = 0
+      return @swagger.createEvaluationResponse
     end
   end
 

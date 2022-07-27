@@ -5,7 +5,9 @@ require 'rdf'
 require 'rdf/turtle'
 require 'sparql'
 require 'stringio'
-require_relative './apples_utils'
+#require_relative './apples_utils'
+require_relative './swagger'
+require 'fsp_harvester'
 
 debug = false
 debug = true if ARGV and ARGV[0]
@@ -16,7 +18,7 @@ def testGUID
 
   guid = @swagger.testedGUID
 
-  httpheaders, htmllinks, metadata = ApplesUtils.resolve_url(guid, false, { 'Accept' => '*/*' })
+  links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
   @swagger.score = 0
 
   metadata.comments.each do |c|
@@ -29,42 +31,39 @@ def testGUID
     return @swagger.createEvaluationResponse
   end
 
-  warn "headers #{httpheaders.inspect}"
-  [httpheaders, htmllinks].each do |headers|
-    headers.each do |link, valhash|
-      next unless link and valhash
 
-      next unless valhash[:rel] =~ /describedby/
+  links.each do |link|
+    next unless link.relation =~ /describedby/
 
-      @swagger.addComment("INFO: The HTTP or HTML headers contain a describedby link.\n")
-      metadata = ""
-      if valhash[:type]
-        @swagger.addComment("INFO: The HTTP or HTML headers contain a describedby link that includes a type.\n")
-        if valhash[:profile]
-          @swagger.addComment("INFO: #{link} claims to follow profile #{valhash[:profile]}.\n")
-        end
-        @swagger.addComment("INFO: Calling GET on #{link} with headers Accept: #{valhash[:type]}.\n")
-        begin
-          metadata = RestClient::Request.execute(method: :get, url: link,
-                                               headers: { content_type: valhash[:type] })
-          if metadata.headers[:content_type].match(valhash[:type].gsub('+', '.'))  # plus is interpreted as a regexp character
-            @swagger.addComment("INFO: The HTTP or HTML headers contain a describedby link that properly responds.\n")
-          else
-            @swagger.addComment("FAILURE: The HTTP or HTML headers contain a describedby link whose representation doesn't match the declared type after content-negotiation.\n")
-            @swagger.score = 0
-            return @swagger.createEvaluationResponse
-          end
-        rescue StandardError
-          @swagger.addComment("FAILURE: The HTTP or HTML headers contain a describedby link that does not respond to a content-negotiated HEAD request.\n")
+    @swagger.addComment("INFO: The HTTP or HTML headers contain a describedby link.\n")
+    metadata = ""
+    if link.respond_to? 'type'
+      @swagger.addComment("INFO: The HTTP or HTML headers contain a describedby link that includes a type.\n")
+      if link.respond_to 'profile'
+        @swagger.addComment("INFO: #{link} claims to follow profile #{link.profile}.\n")
+      end
+      @swagger.addComment("INFO: Calling GET on #{link} with headers Accept: #{link.type}.\n")
+      begin
+        metadata = RestClient::Request.execute(method: :get, url: link,
+                                              headers: { content_type: valhash[:type] })
+        if metadata.headers[:content_type].match(link.type.gsub('+', '.'))  # plus is interpreted as a regexp character
+          @swagger.addComment("INFO: The HTTP or HTML headers contain a describedby link that properly responds.\n")
+        else
+          @swagger.addComment("FAILURE: The HTTP or HTML headers contain a describedby link whose representation doesn't match the declared type after content-negotiation.\n")
           @swagger.score = 0
           return @swagger.createEvaluationResponse
         end
-      else
-        @swagger.addComment("FAILURE: The HTTP or HTML headers contain a describedby link that does not include a type. This is required.\n")
+      rescue StandardError
+        @swagger.addComment("FAILURE: The HTTP or HTML headers contain a describedby link that does not respond to a content-negotiated HEAD request.\n")
+        @swagger.score = 0
+        return @swagger.createEvaluationResponse
       end
-      @swagger.addComment("INFO: Testing metadata to see if it is readable\n")
-      @swagger.score = checkMetadata(metadata)
+    else
+      @swagger.addComment("FAILURE: The HTTP or HTML headers contain a describedby link that does not include a type. This is required.\n")
     end
+    @swagger.addComment("INFO: Testing metadata to see if it is readable\n")
+    @swagger.score = checkMetadata(metadata)
+
   end
 
   if @swagger.score == 1
