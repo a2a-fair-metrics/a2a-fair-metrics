@@ -1,104 +1,177 @@
-require 'open3'
-
+require 'fsp_harvester'
+require_relative 'spec_helper'
 CiteAs = String
-
+  
 describe CiteAs do
-  context 'When testing the cite-as metric' do
-    it 'should fail to find random strings (test of the rspec test) for https://w3id.org/a2a-fair-metrics/03-http-citeas-only/' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://w3id.org/a2a-fair-metrics/03-http-citeas-only/"')
-      expect(result.match(/SUCCCCESS/).class.to_s).to eq 'NilClass'
+  context "When testing the FSP Harvester cite-as functions" do
+    it 'should find cite-as https://w3id.org/a2a-fair-metrics/03-http-citeas-only/' do
+      guid = 'https://w3id.org/a2a-fair-metrics/03-http-citeas-only/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      expect(hrefs.include? guid).to be true
     end
 
-    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/03-http-citeas-only/' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://w3id.org/a2a-fair-metrics/03-http-citeas-only/"')
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    it 'should find cite-as https://w3id.org/a2a-fair-metrics/18-html-citeas-only/' do
+      guid = 'https://w3id.org/a2a-fair-metrics/18-html-citeas-only/'
+
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      expect(hrefs.include? guid).to be true
     end
 
-    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/18-html-citeas-only/' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://w3id.org/a2a-fair-metrics/18-html-citeas-only/"')
-      #expect(result.to_s).to eq 'MatchData'
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    it 'should not find non-PURL citeas https://s11.no/2022/a2a-fair-metrics/01-http-describedby-only/' do
+      guid = 'https://s11.no/2022/a2a-fair-metrics/01-http-describedby-only/'
+
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      expect(hrefs.include? guid).to be false
+    end
+    it 'should not find PURL citeas https://w3id.org/a2a-fair-metrics/01-http-describedby-only/' do
+      guid = 'https://w3id.org/a2a-fair-metrics/01-http-describedby-only/'
+
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      expect(hrefs.include? guid).to be false
     end
 
-    it 'should return FAILURE for https://s11.no/2022/a2a-fair-metrics/01-http-describedby-only/' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://s11.no/2022/a2a-fair-metrics/01-http-describedby-only/"')
-      expect(result.match(/FAILURE/).class.to_s).to eq 'MatchData'
+    
+    it "should find PURL citeas in full html" do
+      guid = 'https://w3id.org/a2a-fair-metrics/02-html-full/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      expect(hrefs.include? guid).to be true
     end
 
-    it 'should return SUCCESS for https://s11.no/2022/a2a-fair-metrics/02-html-full/' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://s11.no/2022/a2a-fair-metrics/02-html-full/"')
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    it "should NOT find PURL citeas in full html" do
+      guid = 'https://s11.no/2022/a2a-fair-metrics/02-html-full/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      expect(hrefs.include? guid).to be false
     end
 
-    it 'should return SUCCESS for https://s11.no/2022/a2a-fair-metrics/07-http-describedby-citeas-linkset-json/ which has cite-as in a json linkset' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://s11.no/2022/a2a-fair-metrics/07-http-describedby-citeas-linkset-json/"')
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    it "should find PURL citeas in json linkset" do
+      guid = 'https://w3id.org/a2a-fair-metrics/07-http-describedby-citeas-linkset-json/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      expect(hrefs.include? guid).to be true
+    end
+    it "should NOT find non-PURL citeas in json linkset" do
+      guid = 'https://s11.no/2022/a2a-fair-metrics/07-http-describedby-citeas-linkset-json/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      expect(hrefs.include? guid).to be false
     end
 
-    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/08-http-describedby-citeas-linkset-txt/ which has cite-as in a text linkset' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://w3id.org/a2a-fair-metrics/08-http-describedby-citeas-linkset-txt/"')
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    it "should find PURL citeas in text linkset" do
+      guid = 'https://w3id.org/a2a-fair-metrics/08-http-describedby-citeas-linkset-txt/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      expect(hrefs.include? guid).to be true
+    end
+    it "should NOT find non-PURL citeas in text linkset" do
+      guid = 'https://s11.no/2022/a2a-fair-metrics/08-http-describedby-citeas-linkset-txt/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      expect(hrefs.include? guid).to be false
     end
 
-    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/27-http-linkset-json-only/ which has cite-as ONLY in a json linkset' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://w3id.org/a2a-fair-metrics/27-http-linkset-json-only/"')
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    it "should find PURL citeas only in json linkset" do
+      guid = 'https://w3id.org/a2a-fair-metrics/27-http-linkset-json-only/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      expect(hrefs.include? guid).to be true
+    end
+    it "should NOT find non-PURL citeas only in json linkset" do
+      guid = 'https://s11.no/2022/a2a-fair-metrics/27-http-linkset-json-only/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      expect(hrefs.include? guid).to be false
     end
 
-    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/28-http-linkset-txt-only/ which has cite-as ONLY in a text linkset' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://w3id.org/a2a-fair-metrics/28-http-linkset-txt-only/"')
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    it "should find PURL citeas only in text linkset" do
+      guid = 'https://w3id.org/a2a-fair-metrics/28-http-linkset-txt-only/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      expect(hrefs.include? guid).to be true
+    end
+    it "should NOT find non-PURL citeas only in text linkset" do
+      guid = 'https://s11.no/2022/a2a-fair-metrics/28-http-linkset-txt-only/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      expect(hrefs.include? guid).to be false
     end
 
-    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/17-http-citeas-multiple-rels/ which has three different relationship types in one rel clause' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://w3id.org/a2a-fair-metrics/17-http-citeas-multiple-rels/"')
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    it "should find PURL citeas when there are three relationships in one rel clause in the HTTP headers" do
+      guid = 'https://w3id.org/a2a-fair-metrics/17-http-citeas-multiple-rels/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      expect(hrefs.include? guid).to be true
     end
 
-    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/19-html-citeas-multiple-rels/ which has three different relationship types in one rel clause' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://w3id.org/a2a-fair-metrics/19-html-citeas-multiple-rels/"')
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    it "should find PURL citeas when there are three relationships in one rel clause in the HTML headers" do
+      guid = 'https://w3id.org/a2a-fair-metrics/19-html-citeas-multiple-rels/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      expect(hrefs.include? guid).to be true
     end
 
-    it 'should raise a WARN for https://w3id.org/a2a-fair-metrics/21-http-html-citeas-differ/ which has multiple, conflicting cite-as links' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://w3id.org/a2a-fair-metrics/21-http-html-citeas-differ/"')
-      expect(result.match(/WARN:\sConflicting\scite\-as\slinks/).class.to_s).to eq 'MatchData'
+    it 'should add a warning 004 for a URL which has multiple, conflicting cite-as links' do
+      guid = 'https://w3id.org/a2a-fair-metrics/19-html-citeas-multiple-rels/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      warnings = extract_warning_ids(warnings: metadata.warnings)
+      expect(warnings.include? '004').to be true
     end
 
-    it 'should return SUCCESS for 22-http-html-citeas-describedby-mixed/ which has described-by and cite-as in mixed HTTP and HTML headers' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://w3id.org/a2a-fair-metrics/22-http-html-citeas-describedby-mixed/"')
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    it 'should add a warning 004 for when citeas differs between hTML and HTTP links' do
+      guid = 'https://w3id.org/a2a-fair-metrics/21-http-html-citeas-differ/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      warnings = extract_warning_ids(warnings: metadata.warnings)
+      expect(warnings.include? '004').to be true
     end
 
-    it 'should return SUCCESS for 23-http-citeas-describedby-item-license-type-author/ which has all signposting headers' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://w3id.org/a2a-fair-metrics/23-http-citeas-describedby-item-license-type-author/"')
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    it "should find PURL citeas which has described-by and cite-as in mixed HTTP and HTML headers" do
+      guid = 'https://w3id.org/a2a-fair-metrics/22-http-html-citeas-describedby-mixed/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      expect(hrefs.include? guid).to be true
     end
 
-    it 'should return SUCCESS for 24-http-citeas-204-no-content/ which returns a 204 with no HTML content, but has a cite-as header' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://w3id.org/a2a-fair-metrics/24-http-citeas-204-no-content/"')
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    it "should find PURL citeas which has citeas-describedby-item-license-type-author in HTTP headers" do
+      guid = 'https://w3id.org/a2a-fair-metrics/23-http-citeas-describedby-item-license-type-author/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      expect(hrefs.include? guid).to be true
     end
 
-    it 'should return SUCCESS for 25-http-citeas-author-410-gone/ which returns a 410 (Gone), but has a cite-as header, since metadata should exist beyond the data' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://w3id.org/a2a-fair-metrics/25-http-citeas-author-410-gone/"')
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    it "should find PURL citeas even with a 204 no content, but in HTTP headers" do
+      guid = 'https://w3id.org/a2a-fair-metrics/24-http-citeas-204-no-content/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      expect(hrefs.include? guid).to be true
     end
 
-    it 'should return SUCCESS for 26-http-citeas-203-non-authorative/ which returns a 203 (Non-authoritative), but has a cite-as header' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://w3id.org/a2a-fair-metrics/26-http-citeas-203-non-authorative/"')
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    it "should find PURL citeas even with a 410 gone, but in HTTP headers" do
+      guid = 'https://w3id.org/a2a-fair-metrics/25-http-citeas-author-410-gone/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      expect(hrefs.include? guid).to be true
     end
 
-    it 'should return WARN for 26-http-citeas-203-non-authorative/ which returns a 203 (Non-authoritative), but has a cite-as header' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://w3id.org/a2a-fair-metrics/26-http-citeas-203-non-authorative/"')
-      expect(result.match(/WARN:\sResponse\sis\snon\-authoritative/).class.to_s).to eq 'MatchData'
+    it "should find PURL citeas even with a 203 non-authoritative, in HTTP headers" do
+      guid = 'https://w3id.org/a2a-fair-metrics/26-http-citeas-203-non-authorative/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      $stderr.puts hrefs
+      expect(hrefs.include? guid).to be true
     end
 
-    it 'should return FAILURE for https://s11.no/2022/a2a-fair-metrics/29-http-500-server-error/' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_cite-as "https://s11.no/2022/a2a-fair-metrics/29-http-500-server-error/"')
-      expect(result.match(/FAILURE/).class.to_s).to eq 'MatchData'
-    end
 
+    it "should find find nothing, but not crash, when encoutering a 500-range error" do
+      guid = 'https://s11.no/2022/a2a-fair-metrics/29-http-500-server-error/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_citeas_hrefs(links: links)
+      $stderr.puts hrefs
+      expect(hrefs.include? guid).to be false
+    end
   end
 end

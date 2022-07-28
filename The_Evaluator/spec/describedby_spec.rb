@@ -1,78 +1,104 @@
-require 'open3'
-
+require 'fsp_harvester'
+require_relative 'spec_helper'
 DescribedBy = String
 
 describe DescribedBy do
   context 'When testing the describedby metric' do
-    it 'should fail to find random strings (test of the rspec test) for https://s11.no/2022/a2a-fair-metrics/01-http-describedby-only/' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://s11.no/2022/a2a-fair-metrics/01-http-describedby-only/"')
-      expect(result.match(/SUCCCCESS/).class.to_s).to eq 'NilClass'
+    it 'should find  describedby in full' do
+      guid = 'https://w3id.org/a2a-fair-metrics/02-html-full/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_describedby_hrefs(links: links)
+      expect(hrefs.length > 0).to be true
     end
 
-    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/02-html-full/ with link in HTML' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://w3id.org/a2a-fair-metrics/02-html-full/"')
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    it 'should not find describedby in http citeas only' do
+      guid = 'https://w3id.org/a2a-fair-metrics/03-http-citeas-only/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_describedby_hrefs(links: links)
+      expect(hrefs.length == 0).to be true
+    end
+    it 'should not find describedby in http citeas only and send 004 warning' do
+      guid = 'https://w3id.org/a2a-fair-metrics/03-http-citeas-only/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      warnings = extract_warning_ids(warnings: metadata.warnings)
+      expect(warnings.include? '004').to be true
     end
 
-    it 'should return FAILURE for https://w3id.org/a2a-fair-metrics/03-http-citeas-only/ with no describedby link' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://w3id.org/a2a-fair-metrics/03-http-citeas-only/"')
-      expect(result.match(/FAILURE/).class.to_s).to eq 'MatchData'
+    it 'should not find describedby in html citeas only' do
+      guid = 'https://w3id.org/a2a-fair-metrics/18-html-citeas-only/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_describedby_hrefs(links: links)
+      expect(hrefs.length == 0).to be true
+    end
+    it 'should not find describedby in html citeas only and send 004 warning' do
+      guid = 'https://w3id.org/a2a-fair-metrics/18-html-citeas-only/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      warnings = extract_warning_ids(warnings: metadata.warnings)
+      expect(warnings.include? '004').to be true
     end
 
-    it 'should return FAILURE for https://w3id.org/a2a-fair-metrics/18-html-citeas-only/ with no describedby link' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://w3id.org/a2a-fair-metrics/18-html-citeas-only/"')
-      expect(result.match(/FAILURE/).class.to_s).to eq 'MatchData'
+    it 'should not find type and send a 005 warning' do
+      guid = 'https://s11.no/2022/a2a-fair-metrics/01-http-describedby-only/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      warnings = extract_warning_ids(warnings: metadata.warnings)
+      expect(warnings.include? '005').to be true
     end
 
-    it 'should return FAILURE for https://s11.no/2022/a2a-fair-metrics/01-http-describedby-only/ when type is not provided' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://s11.no/2022/a2a-fair-metrics/01-http-describedby-only/"')
-      expect(result.match(/FAILURE/).class.to_s).to eq 'MatchData'
+    it 'should accept an IRI as a describedby' do
+      guid = 'https://s11.no/2022/a2a-fair-metrics/01-http-describedby-only/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_describedby_hrefs(links: links)
+      #expect(hrefs).to be true
+      expect(hrefs.length == 1).to be true
     end
 
-    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/04-http-describedby-iri/ where the link is an IRI' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://w3id.org/a2a-fair-metrics/04-http-describedby-iri/"')
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    it 'should accept warn that the return content-type of the describedby link is incorrectly reported' do
+      guid = 'https://w3id.org/a2a-fair-metrics/11-http-described-iri-wrong-type/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      warnings = extract_warning_ids(warnings: metadata.warnings)
+      expect(warnings.include? '009').to be true
     end
 
-    it 'should return FAILURE for https://w3id.org/a2a-fair-metrics/11-http-described-iri-wrong-type/ where the content type doesnt match' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://w3id.org/a2a-fair-metrics/11-http-described-iri-wrong-type/"')
-      expect(result.match(/FAILURE/).class.to_s).to eq 'MatchData'
+    it 'should find the describedby link in a json linkset' do
+      guid = 'https://s11.no/2022/a2a-fair-metrics/07-http-describedby-citeas-linkset-json/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_describedby_hrefs(links: links)
+      expect(hrefs.length == 1).to be true
     end
 
-    it 'should return SUCCESS for https://s11.no/2022/a2a-fair-metrics/07-http-describedby-citeas-linkset-json/ which has describedby in a json linkset' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://s11.no/2022/a2a-fair-metrics/07-http-describedby-citeas-linkset-json/"')
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    it 'should find the describedby link only in a json linkset' do
+      guid = 'https://w3id.org/a2a-fair-metrics/27-http-linkset-json-only/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_describedby_hrefs(links: links)
+      expect(hrefs.length == 1).to be true
     end
 
-
-    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/27-http-linkset-json-only/ which has describedby ONLY in a json linkset' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://w3id.org/a2a-fair-metrics/27-http-linkset-json-only/"')
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    it 'should find the describedby link in a text linkset' do
+      guid = 'https://w3id.org/a2a-fair-metrics/28-http-linkset-txt-only/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_describedby_hrefs(links: links)
+      expect(hrefs.length == 1).to be true
     end
 
-    it 'should return SUCCESS for https://w3id.org/a2a-fair-metrics/28-http-linkset-txt-only/ which has cite-as ONLY in a text linkset' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://w3id.org/a2a-fair-metrics/28-http-linkset-txt-only/"')
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    it 'should find the describedby link in a mix of HTTP and HTML headers' do
+      guid = 'https://w3id.org/a2a-fair-metrics/22-http-html-citeas-describedby-mixed/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_describedby_hrefs(links: links)
+      expect(hrefs.length == 1).to be true
     end
 
-    it 'should return SUCCESS for 22-http-html-citeas-describedby-mixed/ which has described-by and cite-as in mixed HTTP and HTML headers' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://w3id.org/a2a-fair-metrics/22-http-html-citeas-describedby-mixed/"')
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    it 'should find the describedby link in a mix of HTTP http-citeas-describedby-item-license-type-author' do
+      guid = 'https://w3id.org/a2a-fair-metrics/23-http-citeas-describedby-item-license-type-author/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      hrefs = extract_describedby_hrefs(links: links)
+      expect(hrefs.length == 1).to be true
     end
     
-    it 'should return SUCCESS for 23-http-citeas-describedby-item-license-type-author/ which has all signposting headers' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://w3id.org/a2a-fair-metrics/23-http-citeas-describedby-item-license-type-author/"')
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
-    end
-
-    it 'should return FAILURE for https://s11.no/2022/a2a-fair-metrics/29-http-500-server-error/' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby "https://s11.no/2022/a2a-fair-metrics/29-http-500-server-error/"')
-      expect(result.match(/FAILURE/).class.to_s).to eq 'MatchData'
-    end
-
-    it 'should return SUCCESS for 31-http-describedby-profile/ which includes a profile element on its link headers' do
-      result, _error, _status = Open3.capture3('ruby ./tests/Apples_describedby_retrieve "https://w3id.org/a2a-fair-metrics/31-http-describedby-profile/"')
-      expect(result.match(/SUCCESS/).class.to_s).to eq 'MatchData'
+    it 'should find the profiles on both describedby links' do
+      guid = 'https://w3id.org/a2a-fair-metrics/31-http-describedby-profile/'
+      links, metadata = FspHarvester::Utils.resolve_guid(guid: guid)
+      profiles = extract_describedby_profiles(links: links)
+      expect(profiles.length == 2).to be true
     end
 
   end
