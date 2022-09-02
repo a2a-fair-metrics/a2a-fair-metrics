@@ -1,10 +1,10 @@
 <https://w3id.org/a2a-fair-metrics/14-http-describedby-citeas-linkset-json-txt-conneg/>
  ; anchor="https://s11.no/2022/a2a-fair-metrics/14-http-describedby-citeas-linkset-json-txt-conneg/"
- ; rel="cite-as"
+ ; rel="cite-as",
 <https://s11.no/2022/a2a-fair-metrics/14-http-describedby-citeas-linkset-json-txt-conneg/index.ttl>
  ; anchor="https://s11.no/2022/a2a-fair-metrics/14-http-describedby-citeas-linkset-json-txt-conneg/"
  ; rel="describedby"
- ; type="text/turtle"
+ ; type="text/turtle",
 <https://s11.no/2022/a2a-fair-metrics/14-http-describedby-citeas-linkset-json-txt-conneg/test-apple-data.csv>
  ; anchor="https://s11.no/2022/a2a-fair-metrics/14-http-describedby-citeas-linkset-json-txt-conneg/"
  ; rel="item" 
