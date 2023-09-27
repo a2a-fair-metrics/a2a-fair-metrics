@@ -1,0 +1,8 @@
+<https://s11.no/2022/a2a-fair-metrics/48-rda-f3-01m-t1-multiple-item-dcat-datadownload-split/catalogue.ttl#catalog> 
+  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/dcat#Catalog> ;
+  <http://www.w3.org/ns/dcat#landingPage> <https://s11.no/2022/a2a-fair-metrics/48-rda-f3-01m-t1-multiple-item-dcat-datadownload-split/index.html> ;
+  <http://www.w3.org/ns/dcat#dataset> 
+    <https://s11.no/2022/a2a-fair-metrics/48-rda-f3-01m-t1-multiple-item-dcat-datadownload-split/dataset1.ttl#dataset>,
+    <https://s11.no/2022/a2a-fair-metrics/48-rda-f3-01m-t1-multiple-item-dcat-datadownload-split/dataset2.ttl#dataset> .
+
+

@@ -1,0 +1,36 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>48-rda-f3-01m-t1-multiple-item-dcat-datadownload-split</title>
+
+</head>
+
+<body>
+	<h1>48-rda-f3-01m-t1-multiple-item-dcat-datadownload-split</h1>
+	<p>
+	  This landing page has three signposting HTTP headers:
+	</p>
+	<ul>
+        <li><code>rel=cite-as</code> to <a href="https://w3id.org/a2a-fair-metrics/48-rda-f3-01m-t1-multiple-item-dcat-datadownload-split/">w3id PID</a></li>
+		<li><code>rel=describedby</code> to <a href="catalog.ttl">catalog.ttl</a> (text/turtle, type attribute declared)</li>
+		<li><code>rel=describedby</code> to <a href="dataset1.ttl">dataset1.ttl</a> (text/turtle, type attribute declared)</li>
+		<li><code>rel=describedby</code> to <a href="dataset2.ttl">dataset2.ttl</a> (text/turtle, type attribute declared)</li>
+		<li><code>rel=item</code> to <a href="test-apple-data.csv">CSV file</a> (text/csv, type attribute declared)</li>
+		<li><code>rel=item</code> to <a href="test-apple-data.ods">OpenOffice Spreadsheet</a> (application/vnd.oasis.opendocument.spreadsheet, type attribute declared)</li>
+	</ul>
+	
+	<p>This is a test for FAIR principle RDA-F3-01M - Metadata includes the identifier for the data.</p>
+	<p>Test 1: each item appears in one or more metadata files (describedby) as an identifier property, and string-match of item against identifier.</p>
+	<p>
+		This is a more elaborate split example than <a href="../47-rda-f3-01m-t1-multiple-item-dcat-datadownload/">47-rda-f3-01m-t1-multiple-item-dcat-datadownload</a>.
+		Here the DCAT <a href="https://www.w3.org/TR/vocab-dcat-3/#Class:Catalog">Catalogue</a> in <a href="catalog.ttl">catalog.ttl</a> references two datasets in <a href="dataset1.ttl">dataset1.ttl</a> and <a href="dataset2.ttl">dataset2.ttl</a>, which each reference either the CSV or ODS file through <code>downloadURL</code>.
+		Thus to fulfill the RDA-F3-01M check one would need to collate all metadata files. It would <em>not</em> be a fault that catalog.ttl does not reference either of the items.
+	</p>
+	<p>
+		Note that the DCAT Datasets in this example deliberately do <strong>not</strong> include the PID.
+	</p>
+</body>
+</html>
+
