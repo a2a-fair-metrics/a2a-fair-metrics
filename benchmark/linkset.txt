@@ -242,6 +242,26 @@
   anchor="https://s11.no/2022/a2a-fair-metrics/";
   type="text/html",
 
+<https://w3id.org/a2a-fair-metrics/43-rda-f3-01m-t1-one-item/>;
+  rel="item";
+  anchor="https://s11.no/2022/a2a-fair-metrics/";
+  type="text/html",
+
+<https://w3id.org/a2a-fair-metrics/44-rda-f3-01m-t1-one-item-dct-identifier/>;
+  rel="item";
+  anchor="https://s11.no/2022/a2a-fair-metrics/";
+  type="text/html",
+
+<https://w3id.org/a2a-fair-metrics/45-rda-f3-01m-t1-one-item-schema-datadownload/>;
+  rel="item";
+  anchor="https://s11.no/2022/a2a-fair-metrics/";
+  type="text/html",
+
+<https://w3id.org/a2a-fair-metrics/46-rda-f3-01m-t1-one-item-dcat-datadownload/>;
+  rel="item";
+  anchor="https://s11.no/2022/a2a-fair-metrics/";
+  type="text/html",
+
 <https://w3id.org/a2a-fair-metrics//00-404-not-found/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";

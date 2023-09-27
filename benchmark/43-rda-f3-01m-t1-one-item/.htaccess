@@ -1,0 +1,5 @@
+<Files index.html>
+  Header add Link <https://w3id.org/a2a-fair-metrics/43-rda-f3-01m-t1-one-item/>;rel="cite-as"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/43-rda-f3-01m-t1-one-item/index.ttl>;rel="describedby";type="text/turtle"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/43-rda-f3-01m-t1-one-item/test-apple-data.csv>;rel="item";type="text/csv"
+</Files>

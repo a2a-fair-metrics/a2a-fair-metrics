@@ -1,0 +1,7 @@
+<https://s11.no/2022/a2a-fair-metrics/45-rda-f3-01m-t1-one-item-schema-datadownload/> a <http://schema.org/Dataset> ;
+    <http://schema.org/licence> <https://spdx.org/licenses/CC0-1.0> ;
+    <http://schema.org/distribution> [
+        a <http://schema.org/DataDownload> ;
+        <http://schema.org/contentUrl> "https://s11.no/2022/a2a-fair-metrics/45-rda-f3-01m-t1-one-item-schema-datadownload/test-apple-data.csv" ;
+        <http://schema.org/encodingFormat> "text/csv" 
+    ] .

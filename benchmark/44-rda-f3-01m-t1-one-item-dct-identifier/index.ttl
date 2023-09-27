@@ -1,0 +1,2 @@
+<https://s11.no/2022/a2a-fair-metrics/44-rda-f3-01m-t1-one-item-dct-identifier/test-apple-data.csv> 
+  <http://schema.org/identifier> <https://s11.no/2022/a2a-fair-metrics/44-rda-f3-01m-t1-one-item-dct-identifier/test-apple-data.csv> .
