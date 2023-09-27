@@ -25,7 +25,7 @@
         "language": "@language",
         "value": "@value",
         "hreflang": {
-          "@id": "http://schema.org/inLAaguage",
+          "@id": "http://schema.org/inLanguage",
           "@container": "@set"
         }
       }
