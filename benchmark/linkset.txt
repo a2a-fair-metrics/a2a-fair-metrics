@@ -227,6 +227,11 @@
   anchor="https://s11.no/2022/a2a-fair-metrics/";
   type="text/html",
 
+<https://w3id.org/a2a-fair-metrics/40-rda-f2-01m-t1-dc-wrong-type/>;
+  rel="item";
+  anchor="https://s11.no/2022/a2a-fair-metrics/";
+  type="text/html",
+
 <https://w3id.org/a2a-fair-metrics//00-404-not-found/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
