@@ -1,0 +1,6 @@
+<Files index.html>
+  Header add Link
+  <https: //w3id.org/a2a-fair-metrics/50-rda-f1-01m-t1-metadata-pid />;rel="cite-as"
+  Header add Link <https: //w3id.org/a2a-fair-metrics/50-rda-f1-01m-t1-metadata-pid/index.ttl>
+    ;rel="describedby";type="text/turtle"
+</Files>
