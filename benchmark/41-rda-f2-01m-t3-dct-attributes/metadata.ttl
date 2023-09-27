@@ -1,0 +1,5 @@
+<https://s11.no/2022/a2a-fair-metrics/41-rda-f2-01m-t2-dct-attributes/> <http://purl.org/dc/terms/license> <https://spdx.org/licenses/CC0-1.0> ;
+  <http://purl.org/dc/terms/title> "41-rda-f2-01m-t2-dct-attributes" ;
+  <http://purl.org/dc/terms/description> "This is a test for FAIR principle RDA-F2-01M test 2 using Dublin Core Terms attributes." ;
+  <http://purl.org/dc/terms/creator> <https://orcid.org/0000-0001-9842-9718> ;
+  <http://purl.org/dc/terms/date> "2023-09-27T12:05:25+01:00"^^<http://www.w3.org/2001/XMLSchema#datetime> .

@@ -1,0 +1,5 @@
+<https://s11.no/2022/a2a-fair-metrics/42-rda-f2-01m-t1-schema-attributes/> <http://schema.org/license> <https://spdx.org/licenses/CC0-1.0> .
+  <http://schema.org/name> "42-rda-f2-01m-t3-schema-attributes" ;
+  <http://schema.org/description> "This is a test for FAIR principle RDA-F2-01M test 2 using schema.org attributes" ;
+  <http://schema.org/creator> <https://orcid.org/0000-0001-9842-9718> ;
+  <http://schema.org/datePublished> "2023-09-27T12:08:55+01:00" .

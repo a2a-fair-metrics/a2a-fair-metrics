@@ -15,11 +15,12 @@
 	<ul>
 		<li><a href="metadata.ttl">describedby to metadata.ttl</a> (application/n-quads, type attribute declared wrongly)</li>
 	</ul>
-	<p>This is a negative test for FAIR principle RDA-F2-01M (Rich metadata is provided to allow discovery). Test 1: describedby links exist that resolve to a document that contains at least one of dcat, dc, or schema.
+	<p>This is a negative test for FAIR principle RDA-F2-01M (Rich metadata is provided to allow discovery). Test 2:  Check the encoding of the signposting link vs the document.
 	</p>
 	<p>
 		This test is negative, because although the link claims the metadata is <code>application/n-quads</code>, and it could (in this case) be parsed in that format, yet it's retrieved <code>Content-Type: text/turtle</code> is inconsistent with the signposting, and a client would be uncertain how to parse it.
 	</p>
+	<p>For the positive version of Test 2, use <a href-"../35-rda-f2-01m-t1-dc/">35-rda-f2-01m-t1-dc</a></p>
 	<p>
 		This Turtle file has a single statement using the namespace <code>http://purl.org/dc/elements/1.1/</code>.
 	</p>
