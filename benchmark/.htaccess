@@ -13,6 +13,7 @@ IndexIgnore cc-zero.svg linkset.jsonld linkset.txt ..
 AddType text/turtle;charset=UTF-8 ttl
 AddType application/ld+json jsonld
 AddType application/x-type-map var
+AddType application/vnd.oasis.opendocument.spreadsheet ods
 
 AddHandler type-map .var
 Options +MultiViews

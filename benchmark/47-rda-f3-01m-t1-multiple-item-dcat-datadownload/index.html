@@ -1,0 +1,29 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>47-rda-f3-01m-t1-multiple-item-dcat-datadownload</title>
+
+</head>
+
+<body>
+	<h1>47-rda-f3-01m-t1-multiple-item-dcat-datadownload</h1>
+	<p>
+	  This landing page has three signposting HTTP headers:
+	</p>
+	<ul>
+        <li><code>rel=cite-as</code> to <a href="https://w3id.org/a2a-fair-metrics/47-rda-f3-01m-t1-multiple-item-dcat-datadownload/">w3id PID</a></li>
+		<li><code>rel=describedby</code> to <a href="dataset.ttl">dataset.ttl</a> (text/turtle, type attribute declared)</li>
+		<li><code>rel=item</code> to <a href="test-apple-data.csv">CSV file</a> (text/csv, type attribute declared)</li>
+		<li><code>rel=item</code> to <a href="test-apple-data.ods">OpenOffice Spreadsheet</a> (application/vnd.oasis.opendocument.spreadsheet, type attribute declared)</li>
+	</ul>
+	
+	<p>This is a test for FAIR principle RDA-F3-01M - Metadata includes the identifier for the data.</p>
+	<p>Test 1: each item appears in one or more metadata files (describedby) as an identifier property, and string-match of item against identifier.</p>
+	<p>
+		The Turtle file has nune statement using the namespace <code>http://www.w3.org/ns/dcat#</code>, including two locally identified nodes for the <a href="https://www.w3.org/TR/vocab-dcat-3/#Class:Distribution">Distribution</a> which has the data identifier as an IRI reference from <code>downloadURL</code> for each item above. Note that the DCAT Dataset in this example deliberately do <strong>not</strong> include the PID.
+	</p>
+</body>
+</html>
+

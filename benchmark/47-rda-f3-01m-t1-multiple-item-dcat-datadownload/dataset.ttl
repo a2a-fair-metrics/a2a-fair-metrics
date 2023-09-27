@@ -1,0 +1,17 @@
+<https://s11.no/2022/a2a-fair-metrics/47-rda-f3-01m-t1-multiple-item-dcat-datadownload/dataset.ttl#dataset> 
+  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/dcat#Dataset> ;
+  <http://www.w3.org/ns/dcat#landingPage> <https://s11.no/2022/a2a-fair-metrics/47-rda-f3-01m-t1-multiple-item-dcat-datadownload/index.html> ;
+  <http://www.w3.org/ns/dcat#distribution> <https://s11.no/2022/a2a-fair-metrics/47-rda-f3-01m-t1-multiple-item-dcat-datadownload/dataset.ttl#test-apple-data-csv> .
+  <http://www.w3.org/ns/dcat#distribution> <https://s11.no/2022/a2a-fair-metrics/47-rda-f3-01m-t1-multiple-item-dcat-datadownload/dataset.ttl#test-apple-data-ods> .
+
+<https://s11.no/2022/a2a-fair-metrics/47-rda-f3-01m-t1-multiple-item-dcat-datadownload/dataset.ttl#test-apple-data-csv> 
+  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/dcat#Distribution> ;
+  <http://www.w3.org/ns/dcat#downloadURL> <https://s11.no/2022/a2a-fair-metrics/47-rda-f3-01m-t1-multiple-item-dcat-datadownload/test-apple-data.csv> ;
+  <http://www.w3.org/ns/dcat#mediaType> <https://www.iana.org/assignments/media-types/text/csv> .
+
+<https://s11.no/2022/a2a-fair-metrics/47-rda-f3-01m-t1-multiple-item-dcat-datadownload/dataset.ttl#test-apple-data-ods> 
+  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/ns/dcat#Distribution> ;
+  <http://www.w3.org/ns/dcat#downloadURL> <https://s11.no/2022/a2a-fair-metrics/47-rda-f3-01m-t1-multiple-item-dcat-datadownload/test-apple-data.ods> ;
+  <http://www.w3.org/ns/dcat#mediaType> <https://www.iana.org/assignments/media-types/application/vnd.oasis.opendocument.spreadsheet> .
+
+
