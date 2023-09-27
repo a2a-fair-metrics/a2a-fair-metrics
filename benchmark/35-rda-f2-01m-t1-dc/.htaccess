@@ -1,0 +1,3 @@
+<Files index.html>
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/35-rda-f2-01m-t1-dc/metadata.ttl>;rel="describedby";type="text/turtle"
+</Files>
