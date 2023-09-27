@@ -1,0 +1,4 @@
+<Files index.html>
+  Header add Link <https://w3id.org/a2a-fair-metrics/51-rda-f1-01m-t1-metadata-no-pid/>;rel="cite-as"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/51-rda-f1-01m-t1-metadata-no-pid/metadata.ttl>;rel="describedby";type="text/turtle"
+</Files>
