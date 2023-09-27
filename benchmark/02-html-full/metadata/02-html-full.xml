@@ -15,7 +15,7 @@
     <schema:identifier>https://doi.org/10.4242/ncc-1701</schema:identifier>
     <schema:isAccessibleForFree rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">true</schema:isAccessibleForFree>
     <schema:distribution rdf:resource="https://w3id.org/a2a-fair-metrics/05-http-describedby-citeas/02-html-full"/>
-    <schema:license rdf:resource="http://creativecommons.org/licenses/by/4.0/"/>
+    <schema:license rdf:resource="https://creativecommons.org/publicdomain/zero/1.0/"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://orcid.org/0000-0002-1825-0097">
     <rdf:type rdf:resource="http://schema.org/Person"/>
