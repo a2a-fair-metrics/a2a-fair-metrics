@@ -1,0 +1,5 @@
+<Files index.html>
+  Header add Link <https://w3id.org/a2a-fair-metrics/53-rda-f1-01d-t1-data-no-pid/>;rel="cite-as"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/53-rda-f1-01d-t1-data-no-pid/files/1>;rel="item";type="text/csv"  
+</Files>
+Redirect "/2022/a2a-fair-metrics/53-rda-f1-01d-t1-data-no-pid/files/1" "https://s11.no/2022/a2a-fair-metrics/53-rda-f1-01d-t1-data-no-pid/test-apple-data.csv"
