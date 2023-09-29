@@ -1,6 +1,6 @@
 <Files index.html>
   Header add Link <https://w3id.org/a2a-fair-metrics/48-rda-f3-01m-t1-multiple-item-dcat-datadownload-split/>;rel="cite-as"
-  Header add Link <https://s11.no/2022/a2a-fair-metrics/48-rda-f3-01m-t1-multiple-item-dcat-datadownload-split/catalogue.ttl>;rel="describedby";type="text/turtle"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/48-rda-f3-01m-t1-multiple-item-dcat-datadownload-split/catalog.ttl>;rel="describedby";type="text/turtle"
   Header add Link <https://s11.no/2022/a2a-fair-metrics/48-rda-f3-01m-t1-multiple-item-dcat-datadownload-split/dataset1.ttl>;rel="describedby";type="text/turtle"
   Header add Link <https://s11.no/2022/a2a-fair-metrics/48-rda-f3-01m-t1-multiple-item-dcat-datadownload-split/dataset2.ttl>;rel="describedby";type="text/turtle"  
   Header add Link <https://s11.no/2022/a2a-fair-metrics/48-rda-f3-01m-t1-multiple-item-dcat-datadownload-split/test-apple-data.csv>;rel="item";type="text/csv"
