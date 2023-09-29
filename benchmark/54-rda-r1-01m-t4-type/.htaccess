@@ -1,3 +1,4 @@
 <Files index.html>
   Header add Link <https://w3id.org/a2a-fair-metrics/54-rda-r1-01m-t4-type/>;rel="cite-as"
+  Header add Link <https://schema.org/CreativeWork>;rel="type"
 </Files>
