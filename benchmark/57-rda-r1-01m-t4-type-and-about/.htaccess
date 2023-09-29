@@ -1,6 +1,0 @@
-<Files index.html>
-  Header add Link <https://w3id.org/a2a-fair-metrics/57-rda-r1-01m-t4-type-and-about/>;rel="cite-as"
-  Header add Link <https://schema.org/Dataset>;rel="type"
-  Header add Link <https://schema.org/AboutPage>;rel="type"
-  Header add Link <https://s11.no/2022/a2a-fair-metrics/57-rda-r1-01m-t4-type-and-about/test-apple-data.csv>;rel="item";type="text/csv"
-</Files>
