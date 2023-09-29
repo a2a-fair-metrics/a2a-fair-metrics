@@ -292,6 +292,16 @@
   anchor="https://s11.no/2022/a2a-fair-metrics/";
   type="text/html",
 
+<https://w3id.org/a2a-fair-metrics/60-rda-f1-01md-t1-citeas-pid/>;
+  rel="item";
+  anchor="https://s11.no/2022/a2a-fair-metrics/";
+  type="text/html",
+
+<https://w3id.org/a2a-fair-metrics/61-rda-f1-01md-t1-citeas-no-pid/>;
+  rel="item";
+  anchor="https://s11.no/2022/a2a-fair-metrics/";
+  type="text/html",
+
 <https://w3id.org/a2a-fair-metrics/65-rda-r1-01m-t1-item-type/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
@@ -318,6 +328,16 @@
   type="text/html",
 
 <https://w3id.org/a2a-fair-metrics/70-rda-r1-01m-t2-type-charset/>;
+  rel="item";
+  anchor="https://s11.no/2022/a2a-fair-metrics/";
+  type="text/html",
+
+<https://w3id.org/a2a-fair-metrics/71-rda-r1-01m-t3-type-registered/>;
+  rel="item";
+  anchor="https://s11.no/2022/a2a-fair-metrics/";
+  type="text/html",
+
+<https://w3id.org/a2a-fair-metrics/75-rda-r1-01m-t1-license/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
   type="text/html",
