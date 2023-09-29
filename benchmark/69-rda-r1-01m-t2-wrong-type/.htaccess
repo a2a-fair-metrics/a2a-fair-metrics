@@ -1,0 +1,4 @@
+<Files index.html>
+  Header add Link <https://w3id.org/a2a-fair-metrics/69-rda-r1-01m-t2-wrong-type/>;rel="cite-as"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/69-rda-r1-01m-t2-wrong-type/test-apple-data.csv>;rel="item";type="csv"
+</Files>
