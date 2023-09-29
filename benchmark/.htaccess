@@ -14,6 +14,7 @@ AddType text/turtle;charset=UTF-8 ttl
 AddType application/ld+json jsonld
 AddType application/x-type-map var
 AddType application/vnd.oasis.opendocument.spreadsheet ods
+AddType application/vnd.taverna.t2flow+xml t2flow
 
 AddHandler type-map .var
 Options +MultiViews
