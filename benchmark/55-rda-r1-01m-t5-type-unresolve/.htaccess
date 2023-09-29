@@ -1,0 +1,6 @@
+<Files index.html>
+  Header add Link <https://w3id.org/a2a-fair-metrics/55-rda-r1-01m-t5-type-unresolve/>;rel="cite-as"
+  Header add Link <https://w3id.org/a2a-fair-metrics/not-found/>;rel="type"
+  Header add Link <https://w3id.org/a2a-fair-metrics/00-404-not-found/>;rel="type"
+  Header add Link <https://w3id.org/a2a-fair-metrics/29-http-500-server-error/>;rel="type"
+</Files>

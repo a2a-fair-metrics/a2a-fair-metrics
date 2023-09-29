@@ -1,0 +1,41 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>55-rda-r1-01m-t5-type-unresolve</title>
+
+</head>
+
+<body>
+	<h1>55-rda-r1-01m-t5-type-unresolve</h1>
+	<p>
+	  This landing page has these FAIR Signposting HTTP headers:
+	</p>
+	<ul>
+        <li><code>rel=cite-as</code> to <a href="https://w3id.org/a2a-fair-metrics/55-rda-r1-01m-t5-type-unresolve/">w3id PID</a></li>
+		<li><code>rel=type</code> to <a href="https://w3id.org/a2a-fair-metrics/not-found/">https://w3id.org/a2a-fair-metrics/not-found/</a> </a>
+		<li><code>rel=type</code> to <a href="https://w3id.org/a2a-fair-metrics/00-404-not-found/">https://w3id.org/a2a-fair-metrics/00-404-not-found/</a> </a>
+		<li><code>rel=type</code> to <a href="https://s11.no/2022/a2a-fair-metrics/29-http-500-server-error/">https://s11.no/2022/a2a-fair-metrics/29-http-500-server-error/</a></li>
+		
+	</ul>
+	<p>This is a test for FAIR principle RDA-R1-01M - Plurality of accurate and relevant attributes are provided to allow reuse.</p>
+
+	<p>Test 6: Each rel=type url resolves.</p>	
+	<p>
+		In this case, each of the types are broken:
+	</p>
+	<ul>
+		<li><a href="https://w3id.org/a2a-fair-metrics/not-found/">https://w3id.org/a2a-fair-metrics/not-found/</a> will give 404 Not Found at PID provider w3id.org</li>
+		<li><a href="https://w3id.org/a2a-fair-metrics/00-404-not-found/">https://w3id.org/a2a-fair-metrics/00-404-not-found/</a> will redirect, then give 404 Not Found</li>
+		<li><a href="https://w3id.org/a2a-fair-metrics/29-http-500-server-error/">https://w3id.org/a2a-fair-metrics/29-http-500-server-error/</a> redirects, then gives a 500 Server Error</li>
+	</ul>
+	<p>
+		Only the first of these indicate that the type PID is unknown and should cause a failure. 
+		The second one indicates that the PID record redirect is outdated -- this is quite typical of poorly deployed ontologies and should be a strong warning. The third one could be a
+		transient error and give a soft warning.
+	</p>
+
+</body>
+</html>
+
