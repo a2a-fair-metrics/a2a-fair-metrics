@@ -35,3 +35,9 @@ For development you can run this locally using [Docker](https://www.docker.com/)
     make docker
 
 This will expose an Apache HTTPd on <http://localhost:8080/> (where the w3id base URL has been disabled).
+
+
+## Adding tests
+
+Use the `clone-test.bash` tool to add additional tests. The initial number are meant to be sequentials and unique, but gaps are allowed.
+In order to work as PIDs there is a regular expression check for `^([0-9][0-9]*-[a-z0-9-]*)$` 
