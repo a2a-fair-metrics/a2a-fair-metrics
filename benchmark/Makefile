@@ -1,7 +1,8 @@
 ## 
 ## For deployment on https://s11.no/2022/a2a-fair-metrics/
 ## by Stian Soiland-Reyes
-BASE=/files/web/vhosts/s11.no/2022/a2a-fair-metrics/
+#BASE=/files/web/vhosts/s11.no/2022/a2a-fair-metrics/
+BASE=/home/stain/src/s11.no/static/2022/a2a-fair-metrics/
 #BASE=/files/web/vhosts/dev.s11.no/2022/a2a-fair-metrics/
 PID_BASE=https://w3id.org/a2a-fair-metrics/
 #PID_BASE=https://dev.s11.no/2022/a2a-fair-metrics/
