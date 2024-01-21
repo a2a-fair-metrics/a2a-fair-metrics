@@ -232,12 +232,12 @@
   anchor="https://s11.no/2022/a2a-fair-metrics/";
   type="text/html",
 
-<https://w3id.org/a2a-fair-metrics/41-rda-f2-01m-t3-dct-attributes/>;
+<https://w3id.org/a2a-fair-metrics/41-rda-f2-01m-t2-dct-attributes/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
   type="text/html",
 
-<https://w3id.org/a2a-fair-metrics/42-rda-f2-01m-t3-schema-attributes/>;
+<https://w3id.org/a2a-fair-metrics/42-rda-f2-01m-t1-schema-attributes/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
   type="text/html",
