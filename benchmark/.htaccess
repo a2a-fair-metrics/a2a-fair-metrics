@@ -24,7 +24,7 @@ Options +MultiViews
 </Files>
 
 # Fixing previous typos in PIDs..
-Redirect permanent "/2022/a2a-fair-metrics/04-http-described-iri" "https://s11.no/2022/a2a-fair-metrics/04-http-describedby-iri/"
-Redirect permanent "/2022/a2a-fair-metrics/11-http-described-iri-wrong-type" "https://s11.no/2022/a2a-fair-metrics/11-http-describedby-iri-wrong-type/"
-Redirect permanent "/2022/a2a-fair-metrics/41-rda-f2-01m-t3-dct-attributes" "https://s11.no/2022/a2a-fair-metrics/41-rda-f2-01m-t2-dct-attributes/"
-Redirect permanent "/2022/a2a-fair-metrics/42-rda-f2-01m-t3-schema-attributes" "https://s11.no/2022/a2a-fair-metrics/42-rda-f2-01m-t1-schema-attributes/"
+Redirect permanent "/2022/a2a-fair-metrics/04-http-described-iri" "https://s11.no/2022/a2a-fair-metrics/04-http-describedby-iri"
+Redirect permanent "/2022/a2a-fair-metrics/11-http-described-iri-wrong-type" "https://s11.no/2022/a2a-fair-metrics/11-http-describedby-iri-wrong-type"
+Redirect permanent "/2022/a2a-fair-metrics/41-rda-f2-01m-t3-dct-attributes" "https://s11.no/2022/a2a-fair-metrics/41-rda-f2-01m-t2-dct-attributes"
+Redirect permanent "/2022/a2a-fair-metrics/42-rda-f2-01m-t3-schema-attributes" "https://s11.no/2022/a2a-fair-metrics/42-rda-f2-01m-t1-schema-attributes"
