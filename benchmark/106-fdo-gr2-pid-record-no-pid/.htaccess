@@ -1,0 +1,4 @@
+<Files index.html>
+  Header add Link <https://schema.org/LearningResource>;rel="type"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/106-fdo-gr2-pid-record-no-pid/metadata.txt>;rel="describedby";type="text/plain"
+</Files>

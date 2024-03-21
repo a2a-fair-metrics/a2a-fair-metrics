@@ -1,0 +1,4 @@
+<Files index.html>
+  Header add Link <https://w3id.org/a2a-fair-metrics/105-fdo-gr2-pid-record-no-metadata/>;rel="cite-as"
+  Header add Link <https://schema.org/LearningResource>;rel="type"
+</Files>
