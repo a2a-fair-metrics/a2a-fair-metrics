@@ -1,0 +1,4 @@
+<Files index.html>
+  Header add Link <https://w3id.org/a2a-fair-metrics/104-fdo-gr2-pid-record-no-type/>;rel="cite-as"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/104-fdo-gr2-pid-record-no-type/metadata.txt>;rel="describedby";type="text/plain"
+</Files>

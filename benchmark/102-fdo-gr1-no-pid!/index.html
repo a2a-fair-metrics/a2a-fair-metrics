@@ -1,0 +1,29 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>102-fdo-gr1-no-pid!</title>
+
+</head>
+
+<body>
+	<h1>102-fdo-gr1-no-pid!</h1>
+	<p>
+		This landing page has no FAIR Signposting HTTP headers, in particular it is missing the <code>rel=cite-as</code> PID indicator.
+	</p>
+	<ul>
+	</ul>
+	<p>This is a negative test for FDO principle 
+	<a href="https://w3id.org/ro/doi/10.5281/zenodo.7782262;FDO-GR1">FDO-GR1</a>:
+	<q>A PID, standing for a globally unique, persistent and resolvable identifier, is assumed to be the basis for FAIR Digital Objects. Every FDO is assigned one or more PIDs.</q>
+	</p>
+	<p>
+	This test deliberately have a name with the <kbd>!</kbd> character which is not valid as a PID
+	<del><a href="https://w3id.org/a2a-fair-metrics/102-fdo-gr1-no-pid!/">https://w3id.org/a2a-fair-metrics/102-fdo-gr1-no-pid!/</a></del> (404 Not Found), so this test can be 
+	used both for a non-resolvable PID and for a URI which have no corresponding PID.
+	</p>
+</body>
+
+</html>
