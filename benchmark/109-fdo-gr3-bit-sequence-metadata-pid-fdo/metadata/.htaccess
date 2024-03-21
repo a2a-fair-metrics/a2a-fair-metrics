@@ -1,0 +1,5 @@
+<Files index.html>
+  Header add Link <https://w3id.org/a2a-fair-metrics/109-fdo-gr3-bit-sequence-metadata-pid-fdo/metadata>;rel="cite-as"
+  Header add Link <https://schema.org/CreativeWork>;rel="type"
+  Header add Link <https://w3id.org/a2a-fair-metrics/109-fdo-gr3-bit-sequence-metadata-pid-fdo/>;rel="describes"
+</Files>
