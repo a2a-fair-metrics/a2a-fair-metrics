@@ -1,0 +1,7 @@
+<Files index.html>
+  Header add Link <https://w3id.org/a2a-fair-metrics/112-fdo-gr4-invalid-attribute/>;rel="cite-as"
+  Header add Link <https://schema.org/LearningResource>;rel="type"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/112-fdo-gr4-invalid-attribute/metadata.txt>;rel="describedby";type="text/plain"
+  Header add Link <CC0-1.0>;rel="license"
+  Header add Link StianSoiland-Reyes;rel="author"
+</Files>

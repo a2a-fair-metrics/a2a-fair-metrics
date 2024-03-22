@@ -1,0 +1,7 @@
+<Files index.html>
+  Header add Link <https://w3id.org/a2a-fair-metrics/113-fdo-gr4-attribute-title/>;rel="cite-as"
+  Header add Link <https://schema.org/LearningResource>;rel="type"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/113-fdo-gr4-attribute-title/metadata.txt>;rel="describedby";type="text/plain"
+  Header add Link <https://spdx.org/licenses/CC0-1.0>;rel="license";title="CC0"
+  Header add Link "<https://orcid.org/0000-0002-1825-0097>;rel=\"author\";title=\"Stian Soiland-Reyes\"
+</Files>

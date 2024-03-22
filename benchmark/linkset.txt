@@ -307,6 +307,16 @@
   anchor="https://s11.no/2022/a2a-fair-metrics/";
   type="text/html",
 
+<https://w3id.org/a2a-fair-metrics/112-fdo-gr4-invalid-attribute/>;
+  rel="item";
+  anchor="https://s11.no/2022/a2a-fair-metrics/";
+  type="text/html",
+
+<https://w3id.org/a2a-fair-metrics/113-fdo-gr4-attribute-title/>;
+  rel="item";
+  anchor="https://s11.no/2022/a2a-fair-metrics/";
+  type="text/html",
+
 <https://w3id.org/a2a-fair-metrics/12-http-item-does-not-resolve/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
