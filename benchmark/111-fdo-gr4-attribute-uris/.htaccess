@@ -1,0 +1,7 @@
+<Files index.html>
+  Header add Link <https://w3id.org/a2a-fair-metrics/111-fdo-gr4-attribute-uris/>;rel="cite-as"
+  Header add Link <https://schema.org/LearningResource>;rel="type"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/111-fdo-gr4-attribute-uris/metadata.txt>;rel="describedby";type="text/plain"
+  Header add Link <https://w3id.org/ro/doi/10.5281/zenodo.7782262;FDO-GR4>;rel="https://schema.org/teaches"
+  Header add Link <https://s11.no/>;rel="https://schema.org/publisher"
+</Files>

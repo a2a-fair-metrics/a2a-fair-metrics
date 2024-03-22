@@ -287,7 +287,22 @@
   anchor="https://s11.no/2022/a2a-fair-metrics/";
   type="text/html",
 
+<https://w3id.org/a2a-fair-metrics/109-fdo-gr3-bit-sequence-metadata-pid-fdo/>;
+  rel="item";
+  anchor="https://s11.no/2022/a2a-fair-metrics/";
+  type="text/html",
+
 <https://w3id.org/a2a-fair-metrics/11-http-describedby-iri-wrong-type/>;
+  rel="item";
+  anchor="https://s11.no/2022/a2a-fair-metrics/";
+  type="text/html",
+
+<https://w3id.org/a2a-fair-metrics/110-fdo-gr4-attributes/>;
+  rel="item";
+  anchor="https://s11.no/2022/a2a-fair-metrics/";
+  type="text/html",
+
+<https://w3id.org/a2a-fair-metrics/111-fdo-gr4-attribute-uris/>;
   rel="item";
   anchor="https://s11.no/2022/a2a-fair-metrics/";
   type="text/html",
