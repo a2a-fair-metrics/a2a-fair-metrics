@@ -1,0 +1,6 @@
+<Files index.html>
+  Header add Link <https://w3id.org/a2a-fair-metrics/114-fdo-gr4-attribute-uri-unknown/>;rel="cite-as"
+  Header add Link <https://schema.org/LearningResource>;rel="type"
+  Header add Link <https://s11.no/2022/a2a-fair-metrics/114-fdo-gr4-attribute-uri-unknown/metadata.txt>;rel="describedby";type="text/plain"
+  Header add Link <http://example.com/>;rel="https://schema.org/404-unknown-property"
+</Files>
